@@ -17,5 +17,10 @@
     </head>
     <body class="antialiased">
         <div>Página Inicio</div>
+        @if (Session::has('alert'))
+        <div class="alert alert-warning alert-dismissable"> 
+            {{Session::get('alert')}}
+        </div>
+        @endif
     </body>
 </html>

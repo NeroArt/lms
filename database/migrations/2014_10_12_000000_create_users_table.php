@@ -14,11 +14,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('apellido_paterno')->nullable()->default('Inactiva');
+            $table->string('apellido_materno')->nullable()->default('Inactiva');
             $table->string('email')->unique();
+            $table->string('curp')->nullable();
+            $table->string('telefono_celular')->nullable()->default('Inactiva');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('status')->default(true);
             $table->rememberToken();
             $table->timestamps();
+            $table->bigInteger('roles_id')->unsigned()->index()->default(2);
+            //Forma de referenciar las llaves foraneas
+            $table->foreign('roles_id')->references('id')->on('roles');
         });
     }
 
