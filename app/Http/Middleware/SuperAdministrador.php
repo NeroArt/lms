@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class Administrador
+class SuperAdministrador
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,13 @@ class Administrador
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->roles_id==1 && Auth::user()->status==1){
+        if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==1){
             return $next($request);
         }
 
-        if(Auth::check() && Auth::user()->roles_id==1 && Auth::user()->status==0){
+        if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==0){
             Auth::logout();
-            return redirect('/')->with('alert','Ingreso como ADMINISTRADOR, pero la cuenta esta bloqueada, por favor contacte con el ADMINISTRADOR DE SISTEMA.');
+            return redirect('/')->with('alert','Ingreso como SUPER ADMINISTRADOR, pero la cuenta esta bloqueada, por favor contacte con soporte técnico.');
         }
 
         if(Auth::check() && Auth::user()->roles_id==2 && Auth::user()->status==1){
@@ -34,15 +34,13 @@ class Administrador
             return redirect('/')->with('alert','La cuenta ha sido bloqueada, por favor contacte con el ADMINISTRADOR.');
         }
 
-        if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==1){
-            return redirect('/superadministrador')->with('Esta conectado como CLIENTE.');
+        if(Auth::check() && Auth::user()->roles_id==1 && Auth::user()->status==1){
+            return redirect('/paneladministrador')->with('Esta conectado como CLIENTE.');
         }
 
-        if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==0){
+        if(Auth::check() && Auth::user()->roles_id==1 && Auth::user()->status==0){
             Auth::logout();
-            return redirect('/')->with('alert','Ingreso como SUPER ADMINISTRADOR, pero la cuenta esta bloqueada, por favor contacte con soporte técnico.');
+            return redirect('/')->with('alert','Ingreso como ADMINISTRADOR, pero la cuenta esta bloqueada, por favor contacte con el SUPER ADMINISTRADOR.');
         }
-
-
     }
 }

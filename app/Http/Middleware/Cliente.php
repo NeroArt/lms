@@ -24,18 +24,26 @@ class Cliente
 
         if(Auth::check() && Auth::user()->roles_id==2 && Auth::user()->status==0){
             Auth::logout();
-            return redirect('/')->with('alert','Este usuario esta dado de baja, por favor contacte con el ADMINISTRADOR.');
+            return redirect('/')->with('alert','Este cuenta esta bloqueada, por favor contacte con el ADMINISTRADOR.');
         }
 
         if(Auth::check() && Auth::user()->roles_id==1 && Auth::user()->status==1){
-            return redirect('/paneladministrador')->with('Esta conectado como ADMINISTRADOR.');
+            return redirect('/paneladministrador');
         }
 
         if(Auth::check() && Auth::user()->roles_id==1 && Auth::user()->status==0){
             Auth::logout();
-            return redirect('/')->with('alert','Ingreso como ADMINISTRADOR, pero esta dado de baja, por favor contacte con el ADMINISTRADOR DE SISTEMA.');
+            return redirect('/')->with('alert','Ingreso como ADMINISTRADOR, pero la cuenta esta bloqueada, por favor contacte con el SUPER ADMINISTRADOR.');
         }
 
+        if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==1){
+            return redirect('/superadministrador');
+        }
+
+        if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==0){
+            Auth::logout();
+            return redirect('/')->with('alert','Ingreso como SUPER ADMINISTRADOR, pero la cuenta esta bloqueada, por favor contacte con el soporte técnico.');
+        }
 
         
     }
