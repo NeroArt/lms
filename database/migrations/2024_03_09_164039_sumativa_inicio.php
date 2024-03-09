@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('sumativa_inicio', function (Blueprint $table) {
+            $table->id();
+            $table->integer('suma_total');
+            $table->bigInteger('inicio_actividades_id')->unsigned()->index()->nullable();
+            $table->timestamps();
+            //Forma de referenciar las llaves foraneas
+            $table->foreign('inicio_actividades_id')->references('id')->on('inicio_actividades');
+        });
     }
 
     /**
@@ -19,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('sumativa_inicio');
     }
 };

@@ -11,7 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('objetivos', function (Blueprint $table) {
+            $table->id();
+            $table->string('tipo_objetivo');
+            $table->string('descripcion');
+            $table->string('sujeto');
+            $table->string('accion');
+            $table->string('condicion');
+            $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
+            $table->timestamps();
+            //Forma de referenciar las llaves foraneas
+            $table->foreign('cursos_id')->references('id')->on('cursos');
+        });
     }
 
     /**
@@ -19,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('objetivos');
     }
 };

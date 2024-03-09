@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('inicio_cursos', function (Blueprint $table) {
+            $table->id();
+            $table->string('etapa_encuadre');
+            $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
+            $table->timestamps();
+            //Forma de referenciar las llaves foraneas
+            $table->foreign('cursos_id')->references('id')->on('cursos');
+        });
     }
 
     /**
@@ -19,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('inicio_cursos');
     }
 };

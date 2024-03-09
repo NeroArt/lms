@@ -11,7 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('evaluaciones', function (Blueprint $table) {
+            $table->id();
+            $table->integer('porcentaje_evaluacion_diagnostica');
+            $table->string('instrumento_evaluacion_diagnostica');
+            $table->integer('porcentaje_evaluacion_formativa');
+            $table->string('instrumento_evaluacion_formativa');
+            $table->integer('porcentaje_evaluacion_final');
+            $table->string('instrumento_evaluacion_final');
+            $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
+            $table->timestamps();
+            //Forma de referenciar las llaves foraneas
+            $table->foreign('cursos_id')->references('id')->on('cursos');
+        });
     }
 
     /**
@@ -19,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('evaluaciones');
     }
 };

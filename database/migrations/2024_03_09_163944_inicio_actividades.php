@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('inicio_actividades', function (Blueprint $table) {
+            $table->id();
+            $table->string('actividad');
+            $table->integer('duracion');
+            $table->string('tecnicas');
+            $table->string('material_equipo_apoyo');
+            $table->bigInteger('inicio_cursos_id')->unsigned()->index()->nullable();
+            $table->timestamps();
+            //Forma de referenciar las llaves foraneas
+            $table->foreign('inicio_cursos_id')->references('id')->on('inicio_cursos');
+        });
     }
 
     /**
@@ -19,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('inicio_actividades');
     }
 };
