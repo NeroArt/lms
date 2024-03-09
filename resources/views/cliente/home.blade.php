@@ -10,7 +10,7 @@
 
                 <div class="card-body">
                     <div>
-                        <a href="{{ url('/teams') }}"><input
+                        <a href="{{ url('/seccion1') }}"><input
                                 class="btn-primary" type="submit"
                                 value="Creación de Cursos"></a>
                     </div>
