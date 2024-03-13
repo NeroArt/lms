@@ -10,7 +10,7 @@
 
                 <div class="card-body">
                     <div>
-                        <a href="{{ url('/teams') }}"><input
+                        <a href="{{ url('/formusuarioadmin') }}"><input
                                 class="btn-primary" type="submit"
                                 value="Gestión de Usuarios"></a>
                     </div>
