@@ -56,14 +56,18 @@ class ActividadesAvanceController extends Controller
 
     public function edit($id)
     {
-        $usuario=User::findOrFail($id);
-        return view('formusuarios.editformusuario',compact('usuario'));
+        $actividad=actividades_avance::findOrFail($id);
+        return view('superadministrador.actividades.editactividades',compact('actividad'));
     }
 
 
     public function update(Request $request, $id)
     { 
-        
+        $datosActividad=request()->except(['_token','_method']);
+        if (Auth::user()->roles_id==3) {
+            actividades_avance::where('id', '=', $id)->update($datosActividad);
+            return redirect('actividades')->with('Mensaje','Actividad modificada con éxito');
+        }
     }
 
     /**

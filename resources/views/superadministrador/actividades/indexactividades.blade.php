@@ -9,7 +9,7 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Usuarios</div>
+                <div class="card-header">Gestión de Actividades</div>
                 <div class="card-body">
                     <div>
                         <a href="{{url('/superadministrador')}}" class="btn btn-danger">Regresar</a>
@@ -34,7 +34,7 @@
             
                             <tr> 
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('/formusuarioadmin/'.$actividad->id.'/edit')}}">Editar
+                                    <a class="btn btn-warning" href="{{url('/actividades/'.$actividad->id.'/edit')}}">Editar
                                     </a> 
                                 </td>
                                 
