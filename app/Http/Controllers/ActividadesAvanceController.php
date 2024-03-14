@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\actividades_avance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
-class Seccion1Controller extends Controller
+class ActividadesAvanceController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
+        $this->middleware('superadmin');
     }
     
     public function index()
     {
-        return view('cliente.seccion1');
+        $actividades=DB::table('actividades_avances')
+        ->select('actividades_avances.*')
+        ->simplePaginate(30);
+        return view('superadministrador.actividades.indexactividades')->with('actividades',$actividades);
     }
 
     
@@ -25,7 +34,7 @@ class Seccion1Controller extends Controller
      */
     public function create()
     {
-        return view('formusuarios.createformusuario');
+        return view('superadministrador.actividades.createactividades');
     }
 
     /**
@@ -36,6 +45,10 @@ class Seccion1Controller extends Controller
      */
     public function store(Request $request)
     {
+        $datosActividad=request()->except(['_token','_method']);
+        actividades_avance::insert($datosActividad);
+        return redirect('/actividades')->with('Mensaje','Actividad agregada con éxito');
+
 
 
     }

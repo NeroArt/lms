@@ -34,7 +34,7 @@
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/formusuario') }}"><input
+                        <a href="{{ url('/actividades') }}"><input
                             class="btn-primary" type="submit"
                                 value="Crear Actividades de Certificación de Cursos"></a>
                     </div>

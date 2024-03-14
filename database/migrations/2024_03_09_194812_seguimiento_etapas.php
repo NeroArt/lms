@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
-            $table->foreign('etapas_avance_id')->references('id')->on('etapas_avance');
+            $table->foreign('etapas_avance_id')->references('id')->on('etapas_avances');
             $table->foreign('cursos_id')->references('id')->on('cursos');
         });
     }

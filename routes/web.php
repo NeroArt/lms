@@ -41,3 +41,4 @@ Route::resource('formusuarioadmin', App\Http\Controllers\UsuariosAdminController
 
 //Vista de super administradores
 Route::get('/superadministrador', [App\Http\Controllers\PanelSuperAdministradorController::class, 'index'])->name('superadmin');
+Route::resource('/actividades', App\Http\Controllers\ActividadesAvanceController::class);

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sumativa_desarrollo', function (Blueprint $table) {
+        Schema::create('sumativa_avance_totales', function (Blueprint $table) {
             $table->id();
-            $table->integer('suma_total');
-            $table->bigInteger('desarrollo_cursos_id')->unsigned()->index()->nullable();
+            $table->integer('porcentaje_total');
+            $table->bigInteger('etapas_avance_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
-            $table->foreign('desarrollo_cursos_id')->references('id')->on('desarrollo_cursos');
+            $table->foreign('etapas_avance_id')->references('id')->on('etapas_avances');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sumativa_desarrollo');
+        Schema::dropIfExists('sumativa_avance_totales');
     }
 };

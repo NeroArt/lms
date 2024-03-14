@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sumativa_cierre', function (Blueprint $table) {
+        Schema::create('sumativa_cierres', function (Blueprint $table) {
             $table->id();
             $table->integer('suma_total');
             $table->bigInteger('cierre_cursos_id')->unsigned()->index()->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sumativa_cierre');
+        Schema::dropIfExists('sumativa_cierres');
     }
 };

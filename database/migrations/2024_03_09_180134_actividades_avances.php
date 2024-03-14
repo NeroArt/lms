@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('etapas_avance', function (Blueprint $table) {
+        Schema::create('actividades_avances', function (Blueprint $table) {
             $table->id();
-            $table->string('etapa');
-            $table->integer('porcentaje_etapa');
+            $table->string('actividad');
+            $table->integer('porcentaje_actividad');
             $table->boolean('status')->default(false);
-            $table->bigInteger('actividades_avance_id')->unsigned()->index()->nullable();
+            $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
-            $table->foreign('actividades_avance_id')->references('id')->on('actividades_avance');
+            $table->foreign('cursos_id')->references('id')->on('cursos');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('etapas_avance');
+        Schema::dropIfExists('actividades_avances');
     }
 };
