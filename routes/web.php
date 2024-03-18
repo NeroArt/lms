@@ -25,7 +25,9 @@ Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->na
 
 //Vista de clientes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/seccion1test', [App\Http\Controllers\Seccion1Controller::class, 'test'])->name('seccion1test');
 Route::get('/seccion1', [App\Http\Controllers\Seccion1Controller::class, 'index'])->name('seccion1');
+Route::resource('seccion1', App\Http\Controllers\Seccion1Controller::class);
 Route::get('/seccion2', [App\Http\Controllers\Seccion2Controller::class, 'index'])->name('seccion2');
 Route::get('/seccion3', [App\Http\Controllers\Seccion3Controller::class, 'index'])->name('seccion3');
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
@@ -34,6 +36,7 @@ Route::get('/seccion6', [App\Http\Controllers\Seccion6Controller::class, 'index'
 Route::get('/seccion7', [App\Http\Controllers\Seccion7Controller::class, 'index'])->name('seccion7');
 Route::get('/seccion8', [App\Http\Controllers\Seccion8Controller::class, 'index'])->name('seccion8');
 Route::get('/seccion9', [App\Http\Controllers\Seccion9Controller::class, 'index'])->name('seccion9');
+Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Controller::class, 'plantilla_cliente'])->name('seccion9');
 
 //Vista de administradores
 Route::get('/paneladministrador', [App\Http\Controllers\PanelAdministradorController::class, 'index'])->name('paneladministrador');

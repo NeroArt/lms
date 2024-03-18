@@ -10,15 +10,15 @@
 
                 <div class="card-body">
                     <div>
-                        <a href="{{ url('/seccion1') }}"><input
+                        <a href="{{ url('/seccion1/create') }}"><input
                                 class="btn-primary" type="submit"
                                 value="Creación de Cursos"></a>
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/formentrenadores') }}"><input
+                        <a href="{{ url('/seccion1') }}"><input
                             class="btn-primary" type="submit"
-                                value="Visualización de Cursos Existentes"></a>
+                                value="Gestión de Cursos Existentes"></a>
                     </div>
                     <br>
                     <div>
