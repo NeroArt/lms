@@ -29,6 +29,7 @@ Route::get('/seccion1test', [App\Http\Controllers\Seccion1Controller::class, 'te
 Route::get('/seccion1', [App\Http\Controllers\Seccion1Controller::class, 'index'])->name('seccion1');
 Route::resource('seccion1', App\Http\Controllers\Seccion1Controller::class);
 Route::get('/seccion2', [App\Http\Controllers\Seccion2Controller::class, 'index'])->name('seccion2');
+Route::resource('seccion2', App\Http\Controllers\Seccion2Controller::class);
 Route::get('/seccion3', [App\Http\Controllers\Seccion3Controller::class, 'index'])->name('seccion3');
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
 Route::get('/seccion5', [App\Http\Controllers\Seccion5Controller::class, 'index'])->name('seccion5');

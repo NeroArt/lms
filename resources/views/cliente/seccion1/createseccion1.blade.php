@@ -239,7 +239,7 @@
                             <br>
                             <label for="exampleInputNombre" class="form-label">Número de participantes:</label>
                             <input type="number" name="no_participantes" class="form-control" id="no_participantes">
-                            <input name="users_id" type="no_participantes" class="form-control" id="users_id" value={{ Auth::user()->id }} disabled hidden>
+                            <input name="users_id" type="number" class="form-control" id="users_id" value={{ Auth::user()->id }} hidden>
 
                         </div>
 

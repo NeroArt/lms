@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\objetivo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpWord\TemplateProcessor;
+use DB;
 
 class Seccion2Controller extends Controller
 {
@@ -12,8 +19,109 @@ class Seccion2Controller extends Controller
         $this->middleware('cliente');
     }
     
+    
     public function index()
     {
-        return view('cliente.seccion2');
+        $objetivos=DB::table('objetivos')
+        ->where('objetivos.tipo_objetivo', '=', "general")
+        ->select('objetivos.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion2.indexseccion2')->with('objetivos',$objetivos);
+    }
+
+    public function test()
+    {
+        return view('cliente.seccion1test');
+    }
+
+
+    
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('cliente.seccion2.createseccion2');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+        //Datos que se guardan en Curso
+        $datosObjetivo=request()->except(['_token','_method']);
+        objetivo::insert($datosObjetivo);
+
+        // Obtenemos el id del ultimo curso, y lo enviamos al siguiente create
+        //$idCurso = DB::table('cursos')
+        //->where('cursos.users_id', Auth::id())
+        //->latest('id')
+        //->value('id');
+        
+        var_dump($datosObjetivo);
+        //return redirect('seccion2/create')->with('idCurso',$idCurso); 
+
+    }
+
+
+    public function edit($id)
+    {
+        $objetivo=objetivo::findOrFail($id);
+        return view('cliente.seccion2.editseccion2',compact('objetivo'));
+    }
+
+
+    public function update(Request $request, $id)
+    { 
+        $datosObjetivo=request()->except(['_token','_method']);
+        if (Auth::user()->roles_id==2) {
+            objetivo::where('id', '=', $id)->update($datosObjetivo);
+            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Grupos  $grupos
+     * @return \Illuminate\Http\Response
+     */
+    //Intento generar una plantilla, necesito un array con los datos de la tabla cursos y pasarlos al TemplateProcessor 
+    public function plantilla_cliente($id)
+    {
+    // Obtener datos de la tabla cursos
+    $datos = DB::table('cursos')
+            ->where('cursos.id', '=', $id)
+            ->select('cursos.*')
+            ->first();
+
+    // Convertir el objeto stdClass en un array asociativo
+    $datos = (array) $datos;
+
+    // Mostrar los datos para verificar que se obtuvieron correctamente
+    //var_dump($datos);
+    //echo($datos);
+        // Cargar la plantilla
+        $templateProcessor = new TemplateProcessor(resource_path('plantilla.docx'));
+        // Reemplazar marcadores en la plantilla con datos dinámicos
+    foreach ($datos as $clave => $valor) {
+        $templateProcessor->setValue($clave, $valor);
+    }
+
+    // Guardar el archivo generado
+    $outputPath = storage_path('app/public/generado.docx');
+    $templateProcessor->saveAs($outputPath);
+
+    // Descargar el archivo generado
+    return response()->download($outputPath)->deleteFileAfterSend(true);
+
+      
     }
 }

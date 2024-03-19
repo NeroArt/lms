@@ -9,7 +9,7 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Actividades</div>
+                <div class="card-header">Gestión de Objetivos</div>
                 <div class="card-body">
                     <div>
                         <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
@@ -21,25 +21,25 @@
                     <thead class="thead-dark" >
                         <tr>
                             <th class="card-title">Acción</th>
-                            <th class="card-title">Nombre de Curso</th>
+                            <th class="card-title">Tipo de Objetivo</th>
                             <th class="card-title">Descripción</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cursos as $curso)
+                        @foreach ($objetivos as $objetivo)
             
                             <tr> 
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('/seccion1/'.$curso->id.'/edit')}}">Editar
+                                    <a class="btn btn-warning" href="{{url('/seccion2/'.$objetivo->id.'/edit')}}">Editar
                                     </a> 
                                     <br>
-                                    <a class="btn btn-warning" href="{{url('/plantilla_cliente/'.$curso->id)}}">Plantilla
+                                    <a class="btn btn-warning" href="{{url('/plantilla_cliente/'.$objetivo->id)}}">Plantilla
                                     </a> 
                                 </td>
                                 
-                                <td>{{$curso->nombre_curso}}</td>
-                                <td>{{$curso->descripcion_curso}}</td>
+                                <td>{{$objetivo->tipo_objetivo}}</td>
+                                <td>{{$objetivo->descripcion}}</td>
                                 
                             </tr>
                         @endforeach
@@ -47,7 +47,7 @@
                 </table>
                 </div>
                 <div class="pagination">
-                    {{ $cursos->links() }}
+                    {{ $objetivos->links() }}
                 </div>
                 </div>
             </div>
