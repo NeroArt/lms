@@ -15,10 +15,10 @@
 
     <!-- Agrega los estilos de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    @routes
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/css/app.css'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/css/app.css','resources/js/main.js'])
 </head>
 <body>
     <div id="app">

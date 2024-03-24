@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Seccion3Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,15 @@ Route::get('/seccion1', [App\Http\Controllers\Seccion1Controller::class, 'index'
 Route::resource('seccion1', App\Http\Controllers\Seccion1Controller::class);
 Route::get('/seccion2', [App\Http\Controllers\Seccion2Controller::class, 'index'])->name('seccion2');
 Route::resource('seccion2', App\Http\Controllers\Seccion2Controller::class);
-Route::get('/seccion3', [App\Http\Controllers\Seccion3Controller::class, 'index'])->name('seccion3');
+//Codigo seccion 3
+Route::get('/seccion3', [Seccion3Controller::class, 'index'])->name('seccion3');
+Route::post('/seccion3/store', [Seccion3Controller::class, 'store'])->name('seccion3/store');
+Route::get('/seccion3/create', [Seccion3Controller::class, 'create'])->name('seccion3/create');
+Route::get('/seccion3/{seccion3}/edit', [Seccion3Controller::class, 'edit'])->name('seccion3/edit');
+Route::patch('/seccion3/{seccion3}', [Seccion3Controller::class, 'update'])->name('seccion3/update');
+// Fin codigo seccion 3
+
+
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
 Route::get('/seccion5', [App\Http\Controllers\Seccion5Controller::class, 'index'])->name('seccion5');
 Route::get('/seccion6', [App\Http\Controllers\Seccion6Controller::class, 'index'])->name('seccion6');

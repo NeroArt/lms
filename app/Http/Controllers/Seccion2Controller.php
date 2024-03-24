@@ -58,15 +58,11 @@ class Seccion2Controller extends Controller
         //Datos que se guardan en Curso
         $datosObjetivo=request()->except(['_token','_method']);
         objetivo::insert($datosObjetivo);
-
-        // Obtenemos el id del ultimo curso, y lo enviamos al siguiente create
-        //$idCurso = DB::table('cursos')
-        //->where('cursos.users_id', Auth::id())
-        //->latest('id')
-        //->value('id');
-        
-        var_dump($datosObjetivo);
-        //return redirect('seccion2/create')->with('idCurso',$idCurso); 
+        // Obtenemos el id del curso, y lo enviamos al siguiente create
+        $idCurso=$request->cursos_id;
+        //var_dump($datosObjetivo);
+        //var_dump($idCurso);
+        return redirect('seccion3/create')->with('idCurso',$idCurso); 
 
     }
 
@@ -87,41 +83,4 @@ class Seccion2Controller extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Grupos  $grupos
-     * @return \Illuminate\Http\Response
-     */
-    //Intento generar una plantilla, necesito un array con los datos de la tabla cursos y pasarlos al TemplateProcessor 
-    public function plantilla_cliente($id)
-    {
-    // Obtener datos de la tabla cursos
-    $datos = DB::table('cursos')
-            ->where('cursos.id', '=', $id)
-            ->select('cursos.*')
-            ->first();
-
-    // Convertir el objeto stdClass en un array asociativo
-    $datos = (array) $datos;
-
-    // Mostrar los datos para verificar que se obtuvieron correctamente
-    //var_dump($datos);
-    //echo($datos);
-        // Cargar la plantilla
-        $templateProcessor = new TemplateProcessor(resource_path('plantilla.docx'));
-        // Reemplazar marcadores en la plantilla con datos dinámicos
-    foreach ($datos as $clave => $valor) {
-        $templateProcessor->setValue($clave, $valor);
-    }
-
-    // Guardar el archivo generado
-    $outputPath = storage_path('app/public/generado.docx');
-    $templateProcessor->saveAs($outputPath);
-
-    // Descargar el archivo generado
-    return response()->download($outputPath)->deleteFileAfterSend(true);
-
-      
-    }
 }
