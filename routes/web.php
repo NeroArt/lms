@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Seccion3Controller;
+use App\Http\Controllers\Seccion3bController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,11 +34,16 @@ Route::get('/seccion2', [App\Http\Controllers\Seccion2Controller::class, 'index'
 Route::resource('seccion2', App\Http\Controllers\Seccion2Controller::class);
 //Codigo seccion 3
 Route::get('/seccion3', [Seccion3Controller::class, 'index'])->name('seccion3');
-Route::post('/seccion3/store', [Seccion3Controller::class, 'store'])->name('seccion3/store');
-Route::get('/seccion3/create', [Seccion3Controller::class, 'create'])->name('seccion3/create');
-Route::get('/seccion3/{seccion3}/edit', [Seccion3Controller::class, 'edit'])->name('seccion3/edit');
-Route::patch('/seccion3/{seccion3}', [Seccion3Controller::class, 'update'])->name('seccion3/update');
+Route::post('/seccion3/store', [Seccion3Controller::class, 'store'])->name('seccion3-store');
+Route::get('/seccion3/create', [Seccion3Controller::class, 'create'])->name('seccion3-create');
+Route::get('/seccion3/{seccion3}/edit', [Seccion3Controller::class, 'edit'])->name('seccion3-edit');
+Route::patch('/seccion3/{seccion3}', [Seccion3Controller::class, 'update'])->name('seccion3-update');
 // Fin codigo seccion 3
+
+//Codigo seccion 3b
+Route::get('/seccion3b/create', [Seccion3bController::class, 'create'])->name('seccion3b-create');
+Route::post('/seccion3b/store', [Seccion3bController::class, 'store'])->name('seccion3b-store');
+// Fin codigo seccion 3b
 
 
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
@@ -51,6 +57,7 @@ Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Contro
 //Vista de administradores
 Route::get('/paneladministrador', [App\Http\Controllers\PanelAdministradorController::class, 'index'])->name('paneladministrador');
 Route::resource('formusuarioadmin', App\Http\Controllers\UsuariosAdminController::class);
+Route::resource('cursosadministrador', App\Http\Controllers\CursosAdministradorController::class);
 
 //Vista de super administradores
 Route::get('/superadministrador', [App\Http\Controllers\PanelSuperAdministradorController::class, 'index'])->name('superadmin');

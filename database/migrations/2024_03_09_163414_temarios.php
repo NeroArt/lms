@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('tema');
             $table->bigInteger('objetivos_id')->unsigned()->index()->nullable();
+            $table->bigInteger('tipos_temas_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
             $table->foreign('objetivos_id')->references('id')->on('objetivos');
+            $table->foreign('tipos_temas_id')->references('id')->on('tipo_temas');
         });
     }
 

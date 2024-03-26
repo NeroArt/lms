@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+@vite(['resources/js/seccion3.js'])
 
 @section('content')
 <div id="mySidenav" class="sidenav row container">
@@ -17,7 +18,7 @@
 	<span id="mySidenavBackground"></span>
 </div>
 <div class="container">
-    <div class="row >
+    <div class="row">
         <div class="col-md-8">
             <div class="card card-5">
                 <div class="card-header">Creación de curso - Sección 3.1</div>

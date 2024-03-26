@@ -22,7 +22,7 @@
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/team_entrenadores') }}"><input
+                        <a href="{{ url('/cursosadministrador') }}"><input
                             class="btn-primary" type="submit"
                                 value="Visualización de Cursos por Cliente"></a>
                     </div>

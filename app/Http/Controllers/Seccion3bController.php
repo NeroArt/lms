@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
 use DB;
 
-class Seccion3Controller extends Controller
+class Seccion3bController extends Controller
 {
     public function __construct()
     {
@@ -43,7 +43,7 @@ class Seccion3Controller extends Controller
      */
     public function create()
     {
-        return view('cliente.seccion3.createseccion3');
+        return view('cliente.seccion3b.createseccion3b');
     }
 
     /**
@@ -90,7 +90,7 @@ class Seccion3Controller extends Controller
             'message' => 'Los datos se procesaron correctamente',
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
             'quantity' => count($objetivos),
-            'dataObjetivos' => $datosObjetivos
+            'data' => $datosObjetivos
         ], 200);
 
     }

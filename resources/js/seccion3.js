@@ -43,7 +43,7 @@ document.getElementById("quantity").addEventListener("input", () => {
 document.getElementById("myForm").addEventListener("submit",(event)=>{
     event.preventDefault();
 
-    const url = route('seccion3/store');
+    const url = route('seccion3-store');
     
     const quantity=document.getElementById("quantity").value;
     const idCurso = parseInt(document.getElementById("cursos_id").value)
@@ -75,7 +75,13 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
 
     fetch(url, requestOptions)
     .then(response=>response.json())
-    .then(data=>console.log(data));
+    .then(data=>{
+        const miRuta = route('seccion3b-create');
+        console.log(data.dataObjetivos);
+        let dataObjetivos = data.dataObjetivos;
+        localStorage.setItem('dataObjetivos', JSON.stringify(dataObjetivos));
+        window.location.href = miRuta;
+    });
     
 });
 
