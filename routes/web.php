@@ -62,3 +62,4 @@ Route::resource('cursosadministrador', App\Http\Controllers\CursosAdministradorC
 //Vista de super administradores
 Route::get('/superadministrador', [App\Http\Controllers\PanelSuperAdministradorController::class, 'index'])->name('superadmin');
 Route::resource('/actividades', App\Http\Controllers\ActividadesAvanceController::class);
+Route::resource('/usuariossuperadmin', App\Http\Controllers\UsuariosSuperAdminController::class);
