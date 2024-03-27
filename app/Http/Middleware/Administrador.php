@@ -35,7 +35,7 @@ class Administrador
         }
 
         if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==1){
-            return redirect('/superadministrador')->with('Esta conectado como CLIENTE.');
+            return redirect('/superadministrador')->with('Esta conectado como SUPER ADMINISTRADOR.');
         }
 
         if(Auth::check() && Auth::user()->roles_id==3 && Auth::user()->status==0){

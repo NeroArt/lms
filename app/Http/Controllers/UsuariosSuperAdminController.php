@@ -119,8 +119,21 @@ class UsuariosSuperAdminController extends Controller
                     return redirect('usuariossuperadmin')->with('Mensaje','Usuario modificado con éxito');
                 }
 
+                if (Auth::user()->roles_id==3 && $roles_id!=3 && $request->cambiarpassword==false) {
+                    $datosUsuario=[
+                        'name'=>$request->name,
+                        'email'=>$request->email,
+                        'curp'=>$request->curp,
+                        'telefono_celular'=>$request->telefono_celular,
+                        'status'=>$request->status, 
+                    ];
+                    
+                    User::where('id', '=', $id)->update($datosUsuario);
+                    return redirect('usuariossuperadmin')->with('Mensaje','Usuario modificado con éxito');
+                }
 
-        if (Auth::user()->roles_id==3 && $roles_id!=3 ) {
+
+        if (Auth::user()->roles_id==3 && $roles_id==3 ) {
             return redirect('usuariossuperadmin')->with('Mensaje','Solo puede modificar Clientes y Administradores');
         }
        
