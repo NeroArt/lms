@@ -52,7 +52,7 @@
                                 <form action="" id="myForm">
 
                                     <div>
-                                        <label for="">Cantidad de invitados</label>
+                                        <label for="">Cantidad de Temas</label>
                                         <input type="number" name="cantidadTemas" id="cantidadTemas">
                                     </div>
                                     <div id="divTemas">

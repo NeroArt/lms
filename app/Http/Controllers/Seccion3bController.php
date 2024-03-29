@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Models\objetivo;
+use App\Models\temario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -56,41 +56,25 @@ class Seccion3bController extends Controller
     {
         $data = json_decode($request->getContent(), true);
         // Acceder al array de guests
-        $objetivos  = $data['guests'];
+        $temas  = $data['temas'];
         // Puedes iterar sobre el array de guests y acceder a cada objeto
-        foreach ($objetivos  as $objetivo) {
-            // Obtener los campos desc_objetivo y cursos_id de cada objetivo
-            // Obtener el cursos_id del request
-            $datosObjetivo=[
-                'tipo_objetivo'=>$objetivo['tipo_objetivo'],
-                'descripcion'=>$objetivo['descripcion'],
-                'sujeto'=>$objetivo['sujeto'],
-                'accion'=>$objetivo['accion'],
-                'condicion'=>$objetivo['condicion'],
-                'cursos_id'=>$objetivo['cursos_id'],
+        foreach ($temas  as $tema) {
+            $guardarTemas=[
+                'tema'=>$tema['tema'],
+                'objetivos_id'=>$tema['objetivos_id'],
+                'tipos_temas_id'=>2,
             ];
             // Insertar los datos en la tabla Objetivo
-            objetivo::insert($datosObjetivo);
+            temario::insert($guardarTemas);
         }
-
-
-
-
-        $idCurso=$request->cursos_id;
-        $datosObjetivos = DB::table('cursos')
-        ->join('objetivos','objetivos.cursos_id', '=','cursos.id')
-        ->where('cursos.id', '=', $idCurso)
-        ->where('objetivos.tipo_objetivo', '=', 'particular')
-        ->select('objetivos.*')
-        ->get();
-
+ 
                 // Devolver una respuesta JSON
         return response()->json([
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
-            'quantity' => count($objetivos),
-            'data' => $datosObjetivos
+            'quantity' => count($temas),
+            'data' => $temas
         ], 200);
 
     }
