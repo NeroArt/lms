@@ -62,7 +62,7 @@ class Seccion3bController extends Controller
             $guardarTemas=[
                 'tema'=>$tema['tema'],
                 'objetivos_id'=>$tema['objetivos_id'],
-                'tipos_temas_id'=>2,
+                'tipos_temas_id'=>1,
             ];
             // Insertar los datos en la tabla Objetivo
             temario::insert($guardarTemas);

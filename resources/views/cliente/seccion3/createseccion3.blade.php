@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Creación de curso - Sección 3.1</div>
+                <div class="card-header">Creación de curso - Sección 3A</div>
                 <div class="card-body">
                     <form action="" id="myForm">
                         
@@ -55,7 +55,8 @@
                         </div>
 
                         <input type="submit" class="btn btn-success" value="Crear">
-                    </form>  
+                    </form>
+                  
                 </div>
             </div>
         </div>

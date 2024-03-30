@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Seccion3Controller;
 use App\Http\Controllers\Seccion3bController;
+use App\Http\Controllers\Seccion3cController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,12 @@ Route::patch('/seccion3/{seccion3}', [Seccion3Controller::class, 'update'])->nam
 Route::get('/seccion3b/create', [Seccion3bController::class, 'create'])->name('seccion3b-create');
 Route::post('/seccion3b/store', [Seccion3bController::class, 'store'])->name('seccion3b-store');
 // Fin codigo seccion 3b
+
+//Codigo seccion 3c
+Route::get('/seccion3c/create', [Seccion3cController::class, 'create'])->name('seccion3c-create');
+Route::post('/seccion3c/store', [Seccion3cController::class, 'store'])->name('seccion3c-store');
+Route::get('/seccion3c/getTemas/{IdObjetivo}/{CursoId}', [Seccion3cController::class, 'getTemas'])->name('seccion3c-getTemas');
+// Fin codigo seccion 3c
 
 
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');

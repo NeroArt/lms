@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-@vite(['resources/js/seccion3b.js'])
+@vite(['resources/js/seccion3c.js'])
 
 @section('content')
 <div id="mySidenav" class="sidenav row container">
@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-5">
-                <div class="card-header">Creación de curso - Sección 3B</div>
+                <div class="card-header">Creación de curso - Sección 3C</div>
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body" >
@@ -30,38 +30,36 @@
                                 
                                 <div class="col-md-8">
                                     
-                                    <label for="cursos_id3b">Objetivo Particular:</label>
-                                    <select name="selectObjetivoParticular" id="selectObjetivoParticular" class="form-control">
+                                    <label for="cursos_id3c">Objetivo Particular:</label>
+                                    <select name="selectObjetivoParticular3c" id="selectObjetivoParticular3c" class="form-control">
                                         <option value="0">Escoja un Objetivo</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
-                                
-                                <span class="text-negrita">Objetivo: <p id="dataobjetivo"></p></span> 
-                                </div>
-                                <div class="col-md-4">
-                                <span class="text-negrita">Acción: <p id="dataaccion"></p></span> 
-                                </div>
-                                <div class="col-md-4">
-                                <span class="text-negrita">Condición: <p id="datacondicion"></p></span>  
+                                <div class="col-md-8">
+                                    
+                                    <label for="temas_id3c">Temas:</label>
+                                    <select name="selectTemas" id="selectTemas" class="form-control">
+                                        
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
-                                <form action="" id="myForm">
+                                <form action="" id="FormSubtemas">
 
                                     <div>
-                                        <label for="">Cantidad de Temas</label>
-                                        <input type="number" name="cantidadTemas" id="cantidadTemas">
+                                        <label for="cantidadSubtemas2">Cantidad de Subtemas</label>
+                                        <input type="number" name="cantidadSubtemas" id="cantidadSubtemas">
                                     </div>
-                                    <div id="divTemas">
+                                    <div id="divSubtemas">
                                     
                                     </div>
-                                    <button type="submit">Guardar</button>
+                                    <input type="submit" class="btn btn-success" value="Crear">
                                 </form>
                             </div>
-                            <a href="{{url('/seccion3c/create')}}" class="btn btn-success">Siguiente</a>
+
+            
                         </div>
                     </div>
 
