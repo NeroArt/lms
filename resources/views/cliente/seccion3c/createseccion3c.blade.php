@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body" >
-                            <input type="text" id="objetivos_id" name="objetivos_id">
+                            
                             <div class="row">
                                 
                                 <div class="col-md-8">

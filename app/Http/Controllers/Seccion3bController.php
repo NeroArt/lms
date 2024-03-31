@@ -61,8 +61,7 @@ class Seccion3bController extends Controller
         foreach ($temas  as $tema) {
             $guardarTemas=[
                 'tema'=>$tema['tema'],
-                'objetivos_id'=>$tema['objetivos_id'],
-                'tipos_temas_id'=>1,
+                'objetivos_id'=>$tema['objetivos_id']
             ];
             // Insertar los datos en la tabla Objetivo
             temario::insert($guardarTemas);
