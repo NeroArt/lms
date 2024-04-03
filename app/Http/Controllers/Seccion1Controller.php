@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\curso;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
 use DB;
@@ -22,23 +21,13 @@ class Seccion1Controller extends Controller
     public function index()
     {
         $cursos=DB::table('cursos')
+        ->where('cursos.users_id', Auth::id())
         ->select('cursos.*')
         ->simplePaginate(30);
         return view('cliente.seccion1.indexseccion1')->with('cursos',$cursos);
     }
 
-    public function test()
-    {
-        return view('cliente.seccion1test');
-    }
 
-
-    
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('cliente.seccion1.createseccion1');
