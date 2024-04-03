@@ -33,17 +33,7 @@
                                 value="Seguimiento de Certificación de Cursos"></a>
                     </div>
                     <br>
-                    <div>
-                        <a href="{{ url('/actividades') }}"><input
-                            class="btn-primary" type="submit"
-                                value="Crear Actividades de Certificación de Cursos"></a>
-                    </div>
-                    <br>
-                    <div>
-                        <a href="{{ url('/formusuario') }}"><input
-                            class="btn-primary" type="submit"
-                                value="Crear Etapas de Certificación de Cursos"></a>
-                    </div>
+
                 </div>
             </div>
         </div>

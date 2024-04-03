@@ -26,9 +26,11 @@
                     <form action="" id="myForm">
                         
                         @if(session('idCurso'))
-                            <input name="cursos_id" type="number" class="form-control"  id="cursos_id" value={{ session('idCurso') }} >
+                        <label for="">Curso Id</label>
+                            <input name="cursos_id" type="number" class="form-control"  id="cursos_id" value={{ session('idCurso') }}  hidden>
                         @else
-                            <input name="cursos_id" type="number" class="form-control"  id="cursos_id" value={{ session('idCurso') }} >
+                        <label for="">Curso Id</label>
+                            <input name="cursos_id" type="number" class="form-control"  id="cursos_id" value={{ session('idCurso') }} hidden>
                         @endif
                         <div>
                             <label for="">Cantidad Objetivos Particulares</label>

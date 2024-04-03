@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('seguimiento_actividades', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('actividad_avance_id')->unsigned()->index()->nullable();
-            $table->boolean('status')->default(false);
+            $table->float('total_avance')->unsigned()->nullable();
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
-            $table->foreign('actividad_avance_id')->references('id')->on('actividades_avances');
             $table->foreign('cursos_id')->references('id')->on('cursos');
         });
     }

@@ -18,7 +18,7 @@
                     <div>
                         <a href="{{ url('/seccion1') }}"><input
                             class="btn-primary" type="submit"
-                                value="Gestión de Cursos Existentes"></a>
+                                value="Gestión de Cursos"></a>
                     </div>
                     <br>
                     <div>

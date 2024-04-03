@@ -15,9 +15,7 @@
                             <a href="{{url('/formusuarioadmin')}}" class="btn btn-danger">Regresar</a>
                         </div>
                         <br>
-                        <div class="col">
-                            <a href="{{url('/passwordcliente')}}" class="btn btn-warning">Modificar Contraseña</a>
-                        </div>
+
 
                     </div>
                     <br>

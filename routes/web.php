@@ -61,6 +61,9 @@ Route::get('/seccion8', [App\Http\Controllers\Seccion8Controller::class, 'index'
 Route::get('/seccion9', [App\Http\Controllers\Seccion9Controller::class, 'index'])->name('seccion9');
 Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Controller::class, 'plantilla_cliente'])->name('seccion9');
 
+//Seguimiento de actividades para clientes
+Route::get('/actividades_cliente/{idCurso}', [App\Http\Controllers\SeguimientoActividadesClienteController::class, 'seguimiento_actividades'])->name('seccion9');
+
 //Vista de administradores
 Route::get('/paneladministrador', [App\Http\Controllers\PanelAdministradorController::class, 'index'])->name('paneladministrador');
 Route::resource('formusuarioadmin', App\Http\Controllers\UsuariosAdminController::class);
