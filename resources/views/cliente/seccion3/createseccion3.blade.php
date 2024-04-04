@@ -3,20 +3,6 @@
 @vite(['resources/js/seccion3.js'])
 
 @section('content')
-<div id="mySidenav" class="sidenav row container">
-	<div class="mySidenavContainer">
-		<div class="col-md-2"><a id="closeSidenav" href="javascript:void(0)" class="closebtn">&#9776;Cerrar</a></div>
-		<div class="col-md-2"><a href="{{url('/seccion2')}}">Sección 1</a></div>
-		<div class="col-md-2"><a href="{{url('/seccion3')}}">Sección 3</a></div>
-		<div class="col-md-2"><a href="{{url('/seccion4')}}">Sección 4</a></div>
-		<div class="col-md-2"><a href="{{url('/seccion5')}}">Sección 5</a></div>
-		<div class="col-md-2"><a href="{{url('/seccion6')}}">Sección 6</a></div>
-        <div class="col-md-2"><a href="{{url('/seccion7')}}">Sección 7</a></div>
-		<div class="col-md-2"><a href="{{url('/seccion8')}}">Sección 8</a></div>
-		<div class="col-md-2"><a href="{{url('/seccion9')}}">Sección 9</a></div>
-	</div>
-	<span id="mySidenavBackground"></span>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8">
