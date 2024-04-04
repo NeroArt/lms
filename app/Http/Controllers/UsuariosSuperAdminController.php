@@ -52,6 +52,9 @@ class UsuariosSuperAdminController extends Controller
             
             User::insert($datosUsuario);
             return redirect('usuariossuperadmin')->with('Mensaje','Usuario creado con éxito');
+        }else{
+            Auth::logout();
+            return redirect('/');
         }
 
     }

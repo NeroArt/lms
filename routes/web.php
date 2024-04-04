@@ -73,3 +73,7 @@ Route::resource('cursosadministrador', App\Http\Controllers\CursosAdministradorC
 Route::get('/superadministrador', [App\Http\Controllers\PanelSuperAdministradorController::class, 'index'])->name('superadmin');
 Route::resource('/actividades', App\Http\Controllers\ActividadesAvanceController::class);
 Route::resource('/usuariossuperadmin', App\Http\Controllers\UsuariosSuperAdminController::class);
+
+//Perfil de usuario
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile');
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile-store');
