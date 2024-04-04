@@ -39,7 +39,16 @@
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase"><h2 class="text-white-50 mx-auto mt-2 mb-5">Centro Evaluador de Competencias Laborales<br><p> Evaluamos y certificamos tus competencias profesionales ante el CONOCER de la SEP.</p></h2>
-                        <a class="btn btn-primary" href="#about">Comienza ahora</a>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-primary" href="{{ route('login') }}">Iniciar Sesión</a>
+                            </div>
+                            <br>
+                            <div class="col">
+                                <a class="btn btn-primary" href="{{ route('register') }}">Registrarse</a>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
