@@ -27,7 +27,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#about">Acerca de Nosotros</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">Servicios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,11 +52,11 @@
                     <div class="col-lg-8">
                         <h2 class="text-white mb-4">Acerca de Nosotros</h2>
                         <p class="text-white-50">
-                            Somos el Centro de Evaluación y Educación Continua de Morelia. Somos parte de la Red CONOCER con registro CE1165-OC063-18.
+                            InCEC, es una empresa de consultoría empresarial y educativa, la empresa está acreditada como Centro de Evaluación por el CONOCER (Consejo Nacional de Normalización y Certificación de Competencias Laborales), con número de registro CE0770-OC063-18; además de estar registrada como Agente Capacitador Externo por la STPS, con número: SPE-210504-993-0013.
                         </p>
                     </div>
                 </div>
-                <img class="img-fluid" src="{{ asset('assets/img/ipad2.jpg') }}">  alt="..." />
+                <img class="img-fluid" src="{{ asset('assets/img/ipad2.jpg') }}">
                 <br>
                 <br>
                 <br>
@@ -71,7 +71,7 @@
 
                 <!-- Project One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="{{ asset('assets/img/img1.jpg') }}"  alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="{{ asset('assets/img/img1.jpg') }}"></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -85,7 +85,7 @@
                 </div>
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="/resources/assets/img/img3.jpg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="{{ asset('assets/img/img3.jpg') }}"></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -101,7 +101,7 @@
                 </div>
                 <!-- Project Three Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="/resources/assets/img/img2.jpg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="{{ asset('assets/img/img2.jpg') }}"></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -119,51 +119,20 @@
         </section>
 
         <!-- Signup-->
-        <section class="signup-section" id="signup">
+
+        <!-- Contact-->
+        <section class="about-section text-center" id="contact">
             <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribete para resivir noticias!</h2>
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Email address input-->
-                            <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Ingresa tu email..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notificame</button></div>
-                            </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">Un email es requerido.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email no es valido.</div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3 mt-2 text-white">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
-                        </form>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-white mb-4">Contacto</h2>
+                        <p class="text-white-50">
+                            Somos el Centro de Evaluación y Educación Continua de Morelia. Somos parte de la Red CONOCER con registro CE1165-OC063-18.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Contact-->
-        <section class="contact-section bg-black">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-4 mb-3 mb-md-0">
@@ -198,9 +167,9 @@
                     </div>
                 </div>
                 <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                    <a class="mx-2" href="https://www.linkedin.com/company/centrodeevaluaci%C3%B3nincec/"><i class="fab fa-linkedin"></i></a>
+                    <a class="mx-2" href="https://www.facebook.com/centrodeevaluacion.incec"><i class="fab fa-facebook-f"></i></a>
+
                 </div>
             </div>
         </section>
