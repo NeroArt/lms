@@ -88,20 +88,6 @@ class UsuariosSuperAdminController extends Controller
             return redirect('usuariossuperadmin')->with('Mensaje','No se puede modificar otros Super Administradores');
         }
 
-        //Compara si es super administrador y que pueda modificar a cualquiera que tenga rol cliente
-        if (Auth::user()->roles_id==3 && $roles_id==2 && $request->cambiarpassword==false) {
-            $datosUsuario=[
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'curp'=>$request->curp,
-                'telefono_celular'=>$request->telefono_celular,
-                'status'=>$request->status,
-                
-            ];
-            
-            User::where('id', '=', $id)->update($datosUsuario);
-            return redirect('usuariossuperadmin')->with('Mensaje','Usuario modificado con éxito');
-        }
 
                 //Compara si es super administrador, que pueda modificar a cualquiera que tenga rol cliente/administrador y se active cambiarpassword
                 if (Auth::user()->roles_id==3 && $roles_id!=3 && $request->cambiarpassword==true) {
@@ -112,6 +98,7 @@ class UsuariosSuperAdminController extends Controller
                         'telefono_celular'=>$request->telefono_celular,
                         'status'=>$request->status,
                         'password'=>Hash::make($request->password),
+                        'roles_id'=>$request->roles_id,
                         
                     ];
                     
@@ -126,6 +113,7 @@ class UsuariosSuperAdminController extends Controller
                         'curp'=>$request->curp,
                         'telefono_celular'=>$request->telefono_celular,
                         'status'=>$request->status, 
+                        'roles_id'=>$request->roles_id,
                     ];
                     
                     User::where('id', '=', $id)->update($datosUsuario);

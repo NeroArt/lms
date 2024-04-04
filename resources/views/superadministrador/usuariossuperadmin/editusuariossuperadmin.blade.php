@@ -60,6 +60,25 @@
                                 </div>
                         </div>
                         <div class="mb-3">
+                            <div class="name ">Seleccionar Rol de Usuario</div>
+                                <div class="input-group wrap-input100 validate-input" >
+                                    <select name="roles_id" id="roles_id" class="form-control" required autofocus autocomplete="Status" >
+                                        @if ($usuario->roles_id == 1)
+                                        <option value="1" style="background-color: rgb(215, 235, 35);">Actual: Administrador</option>
+                                        @endif
+                                        @if ($usuario->roles_id == 2)
+                                        <option value="2" style="background-color: rgb(215, 235, 35);">Actual: Cliente</option>
+                                        @endif
+                                        <option value="1" >Administrador</option>
+                                        <option value="2" >Cliente</option>
+                                    </select>
+                                    <span class="focus-input100 "></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                                </div>
+                        </div>
+                        <div class="mb-3">
                             <div class="name ">Seleccionar Status</div>
                                 <div class="input-group wrap-input100 validate-input" >
                                     <select name="status" id="status" class="form-control" required autofocus autocomplete="Status" >
