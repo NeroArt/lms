@@ -29,7 +29,7 @@
                     <br>
                     <form action="{{url('/profile')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
-                        <input type="text" value="{{ Auth::user()->id }}" name="id_user" id="id_user">
+                        <input type="text" value="{{ Auth::user()->id }}" name="id_user" id="id_user" hidden>
                         <div class="mb-3">
                             <div class="name ">Nombre de Usuario</div>
                                 <div class="input-group wrap-input100 validate-input" >
