@@ -41,8 +41,11 @@ Route::patch('/seccion3/{seccion3}', [Seccion3Controller::class, 'update'])->nam
 // Fin codigo seccion 3
 
 //Codigo seccion 3b
+Route::get('/seccion3b', [Seccion3bController::class, 'index'])->name('seccion3b-index');
 Route::get('/seccion3b/create', [Seccion3bController::class, 'create'])->name('seccion3b-create');
 Route::post('/seccion3b/store', [Seccion3bController::class, 'store'])->name('seccion3b-store');
+Route::get('/seccion3b/{seccion3b}/edit', [Seccion3bController::class, 'edit'])->name('seccion3b-edit');
+Route::patch('/seccion3b/{seccion3b}', [Seccion3bController::class, 'update'])->name('seccion3b-update');
 // Fin codigo seccion 3b
 
 //Codigo seccion 3c

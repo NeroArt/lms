@@ -22,11 +22,10 @@ class Seccion3bController extends Controller
     
     public function index()
     {
-        $objetivos=DB::table('objetivos')
-        ->where('objetivos.tipo_objetivo', '=', "particular")
-        ->select('objetivos.*')
+        $temas=DB::table('temarios')
+        ->select('temarios.*')
         ->simplePaginate(30);
-        return view('cliente.seccion3.indexseccion3')->with('objetivos',$objetivos);
+        return view('cliente.seccion3b.indexseccion3b')->with('temas',$temas);
     }
 
     public function test()
@@ -81,16 +80,16 @@ class Seccion3bController extends Controller
 
     public function edit($id)
     {
-        $objetivo=objetivo::findOrFail($id);
-        return view('cliente.seccion3.editseccion3',compact('objetivo'));
+        $temario=temario::findOrFail($id);
+        return view('cliente.seccion3b.editseccion3b',compact('temario'));
     }
 
 
     public function update(Request $request, $id)
     { 
-        $datosObjetivo=request()->except(['_token','_method']);
+        $datosTema=request()->except(['_token','_method']);
         if (Auth::user()->roles_id==2) {
-            objetivo::where('id', '=', $id)->update($datosObjetivo);
+            temario::where('id', '=', $id)->update($datosTema);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
         }
     }
