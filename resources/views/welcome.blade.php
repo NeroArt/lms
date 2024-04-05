@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -40,6 +41,8 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase"><h2 class="text-white-50 mx-auto mt-2 mb-5">Centro Evaluador de Competencias Laborales<br><p> Evaluamos y certificamos tus competencias profesionales ante el CONOCER de la SEP.</p></h2>
                         <div class="row">
+                            @guest
+                            <!-- Mostrar botones de inicio de sesión y registro -->
                             <div class="col">
                                 <a class="btn btn-primary" href="{{ route('login') }}">Iniciar Sesión</a>
                             </div>
@@ -47,6 +50,17 @@
                             <div class="col">
                                 <a class="btn btn-primary" href="{{ route('register') }}">Registrarse</a>
                             </div>
+                            @endguest
+                            @auth
+                            <div class="col">
+                                <a class="btn btn-primary" href="{{ route('home') }}">Panel de Control</a>
+                            </div>
+                            @else
+                            <!-- Mostrar botones de inicio de sesión y registro -->
+                            
+                        @endauth
+                        
+
                         </div>
                        
                     </div>
