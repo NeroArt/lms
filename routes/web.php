@@ -28,7 +28,6 @@ Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->na
 
 //Vista de clientes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/seccion1test', [App\Http\Controllers\Seccion1Controller::class, 'test'])->name('seccion1test');
 Route::get('/seccion1', [App\Http\Controllers\Seccion1Controller::class, 'index'])->name('seccion1');
 Route::resource('seccion1', App\Http\Controllers\Seccion1Controller::class);
 Route::get('/seccion2', [App\Http\Controllers\Seccion2Controller::class, 'index'])->name('seccion2');
@@ -77,3 +76,6 @@ Route::resource('/usuariossuperadmin', App\Http\Controllers\UsuariosSuperAdminCo
 //Perfil de usuario
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile');
 Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile-store');
+
+//Tests
+Route::get('/test', [App\Http\Controllers\TestController::class, 'index'])->name('test');
