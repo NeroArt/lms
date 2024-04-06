@@ -9,7 +9,7 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Subtemas</div>
+                <div class="card-header">Gestión de Beneficios</div>
                 <div class="card-body">
                     <div>
                         <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
@@ -21,26 +21,26 @@
                     <thead class="thead-dark" >
                         <tr>
                             <th class="card-title">Acción</th>
-                            <th class="card-title">Subtema</th>
+                            <th class="card-title">Beneficio</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($subtemas as $subtema)
+                        @foreach ($beneficios as $beneficio)
             
                             <tr> 
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('/seccion3c/'.$subtema->id.'/edit')}}">Editar
+                                    <a class="btn btn-warning" href="{{url('/seccion3d/'.$beneficio->id.'/edit')}}">Editar
                                     </a> 
                                 </td>
                                 
-                                <td>{{$subtema->subtema}}</td>     
+                                <td>{{$beneficio->beneficio}}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
                 </div>
                 <div class="pagination">
-                    {{ $subtemas->links() }}
+                    {{ $beneficios->links() }}
                 </div>
                 </div>
             </div>

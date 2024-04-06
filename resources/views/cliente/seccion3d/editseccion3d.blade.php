@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Modificacion de curso - Sección 3C</div>
+                <div class="card-header">Modificacion de curso - Sección 3D</div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col">
@@ -29,20 +29,20 @@
                         </div>
                     </div>
                     
-                    <form action="{{url('/seccion3c/'.$subtema->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('/seccion3d/'.$beneficio->id)}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('PATCH')}}
                         
                         <div class="container mt-5">
                             <div>
-                                <h2>Subtema:</h2>
+                                <h2>Beneficio:</h2>
                             </div>
 
                         </div>
                         <div class="mb-3">
-                            <div class="name ">Subtema</div>
+                            <div class="name">Beneficio</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="subtema" class="form-control" type="text" name="subtema" autocomplete="subtema" value="{{isset($subtema->subtema)?$subtema->subtema:''}}">
+                                    <input id="beneficio" class="form-control" type="text" name="beneficio" autocomplete="Tema" value="{{isset($beneficio->beneficio)?$beneficio->beneficio:''}}">
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

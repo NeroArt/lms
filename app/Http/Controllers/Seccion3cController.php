@@ -18,7 +18,13 @@ class Seccion3cController extends Controller
         $this->middleware('cliente');
     }
 
-
+    public function index()
+    {
+        $subtemas=DB::table('subtemas')
+        ->select('subtemas.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3c.indexseccion3c')->with('subtemas',$subtemas);
+    }
     public function create()
     {
         return view('cliente.seccion3c.createseccion3c');
@@ -70,5 +76,20 @@ class Seccion3cController extends Controller
             'data' => $Temas,
 
         ], 200);
+    }
+
+    public function edit($id)
+    {
+        $subtema=subtema::findOrFail($id);
+        return view('cliente.seccion3c.editseccion3c',compact('subtema'));
+    }
+
+    public function update(Request $request, $id)
+    { 
+        $datosSubtema=request()->except(['_token','_method']);
+        if (Auth::user()->roles_id==2) {
+            subtema::where('id', '=', $id)->update($datosSubtema);
+            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
+        }
     }
 }

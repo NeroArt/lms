@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Seccion3Controller;
 use App\Http\Controllers\Seccion3bController;
 use App\Http\Controllers\Seccion3cController;
+use App\Http\Controllers\Seccion3dController;
+use App\Http\Controllers\SecciondcController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,10 +51,21 @@ Route::patch('/seccion3b/{seccion3b}', [Seccion3bController::class, 'update'])->
 // Fin codigo seccion 3b
 
 //Codigo seccion 3c
+Route::get('/seccion3c', [Seccion3cController::class, 'index'])->name('seccion3c-index');
 Route::get('/seccion3c/create', [Seccion3cController::class, 'create'])->name('seccion3c-create');
 Route::post('/seccion3c/store', [Seccion3cController::class, 'store'])->name('seccion3c-store');
 Route::get('/seccion3c/getTemas/{IdObjetivo}/{CursoId}', [Seccion3cController::class, 'getTemas'])->name('seccion3c-getTemas');
+Route::get('/seccion3c/{seccion3c}/edit', [Seccion3cController::class, 'edit'])->name('seccion3c-edit');
+Route::patch('/seccion3c/{seccion3c}', [Seccion3cController::class, 'update'])->name('seccion3c-update');
 // Fin codigo seccion 3c
+
+//Codigo seccion 3d
+Route::get('/seccion3d', [Seccion3dController::class, 'index'])->name('seccion3d-index');
+Route::get('/seccion3d/create', [Seccion3dController::class, 'create'])->name('seccion3d-create');
+Route::post('/seccion3d/store', [Seccion3dController::class, 'store'])->name('seccion3d-store');
+Route::get('/seccion3d/{seccion3d}/edit', [Seccion3dController::class, 'edit'])->name('seccion3d-edit');
+Route::patch('/seccion3d/{seccion3d}', [Seccion3dController::class, 'update'])->name('seccion3d-update');
+// Fin codigo seccion 3d
 
 
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');

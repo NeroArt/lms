@@ -9,7 +9,7 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Objetivos Generales</div>
+                <div class="card-header">Gestión de Temas</div>
                 <div class="card-body">
                     <div>
                         <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
