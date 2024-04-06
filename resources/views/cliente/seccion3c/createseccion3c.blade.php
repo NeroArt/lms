@@ -43,8 +43,9 @@
                                     </div>
                                     <input type="submit" class="btn btn-success" value="Crear">
                                 </form>
+                                
                             </div>
-
+                            <a href="{{url('/seccion3d/create')}}" class="btn btn-success">Siguiente</a>
             
                         </div>
                     </div>
