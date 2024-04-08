@@ -6,7 +6,8 @@ use App\Http\Controllers\Seccion3Controller;
 use App\Http\Controllers\Seccion3bController;
 use App\Http\Controllers\Seccion3cController;
 use App\Http\Controllers\Seccion3dController;
-use App\Http\Controllers\SecciondcController;
+use App\Http\Controllers\Seccion4Controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +67,14 @@ Route::post('/seccion3d/store', [Seccion3dController::class, 'store'])->name('se
 Route::get('/seccion3d/{seccion3d}/edit', [Seccion3dController::class, 'edit'])->name('seccion3d-edit');
 Route::patch('/seccion3d/{seccion3d}', [Seccion3dController::class, 'update'])->name('seccion3d-update');
 // Fin codigo seccion 3d
+
+//Codigo seccion 4
+Route::get('/seccion4', [Seccion4Controller::class, 'index'])->name('seccion4-index');
+Route::get('/seccion4/create', [Seccion4Controller::class, 'create'])->name('seccion4-create');
+Route::post('/seccion4/store', [Seccion4Controller::class, 'store'])->name('seccion4-store');
+Route::get('/seccion4/{seccion4}/edit', [Seccion4Controller::class, 'edit'])->name('seccion4-edit');
+Route::patch('/seccion4/{seccion4}', [Seccion4Controller::class, 'update'])->name('seccion4-update');
+// Fin codigo seccion 4
 
 
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
