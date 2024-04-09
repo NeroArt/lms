@@ -54,8 +54,7 @@ class Seccion5Controller extends Controller
                     'cursos_id' => $cursos_id
                 ]);
 
-                evaluacione::insert($data); 
-
+               
                 return response()->json([
                     'success' => true,
                     'message' => 'Los datos se procesaron correctamente',
