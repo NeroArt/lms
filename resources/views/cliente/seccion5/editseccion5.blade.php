@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Modificacion de curso - Sección 4</div>
+                <div class="card-header">Modificacion de curso - Sección 5</div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     
-                    <form action="{{url('/seccion4/'.$requerimiento->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('/seccion5/'.$evaluacione->id)}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('PATCH')}}
                         
@@ -42,13 +42,46 @@
                         <div class="mb-3">
                             <div class="name">Requerimiento</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="requerimientos" class="form-control" type="text" name="requerimientos" autocomplete="Requerimiento" value="{{isset($requerimiento->requerimientos)?$requerimiento->requerimientos:''}}">
+                                    <input id="aspecto" class="form-control" type="text" name="aspecto" autocomplete="evaluacione" value="{{isset($evaluacione->aspecto)?$evaluacione->aspecto:''}}">
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
                             </span>
                                 </div>
                         </div> 
+                        
+                        <div class="mb-3">
+                            <div class="name">Requerimiento</div>
+                                <div class="input-group wrap-input100 validate-input" >
+                                    <input id="porcentaje" class="form-control" type="number" name="porcentaje" autocomplete="porcentaje" value="{{isset($evaluacione->porcentaje)?$evaluacione->porcentaje:''}}">
+                                    <span class="focus-input100 "></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                                </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="name">Requerimiento</div>
+                                <div class="input-group wrap-input100 validate-input" >
+                                    <input id="instrumento_evaluacion" class="form-control" type="text" name="instrumento_evaluacion" autocomplete="instrumento_evaluacion" value="{{isset($evaluacione->instrumento_evaluacion)?$evaluacione->instrumento_evaluacion:''}}">
+                                    <span class="focus-input100 "></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                                </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="name">Requerimiento</div>
+                                <div class="input-group wrap-input100 validate-input" >
+                                    <input id="momento_aplicacion" class="form-control" type="text" name="momento_aplicacion" autocomplete="Requerimiento" value="{{isset($evaluacione->momento_aplicacion)?$evaluacione->momento_aplicacion:''}}">
+                                    <span class="focus-input100 "></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                                </div>
+                        </div>
                         <input type="submit" class="btn btn-success" value="Modificar">
                     </form>
                 </div>

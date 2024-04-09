@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('evaluaciones', function (Blueprint $table) {
             $table->id();
-            $table->integer('porcentaje_evaluacion_diagnostica');
-            $table->string('instrumento_evaluacion_diagnostica');
-            $table->integer('porcentaje_evaluacion_formativa');
-            $table->string('instrumento_evaluacion_formativa');
-            $table->integer('porcentaje_evaluacion_final');
-            $table->string('instrumento_evaluacion_final');
+            $table->string('descripcion');
+            $table->string('aspecto');
+            $table->integer('porcentaje');
+            $table->string('instrumento_evaluacion');
+            $table->string('momento_aplicacion');
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
