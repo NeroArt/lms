@@ -34,27 +34,13 @@ class Seccion5Controller extends Controller
 
     public function store(Request $request)
     {
-        $data = json_decode($request->getContent());
+        $data = json_decode($request->getContent(), true);
         // Acceder al array de guests
 
-                //$porcentaje=$data['porcentaje'];
-                $descripcion=$data->descripcion;
-                $aspecto=$data->aspecto;
-                $porcentaje=$data->porcentaje;
-                $instrumento_evaluacion=$data->instrumento_evaluacion;
-                $momento_aplicacion=$data->momento_aplicacion;
-                $cursos_id=$data->cursos_id;
-                
-                DB::table('evaluaciones')->insert([
-                    'descripcion' => $descripcion,
-                    'aspecto' => $aspecto,
-                    'porcentaje' => 10,
-                    'momento_aplicacion' => $momento_aplicacion,
-                    'instrumento_evaluacion' => $instrumento_evaluacion,
-                    'cursos_id' => $cursos_id
-                ]);
 
-               
+
+                evaluacione::insert($data); 
+
                 return response()->json([
                     'success' => true,
                     'message' => 'Los datos se procesaron correctamente',
