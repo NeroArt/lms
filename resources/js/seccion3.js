@@ -1,12 +1,20 @@
+let id_curso = localStorage.getItem('curso_id');
+let maxCantidad = document.getElementById('quantity');
+
+
+maxCantidad.addEventListener('input', function () {
+    if (this.value < 1) {
+        this.value = 1;
+    }
+    if (this.value > 3) {
+        this.value = 3;
+    }
+});
+
+
 document.getElementById("quantity").addEventListener("input", () => {
     let quantity = event.target.value;
-    const maxQuantity = 3; // Establece el límite máximo de elementos
-
-    // Verificar si quantity excede el límite máximo
-    if (quantity > maxQuantity) {
-        quantity = maxQuantity; // Establecer quantity al límite máximo
-        event.target.value = maxQuantity; // Actualizar el valor del input
-    }
+    
 
     let contentGuests = '';
     let contentObjetivos = '';
@@ -46,7 +54,7 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
     const url = route('seccion3-store');
     
     const quantity=document.getElementById("quantity").value;
-    const idCurso = parseInt(document.getElementById("cursos_id").value)
+    
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     
@@ -58,10 +66,13 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
         guest.sujeto=document.getElementById(`sujeto[${i}]`).value;
         guest.accion=document.getElementById(`accion[${i}]`).value;
         guest.condicion=document.getElementById(`condicion[${i}]`).value;
-        guest.cursos_id=idCurso;
+        guest.cursos_id=parseInt(id_curso);
         data.guests.push(guest);   
     }
+
+    data.cursos_id=parseInt(id_curso);
     console.log(data);
+    
 
     const requestOptions={
         method: 'POST',
@@ -77,7 +88,7 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
     .then(response=>response.json())
     .then(data=>{
         const miRuta = route('seccion3b-create');
-        console.log(data.dataObjetivos);
+        console.log(data);
         let dataObjetivos = data.dataObjetivos;
         localStorage.setItem('dataObjetivos', JSON.stringify(dataObjetivos));
         window.location.href = miRuta;

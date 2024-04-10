@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+@vite(['resources/js/seccion2.js'])
 
 @section('content')
 <div class="container">
@@ -25,7 +26,7 @@
                                 <h2>Objetivo General:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -74,7 +75,7 @@
                                 <h2>Acción:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -100,7 +101,7 @@
                                 <h2>Condición:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -120,9 +121,7 @@
                                 </div>
                         </div>
                         @if(session('idCurso'))
-                            <input name="cursos_id" type="number" class="form-control" id="cursos_id" value={{ session('idCurso') }} hidden>
-                        @else
-                            <p>No se ha recibido ningún ID de curso.</p>
+                            <input name="cursos_id" type="number" class="form-control" id="cursos_id" value={{ session('idCurso') }} >
                         @endif
 
                         

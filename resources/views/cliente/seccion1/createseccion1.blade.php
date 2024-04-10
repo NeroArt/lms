@@ -24,7 +24,7 @@
                                 <h2>Nombre del curso/Sesión:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -50,7 +50,7 @@
                                 <h2>Descripción del Curso:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -76,7 +76,7 @@
                                 <h2>Nombre del Diseñador:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -102,7 +102,7 @@
                                 <h2>Nombre del Facilitador/ Instructor/capacitador/formador:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -128,7 +128,7 @@
                                 <h2>Lugar de Instrucción:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -199,7 +199,7 @@
                                 <h2>Perfil de Participante:</h2>
                             </div>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
                             </div>
                             <div class="card">
                                 <div class="card-body">

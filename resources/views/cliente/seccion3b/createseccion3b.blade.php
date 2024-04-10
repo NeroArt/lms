@@ -11,8 +11,7 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body" >
-                            <label for="">Objetivo Particular Id</label>
-                            <input type="text" id="objetivos_id" name="objetivos_id">
+                            <input type="hidden" id="objetivos_id" name="objetivos_id">
                             <div class="row">
                                 
                                 <div class="col-md-8">
@@ -36,19 +35,23 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <form action="" id="myForm">
-
-                                    <div>
-                                        <label for="">Cantidad de Temas</label>
-                                        <input type="number" name="cantidadTemas" id="cantidadTemas">
-                                    </div>
-                                    <div id="divTemas">
-                                    
-                                    </div>
-                                    <button type="submit">Guardar</button>
-                                </form>
+                                <div class="col-md-4">
+                                    <form action="" id="myForm">
+    
+                                        <div>
+                                            <label for="">Cantidad de Temas</label>
+                                            <input type="number" name="cantidadTemas" id="cantidadTemas"
+                                            class="form-control"
+                                            >
+                                        </div>
+                                        <div id="divTemas">
+                                        
+                                        </div>
+                                        <button class="btn btn-success" type="submit">Guardar</button>
+                                    </form>
+                                </div>
                             </div>
-                            <a href="{{url('/seccion3c/create')}}" class="btn btn-success">Siguiente</a>
+                            <a href="{{url('/seccion3c/create')}}" class="btn btn-primary">Siguiente</a>
                         </div>
                     </div>
 

@@ -10,16 +10,9 @@
                 <div class="card-header">Creación de curso - Sección 3A</div>
                 <div class="card-body">
                     <form action="" id="myForm">
-                        
-                        @if(session('idCurso'))
-                        <label for="">Curso Id</label>
-                            <input name="cursos_id" type="number" class="form-control"  id="cursos_id" value={{ session('idCurso') }}  hidden>
-                        @else
-                        <label for="">Curso Id</label>
-                            <input name="cursos_id" type="number" class="form-control"  id="cursos_id" value={{ session('idCurso') }} hidden>
-                        @endif
+
                         <div>
-                            <label for="">Cantidad Objetivos Particulares</label>
+                            <label for="quantity">Cantidad Objetivos Particulares</label>
                             <input type="number" name="quantity" id="quantity">
                         </div>
                         <div id="divGuests">

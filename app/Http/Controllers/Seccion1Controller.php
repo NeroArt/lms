@@ -8,7 +8,7 @@ use App\Models\curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Seccion1Controller extends Controller
 {
@@ -48,7 +48,7 @@ class Seccion1Controller extends Controller
         
         //var_dump($idCurso);
         return redirect('seccion2/create')->with('idCurso',$idCurso); 
-
+        
     }
 
 

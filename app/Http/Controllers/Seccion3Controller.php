@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Seccion3Controller extends Controller
 {
@@ -57,10 +57,9 @@ class Seccion3Controller extends Controller
         $data = json_decode($request->getContent(), true);
         // Acceder al array de guests
         $objetivos  = $data['guests'];
-        // Puedes iterar sobre el array de guests y acceder a cada objeto
+        // // Puedes iterar sobre el array de guests y acceder a cada objeto
         foreach ($objetivos  as $objetivo) {
-            // Obtener los campos desc_objetivo y cursos_id de cada objetivo
-            // Obtener el cursos_id del request
+            
             $datosObjetivo=[
                 'tipo_objetivo'=>$objetivo['tipo_objetivo'],
                 'descripcion'=>$objetivo['descripcion'],
@@ -69,14 +68,15 @@ class Seccion3Controller extends Controller
                 'condicion'=>$objetivo['condicion'],
                 'cursos_id'=>$objetivo['cursos_id'],
             ];
-            // Insertar los datos en la tabla Objetivo
+
             objetivo::insert($datosObjetivo);
+            
         }
 
 
 
 
-        $idCurso=$request->cursos_id;
+        $idCurso=$data['cursos_id'];
         $datosObjetivos = DB::table('cursos')
         ->join('objetivos','objetivos.cursos_id', '=','cursos.id')
         ->where('cursos.id', '=', $idCurso)
@@ -89,7 +89,7 @@ class Seccion3Controller extends Controller
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
-            'quantity' => count($objetivos),
+            
             'dataObjetivos' => $datosObjetivos
         ], 200);
 
