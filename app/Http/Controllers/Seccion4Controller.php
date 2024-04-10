@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
-use DB;
-
+use Illuminate\Support\Facades\DB;
 class Seccion4Controller extends Controller
 {
     public function __construct()
