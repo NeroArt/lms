@@ -8,7 +8,7 @@ use App\Http\Controllers\Seccion3cController;
 use App\Http\Controllers\Seccion3dController;
 use App\Http\Controllers\Seccion4Controller;
 use App\Http\Controllers\Seccion5Controller;
-
+use App\Http\Controllers\Seccion6Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,6 +83,16 @@ Route::get('/seccion5/create', [Seccion5Controller::class, 'create'])->name('sec
 Route::post('/seccion5/store', [Seccion5Controller::class, 'store'])->name('seccion5-store');
 Route::get('/seccion5/{seccion5}/edit', [Seccion5Controller::class, 'edit'])->name('seccion5-edit');
 Route::patch('/seccion5/{seccion5}', [Seccion5Controller::class, 'update'])->name('seccion5-update');
+// Fin codigo seccion 5
+
+//Codigo seccion 6
+Route::get('/seccion6', [Seccion6Controller::class, 'index'])->name('seccion6-index');
+Route::get('/seccion6/create', [Seccion6Controller::class, 'create'])->name('seccion6-create');
+Route::post('/seccion6/store', [Seccion6Controller::class, 'store'])->name('seccion6-store');
+Route::get('/seccion6/{seccion6}/edit', [Seccion6Controller::class, 'edit'])->name('seccion6-edit');
+Route::patch('/seccion6/{seccion6}', [Seccion6Controller::class, 'update'])->name('seccion6-update');
+Route::get('/seccion6actividad/{seccion6}/edit', [Seccion6Controller::class, 'editactividad'])->name('seccion6-editactividad');
+Route::patch('/seccion6actividad/{seccion6}', [Seccion6Controller::class, 'updateactividad'])->name('seccion6-updateactividad');
 // Fin codigo seccion 5
 
 
