@@ -3,6 +3,7 @@ let getDataObjetivos = localStorage.getItem("dataObjetivos");
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
 let cursos_id = 0;
+let seccion_encuadre = 1;
 console.log(cursos_id); // Imprime el valor de 'cursos_id'
 
 /*Entontramos el valor de cursos_id*/
@@ -74,6 +75,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     data.cursos_id = cursos_id;
+    data.seccion_encuadre = seccion_encuadre;
     data.requerimientos = [];
     for (let i = 0; i < cantidadRequerimientos; i++) {
         const constanterequerimiento = {};

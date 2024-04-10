@@ -43,12 +43,13 @@ class Seccion7Controller extends Controller
     public function store(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-        $guardarEtapaInicio = $request->only(['etapa_encuadre','cursos_id']);
+        $guardarEtapaInicio = $request->only(['etapa_encuadre','cursos_id','seccion_encuadre']);
         //Guardar en la tabla inicio_cursos
         inicio_curso::insert($guardarEtapaInicio);
         $Curso_Id = $request->only(['cursos_id']);
         $Inicio_Id = DB::table('inicio_cursos')
         ->where('cursos_id', $Curso_Id)
+        ->where('seccion_encuadre', 1)
         ->select('inicio_cursos.id')
         ->first();
         // Acceder al array de guests
