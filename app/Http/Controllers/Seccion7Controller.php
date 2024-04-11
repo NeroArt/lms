@@ -23,6 +23,7 @@ class Seccion7Controller extends Controller
     public function index()
     {
         $inicio_cursos=DB::table('inicio_cursos')
+        ->where('seccion_encuadre', 1)
         ->select('inicio_cursos.*')
         ->simplePaginate(30);
 
