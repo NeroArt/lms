@@ -16,10 +16,14 @@ let arrayDataRequerimientos = [
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
 
+let copiaGetDataRequerimientos;
 
-let copiaGetDataObjetivos = [...arrayDataObjetivos];
-let copiaGetDataRequerimientos = [...arrayDataRequerimientos];
 
+if (localStorage.getItem('copiaGetDataRequerimientos')) {
+    copiaGetDataRequerimientos = JSON.parse(localStorage.getItem('copiaGetDataRequerimientos'));
+  }else{
+    copiaGetDataRequerimientos = [...arrayDataRequerimientos];
+  }
 
 // Acceder a la propiedad 'cursos_id'
 let cursos_id = 0;
@@ -27,7 +31,7 @@ let cursos_id = 0;
 console.log(cursos_id); // Imprime el valor de 'cursos_id'
 
 
-console.log(arrayDataObjetivos);
+console.log(copiaGetDataRequerimientos);
 let selectRequerimiento = document.getElementById("selectRequerimiento");
 let indice = 0;
 let requerimientos_id = document.getElementById("requerimientos_id");
@@ -38,7 +42,7 @@ let BeneficiarioHabilitado = document.getElementById("myForm");
 BeneficiarioHabilitado.style.display = "none";
 
 // Ahora puedes acceder y manipular los datos
-arrayDataRequerimientos.map((requerimiento) => {
+copiaGetDataRequerimientos.map((requerimiento) => {
     let opcion = document.createElement("option");
     opcion.text = requerimiento.descripcion;
     opcion.value = requerimiento.id;
@@ -132,8 +136,9 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             document.getElementById(`divRequerimientos`).innerHTML = "";
             console.log("indice para eliminar " + indice);
             // Eliminamos los elementos
-          
-            copiaGetDataRequerimientos.splice(indice, 1);
+            copiaGetDataRequerimientos = copiaGetDataRequerimientos.filter(obj => obj.id != indice.id);
+            localStorage.setItem('copiaGetDataRequerimientos', JSON.stringify(copiaGetDataRequerimientos));
+           
             
             console.log('Despues de el for each',copiaGetDataRequerimientos); // Imprime el array después de eliminar los elementos
             selectRequerimiento.innerHTML = "";
@@ -143,14 +148,14 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             opcionDefecto.value = 0;
             selectRequerimiento.add(opcionDefecto);
 
-            if (copiaGetDataRequerimientos.length > 0) {
-                copiaGetDataRequerimientos.map((requerimiento) => {
-                    let opcion = document.createElement("option");
-                    opcion.text = requerimiento.descripcion;
-                    opcion.value = requerimiento.id;
-                    selectRequerimiento.add(opcion);
-                });                
-            }
+            copiaGetDataRequerimientos.map((requerimiento) => {
+                let opcion = document.createElement("option");
+                opcion.text = requerimiento.descripcion;
+                opcion.value = requerimiento.id;
+                selectRequerimiento.add(opcion);
+            });
+            
+
 
         });
 });

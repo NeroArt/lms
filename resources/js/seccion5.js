@@ -2,7 +2,7 @@
 let getDataObjetivos = localStorage.getItem("dataObjetivos");
 
 //Creamos una array con las opciones a elegir
-let arrayDataRequerimientos = [
+let arrayDataEvaluaciones = [
     { id: 1, descripcion: 'Inicio' },
     { id: 2, descripcion: 'Intermedio' },
     { id: 3, descripcion: 'Cierre' },
@@ -15,7 +15,12 @@ let arrayDataObjetivos = JSON.parse(getDataObjetivos);
 
 
 let copiaGetDataObjetivos = [...arrayDataObjetivos];
-let copiaGetDataRequerimientos = [...arrayDataRequerimientos];
+let copiaGetDataEvaluaciones;
+if (localStorage.getItem('copiaGetDataEvaluaciones')) {
+    copiaGetDataEvaluaciones = JSON.parse(localStorage.getItem('copiaGetDataEvaluaciones'));
+  }else{
+    copiaGetDataEvaluaciones = [...arrayDataEvaluaciones];
+  }
 
 
 // Acceder a la propiedad 'cursos_id'
@@ -35,7 +40,7 @@ let BeneficiarioHabilitado = document.getElementById("myForm");
 BeneficiarioHabilitado.style.display = "none";
 
 // Ahora puedes acceder y manipular los datos
-arrayDataRequerimientos.map((requerimiento) => {
+copiaGetDataEvaluaciones.map((requerimiento) => {
     let opcion = document.createElement("option");
     opcion.text = requerimiento.descripcion;
     opcion.value = requerimiento.id;
@@ -64,7 +69,7 @@ selectRequerimiento.onchange = function () {
     } else {
         BeneficiarioHabilitado.style.display = "none";
     }
-    indice = copiaGetDataRequerimientos.find(
+    indice = copiaGetDataEvaluaciones.find(
         (objeto) => objeto.id === valorSeleccionado
     );
     requerimientos_id.value = indice.id;
@@ -148,10 +153,12 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             document.getElementById(`divRequerimientos`).innerHTML = "";
             console.log("indice para eliminar " + indice);
             // Eliminamos los elementos
+            copiaGetDataEvaluaciones = copiaGetDataEvaluaciones.filter(obj => obj.id != indice.id);
+            localStorage.setItem('copiaGetDataEvaluaciones', JSON.stringify(copiaGetDataEvaluaciones));
           
-            copiaGetDataRequerimientos.splice(indice, 1);
             
-            console.log('Despues de el for each',copiaGetDataRequerimientos); // Imprime el array después de eliminar los elementos
+            
+            console.log('Despues de el for each',copiaGetDataEvaluaciones); // Imprime el array después de eliminar los elementos
             selectRequerimiento.innerHTML = "";
 
             let opcionDefecto = document.createElement("option");
@@ -159,14 +166,12 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             opcionDefecto.value = 0;
             selectRequerimiento.add(opcionDefecto);
 
-            if (copiaGetDataRequerimientos.length > 0) {
-                copiaGetDataRequerimientos.map((requerimiento) => {
-                    let opcion = document.createElement("option");
-                    opcion.text = requerimiento.descripcion;
-                    opcion.value = requerimiento.id;
-                    selectRequerimiento.add(opcion);
-                });                
-            }
+            copiaGetDataEvaluaciones.map((requerimiento) => {
+                let opcion = document.createElement("option");
+                opcion.text = requerimiento.descripcion;
+                opcion.value = requerimiento.id;
+                selectRequerimiento.add(opcion);
+            });
 
         });
 
