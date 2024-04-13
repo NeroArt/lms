@@ -1,10 +1,12 @@
-// Obtén la cadena JSON del Local Storage
+// Obtén la cadena JSON del Local Storage y su conversion a su valor original
 let getDataObjetivos = localStorage.getItem("dataObjetivos");
-
-/* Conviértela en un array de objetos JavaScript y se crea una copia del array original*/
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
-let copiaGetDataObjetivos = [...arrayDataObjetivos];
 
+let getObjRestantes = localStorage.getItem("objRestantes");
+let arrayObjRestantes = JSON.parse(getObjRestantes);
+
+let getBandera = localStorage.getItem("bandera");
+let valorBandera = JSON.parse(getBandera);
 
 //se declaran las variables que se van a utilizar
 let TemarioHabilitado = document.getElementById("myForm");
@@ -13,24 +15,40 @@ let dataobjetivo = document.getElementById("dataobjetivo");
 let dataaccion = document.getElementById("dataaccion");
 let datacondicion = document.getElementById("datacondicion");
 let objetivos_id = document.getElementById("objetivos_id");
+let curso_id = document.getElementById("curso_id");
 let cantiTemas = document.getElementById("cantidadTemas");
 let divTemas = document.getElementById("divTemas");
-let indice = 0;
-let indicesAEliminar = [];
+
+//se oculta el formulario
 TemarioHabilitado.style.display = "none";
 
 //funcion para renderizar el select de objetivos
 const renderSelect = (arrayData) => {
-    arrayData.map((objetivo) => {
-        let opcion = document.createElement("option");
-        opcion.text = objetivo.descripcion;
-        opcion.value = objetivo.id;
-        selectObjetivo.add(opcion);
-    });
+    selectObjetivo.innerHTML = "";
+
+    let opcionDefecto = document.createElement("option");
+    opcionDefecto.text = "Escoja un Objetivo";
+    opcionDefecto.value = 0;
+    selectObjetivo.add(opcionDefecto);
+
+    if (arrayData.length > 0) {
+        arrayData.map((objetivo) => {
+            let opcion = document.createElement("option");
+            opcion.text = objetivo.descripcion;
+            opcion.value = objetivo.id;
+            selectObjetivo.add(opcion);
+        });
+    }
+
+
 }
 
-//se llama a la funcion para renderizar el select de objetivos
-renderSelect(arrayDataObjetivos);
+// validacion de la bandera para renderizar el select de objetivos
+if (valorBandera) {
+    renderSelect(arrayObjRestantes);
+}else{
+    renderSelect(arrayDataObjetivos);
+}
 
 /*Obtenemos el valor seleccionado a traves del evento onchange, donde el evento se dispara cuando cambia el valor del select*/
 selectObjetivo.addEventListener("change", function () {
@@ -38,29 +56,23 @@ selectObjetivo.addEventListener("change", function () {
 
     if (valorSeleccionado !== 0) {
         TemarioHabilitado.style.display = "block";
+        let objetoEncontrado = findObject(valorSeleccionado);
+
+        
+        dataobjetivo.innerText = objetoEncontrado.sujeto;
+        dataaccion.innerText = objetoEncontrado.accion;
+        datacondicion.innerText = objetoEncontrado.condicion;
+        objetivos_id.value = objetoEncontrado.id;
+        curso_id.value = objetoEncontrado.cursos_id;
     } else {
         TemarioHabilitado.style.display = "none";
+        cleanForm();
     }
-    let objetoEncontrado = findObject(valorSeleccionado);
-
-    console.log("El objeto seleccionado es: ", objetoEncontrado);
-    dataobjetivo.innerText = objetoEncontrado.sujeto;
-    dataaccion.innerText = objetoEncontrado.accion;
-    datacondicion.innerText = objetoEncontrado.condicion;
-    objetivos_id.value = objetoEncontrado.id;
-
-    let objetoBuscadoIndex = objetoEncontrado.id;
-    indice = findIndice(objetoBuscadoIndex);
 });
 
 //funcion para buscar un objeto en el array de objetivos
 const findObject = (id) => {
     return arrayDataObjetivos.find((objetivo) => objetivo.id === id);
-}
-
-//funcion para buscar el indice de un objeto en el array de objetivos
-const findIndice = (id) => {
-    return arrayDataObjetivos.findIndex((objetivo) => objetivo.id === id);
 }
 
 //evento para obtener la cantidad de temas
@@ -77,7 +89,7 @@ const renderTemas = (cantidadTemas) => {
         <div class="mb-3">
         <div class="name ">Tema ${i + 1}</div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="tema[${i}]" class="form-control" type="text" name="tema[${i}]" autocomplete="Tema">
+                <input id="tema[${i}]" class="form-control" type="text" name="tema[${i}]" autocomplete="Tema" autocomplete="off">
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>
@@ -94,7 +106,6 @@ TemarioHabilitado.addEventListener("submit", (event) => {
     const url = route("seccion3b-store");
     const cantidadTemas = document.getElementById("cantidadTemas").value;
     const data = obtenerData(event, cantidadTemas);
-    console.log(data);
 
     const requestOptions = obtenerRequestOptions(data);
 
@@ -109,6 +120,7 @@ const obtenerData = (event, cantidadTemas) => {
     const data = Object.fromEntries(formData.entries());
 
     data.temas = [];
+    data.idCurso = parseInt(curso_id.value);
     for (let i = 0; i < cantidadTemas; i++) {
         const constantetema = {};
         constantetema.tema = document.getElementById(`tema[${i}]`).value;
@@ -132,34 +144,24 @@ const obtenerRequestOptions = (data) => {
 }
 
 const manejarRespuesta = (data) => {
+    
+    cleanForm();
 
-    console.log(data);
+    let objRestantes = data.data;
+    valorBandera = true;
+    localStorage.setItem("objRestantes", JSON.stringify(objRestantes));
+    localStorage.setItem('bandera', JSON.stringify(valorBandera));
+
+    renderSelect(objRestantes);
+}
+
+// funcion para limpiar el formulario
+const cleanForm = () => {
     TemarioHabilitado.style.display = "none";
     document.getElementById(`divTemas`).innerHTML = "";
-    console.log("indice para eliminar " + indice);
-    
-    indicesAEliminar.push(indice);
-    
-    // Ordenamos los índices en orden descendente (esto es importante para no desordenar los índices al eliminar)
-    indicesAEliminar.sort((a, b) => b - a);
-
-    // Eliminamos los elementos
-    indicesAEliminar.forEach((indice) => {
-        copiaGetDataObjetivos.splice(indice, 1);
-    });
-
-    console.log(copiaGetDataObjetivos); // Imprime el array después de eliminar los elementos4
-    selectObjetivo.innerHTML = "";
-
-    let opcionDefecto = document.createElement("option");
-    opcionDefecto.text = "Escoja un Objetivo";
-    opcionDefecto.value = 0;
-    selectObjetivo.add(opcionDefecto);
-
-    if (copiaGetDataObjetivos.length > 0) {
-        renderSelect(copiaGetDataObjetivos);
-    }else {
-        indicesAEliminar = [];
-    }
+    document.getElementById('cantidadTemas').value = "";
+    dataobjetivo.innerText = "";
+    dataaccion.innerText = "";
+    datacondicion.innerText = "";
 }
 

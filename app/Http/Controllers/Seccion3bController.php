@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Models\temario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Illuminate\Support\Facades\DB;
+use App\Models\temario;
+
 
 class Seccion3bController extends Controller
 {
@@ -56,6 +57,7 @@ class Seccion3bController extends Controller
         $data = json_decode($request->getContent(), true);
         // Acceder al array de guests
         $temas  = $data['temas'];
+        
         // Puedes iterar sobre el array de guests y acceder a cada objeto
         foreach ($temas  as $tema) {
             $guardarTemas=[
@@ -65,16 +67,54 @@ class Seccion3bController extends Controller
             // Insertar los datos en la tabla Objetivo
             temario::insert($guardarTemas);
         }
+
+
+        $idCurso = $data['idCurso'];
+        $tipoObjetivo = 'particular';
+
+        $result = $this->getObjRestantes($idCurso,$tipoObjetivo);
+
+       
  
                 // Devolver una respuesta JSON
         return response()->json([
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
-            'quantity' => count($temas),
-            'data' => $temas
+            'data' => $result
         ], 200);
 
+    }
+
+    public function getObjRestantes($idCurso,$tipoObjetivo)
+    {
+        
+        $resultados = DB::select("
+            SELECT obj.id, obj.descripcion
+            FROM lms.objetivos obj
+            WHERE
+            obj.tipo_objetivo = :tipoObjetivo1
+            AND obj.cursos_id = :idCurso1
+            AND NOT EXISTS (
+                SELECT 1
+                FROM lms.temarios tem
+                WHERE obj.id = tem.objetivos_id
+                AND tem.objetivos_id IN (
+                    SELECT obj.id
+                    FROM lms.objetivos obj
+                    WHERE
+                    obj.tipo_objetivo = :tipoObjetivo2
+                    AND obj.cursos_id = :idCurso2
+                )
+            )
+        ", [
+            'tipoObjetivo1' => $tipoObjetivo, 
+            'idCurso1' => $idCurso,
+            'tipoObjetivo2' => $tipoObjetivo, 
+            'idCurso2' => $idCurso
+        ]);
+
+        return $resultados;
     }
 
 

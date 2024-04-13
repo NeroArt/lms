@@ -11,7 +11,8 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body" >
-                            <input type="hidden" id="objetivos_id" name="objetivos_id">
+                            <input type="hidden" id="objetivos_id" name="objetivos_id" readonly>
+                            <input type="hidden" id="curso_id" name="curso_id" readonly>
                             <div class="row">
                                 
                                 <div class="col-md-8">

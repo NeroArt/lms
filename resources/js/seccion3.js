@@ -90,7 +90,9 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
         const miRuta = route('seccion3b-create');
         console.log(data);
         let dataObjetivos = data.dataObjetivos;
+        let bandera = false;
         localStorage.setItem('dataObjetivos', JSON.stringify(dataObjetivos));
+        localStorage.setItem('bandera', JSON.stringify(bandera));
         window.location.href = miRuta;
     });
     
