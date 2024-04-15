@@ -10,6 +10,7 @@ use App\Http\Controllers\Seccion4Controller;
 use App\Http\Controllers\Seccion5Controller;
 use App\Http\Controllers\Seccion6Controller;
 use App\Http\Controllers\Seccion7Controller;
+use App\Http\Controllers\Seccion7bController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,7 +97,7 @@ Route::get('/seccion6actividad/{seccion6}/edit', [Seccion6Controller::class, 'ed
 Route::patch('/seccion6actividad/{seccion6}', [Seccion6Controller::class, 'updateactividad'])->name('seccion6-updateactividad');
 // Fin codigo seccion 6
 
-//Codigo seccion 7
+//Codigo seccion 7a
 Route::get('/seccion7a', [Seccion7Controller::class, 'index'])->name('seccion7a-index');
 Route::get('/seccion7a/create', [Seccion7Controller::class, 'create'])->name('seccion7a-create');
 Route::post('/seccion7a/store', [Seccion7Controller::class, 'store'])->name('seccion7a-store');
@@ -104,8 +105,24 @@ Route::get('/seccion7a/{seccion7a}/edit', [Seccion7Controller::class, 'edit'])->
 Route::patch('/seccion7a/{seccion7a}', [Seccion7Controller::class, 'update'])->name('seccion7a-update');
 Route::get('/seccion7actividad/{seccion7a}/edit', [Seccion7Controller::class, 'editactividad'])->name('seccion7a-editactividad');
 Route::patch('/seccion7actividad/{seccion7a}', [Seccion7Controller::class, 'updateactividad'])->name('seccion7a-updateactividad');
-// Fin codigo seccion 7
+// Fin codigo seccion 7a
 
+//Codigo seccion 7b
+Route::get('/seccion7b', [Seccion7bController::class, 'index'])->name('seccion7b-index');
+Route::get('/seccion7b/create', [Seccion7bController::class, 'create'])->name('seccion7b-create');
+Route::post('/seccion7b/store', [Seccion7bController::class, 'store'])->name('seccion7b-store');
+Route::get('/seccion7b/{seccion7b}/edit', [Seccion7bController::class, 'edit'])->name('seccion7b-edit');
+Route::patch('/seccion7b/{seccion7b}', [Seccion7bController::class, 'update'])->name('seccion7b-update');
+Route::get('/seccion7bactividad/{seccion7b}/edit', [Seccion7bController::class, 'editactividad'])->name('seccion7b-editactividad');
+Route::patch('/seccion7bactividad/{seccion7b}', [Seccion7bController::class, 'updateactividad'])->name('seccion7b-updateactividad');
+Route::get('/seccion7b/getParticulares/{CursoId}', [Seccion7bController::class, 'getParticulares'])->name('seccion7b-getParticulares');
+Route::get('/seccion7b/getGeneral/{CursoId}', [Seccion7bController::class, 'getGeneral'])->name('seccion7b-getGeneral');
+Route::get('/seccion7b/getTemario/{CursoId}', [Seccion7bController::class, 'getTemario'])->name('seccion7b-getTemario');
+Route::get('/seccion7b/getBeneficios/{CursoId}', [Seccion7bController::class, 'getBeneficios'])->name('seccion7b-getBeneficios');
+Route::get('/seccion7b/getEvaluaciones/{CursoId}', [Seccion7bController::class, 'getEvaluaciones'])->name('seccion7b-getEvaluaciones');
+Route::get('/seccion7b/getDescripcionCurso/{CursoId}', [Seccion7bController::class, 'getDescripcionCurso'])->name('seccion7b-getDescripcionCurso');
+
+// Fin codigo seccion 7b
 
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
 Route::get('/seccion5', [App\Http\Controllers\Seccion5Controller::class, 'index'])->name('seccion5');

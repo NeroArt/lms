@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('etapa_encuadre');
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
+            $table->integer('seccion_encuadre');
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
             $table->foreign('cursos_id')->references('id')->on('cursos');

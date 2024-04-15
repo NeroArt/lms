@@ -9,7 +9,7 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Apertura o Encuadre de Curso - Sección 7A</div>
+                <div class="card-header">Gestión de Apertura o Encuadre de Curso - Sección 7B</div>
                 <div class="card-body">
                     <div>
                         <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
@@ -21,7 +21,8 @@
                     <thead class="thead-dark" >
                         <tr>
                             <th class="card-title">Acción</th>
-                            <th class="card-title">Etapa</th>
+                            <th class="card-title">Descripción</th>
+                            <th class="card-title">Material y Equipo de Apoyo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,11 +30,12 @@
             
                             <tr> 
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('/seccion7a/'.$inicio->id.'/edit')}}">Editar
+                                    <a class="btn btn-warning" href="{{url('/seccion7b/'.$inicio->id.'/edit')}}">Editar
                                     </a> 
                                 </td>
                                 
                                 <td>{{$inicio->etapa_encuadre}}</td>
+                                <td>{{$inicio->material}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -51,8 +53,7 @@
                                 <th class="card-title">Acción</th>
                                 <th class="card-title">Actividad</th>
                                 <th class="card-title">Duración</th>
-                                <th class="card-title">Tecnicas</th>
-                                <th class="card-title">Material y Equipo de Apoyo</th>
+                                <th class="card-title">Técnicas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,14 +61,12 @@
                 
                                 <tr> 
                                     <td>
-                                        <a class="btn btn-warning" href="{{url('/seccion7actividad/'.$actividad->id.'/edit')}}">Editar
+                                        <a class="btn btn-warning" href="{{url('/seccion7bactividad/'.$actividad->id.'/edit')}}">Editar
                                         </a> 
                                     </td>
-                                    
                                     <td>{{$actividad->actividad}}</td>
                                     <td>{{$actividad->duracion}}</td>
                                     <td>{{$actividad->tecnicas}}</td>
-                                    <td>{{$actividad->material_equipo_apoyo}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
