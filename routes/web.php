@@ -11,6 +11,8 @@ use App\Http\Controllers\Seccion5Controller;
 use App\Http\Controllers\Seccion6Controller;
 use App\Http\Controllers\Seccion7Controller;
 use App\Http\Controllers\Seccion7bController;
+use App\Http\Controllers\Seccion7cController;
+use App\Http\Controllers\SeguimientoEtapasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,8 +123,19 @@ Route::get('/seccion7b/getTemario/{CursoId}', [Seccion7bController::class, 'getT
 Route::get('/seccion7b/getBeneficios/{CursoId}', [Seccion7bController::class, 'getBeneficios'])->name('seccion7b-getBeneficios');
 Route::get('/seccion7b/getEvaluaciones/{CursoId}', [Seccion7bController::class, 'getEvaluaciones'])->name('seccion7b-getEvaluaciones');
 Route::get('/seccion7b/getDescripcionCurso/{CursoId}', [Seccion7bController::class, 'getDescripcionCurso'])->name('seccion7b-getDescripcionCurso');
-
 // Fin codigo seccion 7b
+
+//Codigo seccion 7c
+Route::get('/seccion7c', [Seccion7cController::class, 'index'])->name('seccion7c-index');
+Route::get('/seccion7c/create', [Seccion7cController::class, 'create'])->name('seccion7c-create');
+Route::post('/seccion7c/store', [Seccion7cController::class, 'store'])->name('seccion7c-store');
+Route::get('/seccion7c/{seccion7c}/edit', [Seccion7cController::class, 'edit'])->name('seccion7c-edit');
+Route::patch('/seccion7c/{seccion7c}', [Seccion7cController::class, 'update'])->name('seccion7c-update');
+Route::get('/seccion7cactividad/{seccion7c}/edit', [Seccion7cController::class, 'editactividad'])->name('seccion7c-editactividad');
+Route::patch('/seccion7cactividad/{seccion7c}', [Seccion7cController::class, 'updateactividad'])->name('seccion7c-updateactividad');
+// Fin codigo seccion 7c
+
+
 
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
 Route::get('/seccion5', [App\Http\Controllers\Seccion5Controller::class, 'index'])->name('seccion5');
@@ -133,7 +146,14 @@ Route::get('/seccion9', [App\Http\Controllers\Seccion9Controller::class, 'index'
 Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Controller::class, 'plantilla_cliente'])->name('seccion9');
 
 //Seguimiento de actividades para clientes
+Route::get('/actividades_cliente', [App\Http\Controllers\SeguimientoActividadesClienteController::class, 'index'])->name('seguimiento_actividades');
 Route::get('/actividades_cliente/{idCurso}', [App\Http\Controllers\SeguimientoActividadesClienteController::class, 'seguimiento_actividades'])->name('seccion9');
+//FinSeguimiento de actividades para clientes
+
+//Seguimiento de etapas para clientes
+Route::get('/etapas_cliente', [SeguimientoEtapasController::class, 'index'])->name('seccion3d-index');
+//Fin Seguimiento de etapas para clientes
+
 
 //Vista de administradores
 Route::get('/paneladministrador', [App\Http\Controllers\PanelAdministradorController::class, 'index'])->name('paneladministrador');

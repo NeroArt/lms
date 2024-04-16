@@ -19,6 +19,20 @@ class SeguimientoActividadesClienteController extends Controller
         $this->middleware('cliente');
     }
 
+    public function index()
+    {
+        $id=3;
+        $seguimientos=DB::table('actividades_avances')
+        ->join('cursos','cursos.id', '=','actividades_avances.cursos_id')
+        ->where('actividades_avances.cursos_id',$id )
+        ->select('actividades_avances.*','cursos.nombre_curso as nombre_curso')
+        ->simplePaginate(30);
+        
+
+        return view('cliente.seguimientocliente.indexseguimiento')
+        ->with('seguimientos',$seguimientos);
+    }
+
     public function seguimiento_actividades ($id)
     {
         $datos = DB::table('cursos')
