@@ -25,15 +25,6 @@
                             <div>
                                 <h2>Objetivo General:</h2>
                             </div>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Video de Ejemplo</h5>
-                                    <p class="card-text">Descripción del video o cualquier otra información relevante.</p>
-                                </div>
-                            </div>
                         </div>
                         <div class="mb-3">
                             <div class="name ">Objetivo General</div>
@@ -74,15 +65,6 @@
                             <div>
                                 <h2>Acción:</h2>
                             </div>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Video de Ejemplo</h5>
-                                    <p class="card-text">Descripción del video o cualquier otra información relevante.</p>
-                                </div>
-                            </div>
                         </div>
                         <div class="mb-3">
                             <div class="name ">Acción</div>
@@ -99,15 +81,6 @@
                         <div class="container mt-5">
                             <div>
                                 <h2>Condición:</h2>
-                            </div>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T7P7gCivYlY" allowfullscreen></iframe> --}}
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Video de Ejemplo</h5>
-                                    <p class="card-text">Descripción del video o cualquier otra información relevante.</p>
-                                </div>
                             </div>
                         </div>
                         <div class="mb-3">

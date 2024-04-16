@@ -23,18 +23,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                
-                                <span class="text-negrita">Objetivo: <p id="dataobjetivo"></p></span> 
-                                </div>
-                                <div class="col-md-4">
-                                <span class="text-negrita">Acción: <p id="dataaccion"></p></span> 
-                                </div>
-                                <div class="col-md-4">
-                                <span class="text-negrita">Condición: <p id="datacondicion"></p></span>  
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <form action="" id="myForm">
 
