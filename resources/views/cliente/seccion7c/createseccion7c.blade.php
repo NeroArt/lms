@@ -1,13 +1,13 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-@vite(['resources/js/seccion7b.js'])
+@vite(['resources/js/seccion7c.js'])
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card card-5">
-                <div class="card-header">Creación de curso - Sección 7B</div>
+                <div class="card-header">Creación de curso - Sección 7C</div>
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body" >
@@ -32,7 +32,7 @@
                                     <button type="submit">Guardar</button>
                                 </form>
                             </div>
-                            <a href="{{url('/seccion7c/create')}}" class="btn btn-success">Siguiente</a>
+                            <a href="{{url('/seccion7d/create')}}" class="btn btn-success">Siguiente</a>
                         </div>
                     </div>
 
