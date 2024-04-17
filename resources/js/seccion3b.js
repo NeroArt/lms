@@ -1,12 +1,8 @@
 // Obtén la cadena JSON del Local Storage y su conversion a su valor original
 let getDataObjetivos = localStorage.getItem("dataObjetivos");
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
-
-let getObjRestantes = localStorage.getItem("objRestantes");
-let arrayObjRestantes = JSON.parse(getObjRestantes);
-
-let getBandera = localStorage.getItem("bandera");
-let valorBandera = JSON.parse(getBandera);
+let dataCurso = localStorage.getItem("curso_id");
+let curso_id2 = JSON.parse(dataCurso);
 
 //se declaran las variables que se van a utilizar
 let TemarioHabilitado = document.getElementById("myForm");
@@ -22,15 +18,26 @@ let divTemas = document.getElementById("divTemas");
 //se oculta el formulario
 TemarioHabilitado.style.display = "none";
 
+const renderData = (idCurso) => {
+    const url = route("seccion3b-getDataObj", {
+        idCurso
+    });
+
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        renderSelect(data.data);
+    })
+    .catch((error) => console.error("Error:", error));
+}
+
+renderData(parseInt(curso_id2));
+
 //funcion para renderizar el select de objetivos
 const renderSelect = (arrayData) => {
-    selectObjetivo.innerHTML = "";
 
-    let opcionDefecto = document.createElement("option");
-    opcionDefecto.text = "Escoja un Objetivo";
-    opcionDefecto.value = 0;
-    selectObjetivo.add(opcionDefecto);
-
+    renderOptionDefault('Escoja un Objetivo');
     if (arrayData.length > 0) {
         arrayData.map((objetivo) => {
             let opcion = document.createElement("option");
@@ -38,17 +45,20 @@ const renderSelect = (arrayData) => {
             opcion.value = objetivo.id;
             selectObjetivo.add(opcion);
         });
+    }else{
+        renderOptionDefault('No hay datos disponibles ve a la siguiente sección');
     }
+}
 
+const renderOptionDefault = (texto) => {
+    selectObjetivo.innerHTML = "";
+    let opcionDefecto = document.createElement("option");
+    opcionDefecto.text = texto;
+    opcionDefecto.value = 0;
+    selectObjetivo.add(opcionDefecto);
 
 }
 
-// validacion de la bandera para renderizar el select de objetivos
-if (valorBandera) {
-    renderSelect(arrayObjRestantes);
-}else{
-    renderSelect(arrayDataObjetivos);
-}
 
 /*Obtenemos el valor seleccionado a traves del evento onchange, donde el evento se dispara cuando cambia el valor del select*/
 selectObjetivo.addEventListener("change", function () {
@@ -57,7 +67,6 @@ selectObjetivo.addEventListener("change", function () {
     if (valorSeleccionado !== 0) {
         TemarioHabilitado.style.display = "block";
         let objetoEncontrado = findObject(valorSeleccionado);
-
         
         dataobjetivo.innerText = objetoEncontrado.sujeto;
         dataaccion.innerText = objetoEncontrado.accion;
@@ -143,16 +152,9 @@ const obtenerRequestOptions = (data) => {
     };
 }
 
-const manejarRespuesta = (data) => {
-    
+const manejarRespuesta = () => {
+    renderData(parseInt(curso_id2));
     cleanForm();
-
-    let objRestantes = data.data;
-    valorBandera = true;
-    localStorage.setItem("objRestantes", JSON.stringify(objRestantes));
-    localStorage.setItem('bandera', JSON.stringify(valorBandera));
-
-    renderSelect(objRestantes);
 }
 
 // funcion para limpiar el formulario
