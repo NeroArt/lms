@@ -139,7 +139,6 @@ selectRequerimiento.onchange = function () {
         <label for="">Cantidad de Preguntas</label>
         <input type="number" name="cantidadReglas" id="cantidadReglas">
         <br>
-        <label for="exampleInputName" class="form-label">Reglas:</label>
         <div id="divReglas">
         </div>
         `;
@@ -403,7 +402,6 @@ const habilitarPreguntas = () => {
     }
     document.getElementById("divReglas").innerHTML = content;
 });
-
 }
 
 const habilitarContenido = () => {
