@@ -68,27 +68,17 @@ class Seccion3bController extends Controller
             temario::insert($guardarTemas);
         }
 
-
-        $idCurso = $data['idCurso'];
-        $tipoObjetivo = 'particular';
-
-        $result = $this->getObjRestantes($idCurso,$tipoObjetivo);
-
-       
- 
-                // Devolver una respuesta JSON
+        // Devolver una respuesta JSON
         return response()->json([
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
-            'data' => $result
+            'data' => 1
         ], 200);
-
     }
-
-    public function getObjRestantes($idCurso,$tipoObjetivo)
+    public function getDataObj($idCurso)
     {
-        
+        $tipoObjetivo = 'particular';
         $resultados = DB::select("
             SELECT obj.id, obj.descripcion
             FROM lms.objetivos obj
@@ -114,7 +104,12 @@ class Seccion3bController extends Controller
             'idCurso2' => $idCurso
         ]);
 
-        return $resultados;
+        return response()->json([
+            'success' => true,
+            'message' => 'Los objetivos se consultaron correctamente',
+            'count' => count($resultados),
+            'data' => $resultados
+        ], 200);
     }
 
 

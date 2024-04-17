@@ -56,6 +56,7 @@ Route::get('/seccion3b/create', [Seccion3bController::class, 'create'])->name('s
 Route::post('/seccion3b/store', [Seccion3bController::class, 'store'])->name('seccion3b-store');
 Route::get('/seccion3b/{seccion3b}/edit', [Seccion3bController::class, 'edit'])->name('seccion3b-edit');
 Route::patch('/seccion3b/{seccion3b}', [Seccion3bController::class, 'update'])->name('seccion3b-update');
+Route::get('/seccion3b-getDataObj/{idCurso}', [Seccion3bController::class, 'getDataObj'])->name('seccion3b-getDataObj');
 // Fin codigo seccion 3b
 
 //Codigo seccion 3c
