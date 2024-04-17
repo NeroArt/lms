@@ -14,6 +14,7 @@ use App\Http\Controllers\Seccion7bController;
 use App\Http\Controllers\Seccion7cController;
 use App\Http\Controllers\Seccion7dController;
 use App\Http\Controllers\Seccion8Controller;
+use App\Http\Controllers\Seccion8bController;
 use App\Http\Controllers\SeguimientoEtapasController;
 /*
 |--------------------------------------------------------------------------
@@ -157,6 +158,17 @@ Route::get('/seccion8aactividad/{seccion8a}/edit', [Seccion8Controller::class, '
 Route::patch('/seccion8aactividad/{seccion8a}', [Seccion8Controller::class, 'updateactividad'])->name('seccion8a-updateactividad');
 Route::get('/seccion8a/getSubtemas/{CursoId}', [Seccion8Controller::class, 'getSubtemas'])->name('seccion8a-getSubtemas');
 // Fin codigo seccion 8a
+
+//Codigo seccion 8b
+Route::get('/seccion8b', [Seccion8bController::class, 'index'])->name('seccion8b-index');
+Route::get('/seccion8b/create', [Seccion8bController::class, 'create'])->name('seccion8b-create');
+Route::post('/seccion8b/store', [Seccion8bController::class, 'store'])->name('seccion8b-store');
+Route::get('/seccion8b/{seccion8b}/edit', [Seccion8bController::class, 'edit'])->name('seccion8b-edit');
+Route::patch('/seccion8b/{seccion8b}', [Seccion8bController::class, 'update'])->name('seccion8b-update');
+Route::get('/seccion8bactividad/{seccion8b}/edit', [Seccion8bController::class, 'editactividad'])->name('seccion8b-editactividad');
+Route::patch('/seccion8bactividad/{seccion8b}', [Seccion8bController::class, 'updateactividad'])->name('seccion8b-updateactividad');
+Route::get('/seccion8b/getSubtemas/{CursoId}', [Seccion8bController::class, 'getSubtemas'])->name('seccion8b-getSubtemas');
+// Fin codigo seccion 8b
 
 
 
