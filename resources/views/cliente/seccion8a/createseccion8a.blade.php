@@ -17,7 +17,7 @@
                                 
                                 <div class="col-md-8">
                                     
-                                    <label for="cursos_id3d">Momento de aplicación:</label>
+                                    <label for="cursos_id3d">1.	El instructor aplicará la técnica expositiva:</label>
                                     <select name="selectRequerimiento" id="selectRequerimiento" class="form-control">
                                         <option value="0">Escoja una opción:</option>
                                     </select>
