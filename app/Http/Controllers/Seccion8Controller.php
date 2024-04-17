@@ -63,9 +63,6 @@ class Seccion8Controller extends Controller
         foreach ($Subtemas as $subtema) {
             array_push($arrayTemario, $subtema->subtema);
         }
-        
-
-        
         return response()->json([
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
