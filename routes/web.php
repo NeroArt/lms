@@ -15,6 +15,7 @@ use App\Http\Controllers\Seccion7cController;
 use App\Http\Controllers\Seccion7dController;
 use App\Http\Controllers\Seccion8Controller;
 use App\Http\Controllers\Seccion8bController;
+use App\Http\Controllers\PagosController;
 use App\Http\Controllers\SeguimientoEtapasController;
 /*
 |--------------------------------------------------------------------------
@@ -171,7 +172,9 @@ Route::patch('/seccion8bactividad/{seccion8b}', [Seccion8bController::class, 'up
 Route::get('/seccion8b/getSubtemas/{CursoId}', [Seccion8bController::class, 'getSubtemas'])->name('seccion8b-getSubtemas');
 // Fin codigo seccion 8b
 
-
+//Pagos cliente
+Route::post('/pago/store', [PagosController::class, 'store'])->name('pago-store');
+// Fin Pagos cliente
 
 
 Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');

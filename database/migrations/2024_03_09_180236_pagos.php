@@ -13,8 +13,17 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status')->default(false);
+            $table->string('id_transaccion')->default('No aplica');
+            $table->string('status');
+            $table->dateTime('fecha_pago');
+            $table->integer('monto_pago');
+            $table->string('concepto_pago');
+            $table->string('metodo_pago');
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
+            $table->string('nombre_comprador');
+            $table->string('email_comprador');
+            $table->string('nombre_usuario');
+            $table->string('email_usuario');
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
             $table->foreign('cursos_id')->references('id')->on('cursos');
