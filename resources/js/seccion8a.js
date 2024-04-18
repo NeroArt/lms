@@ -313,7 +313,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             // Eliminamos los elementos
             copiaGetDataInicio8a = copiaGetDataInicio8a.filter(obj => obj.id != indice.id);
             localStorage.setItem('copiaGetDataInicio8a', JSON.stringify(copiaGetDataInicio8a));
-            //location.reload();
+            location.reload();
          
             
             console.log('Despues de el for each',copiaGetDataInicio8a); // Imprime el array después de eliminar los elementos
