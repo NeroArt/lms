@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('cierre_cursos', function (Blueprint $table) {
             $table->id();
-            $table->string('tema');
+            $table->string('etapa_encuadre');
             $table->integer('duracion');
             $table->string('tecnicas');
             $table->string('material_equipo_apoyo');
+            $table->integer('seccion_encuadre');
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
