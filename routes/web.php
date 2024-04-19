@@ -18,6 +18,7 @@ use App\Http\Controllers\Seccion8bController;
 use App\Http\Controllers\Seccion8cController;
 use App\Http\Controllers\Seccion8dController;
 use App\Http\Controllers\Seccion8eController;
+use App\Http\Controllers\Seccion8fController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\SeguimientoEtapasController;
 /*
@@ -206,6 +207,17 @@ Route::get('/seccion8eactividad/{seccion8e}/edit', [Seccion8eController::class, 
 Route::patch('/seccion8eactividad/{seccion8e}', [Seccion8eController::class, 'updateactividad'])->name('seccion8e-updateactividad');
 Route::get('/seccion8e/getSubtemas/{CursoId}', [Seccion8Controller::class, 'getSubtemas'])->name('seccion8e-getSubtemas');
 // Fin codigo seccion 8e
+
+//Codigo seccion 8f
+Route::get('/seccion8f', [Seccion8fController::class, 'index'])->name('seccion8f-index');
+Route::get('/seccion8f/create', [Seccion8fController::class, 'create'])->name('seccion8f-create');
+Route::post('/seccion8f/store', [Seccion8fController::class, 'store'])->name('seccion8f-store');
+Route::get('/seccion8f/{seccion8f}/edit', [Seccion8fController::class, 'edit'])->name('seccion8f-edit');
+Route::patch('/seccion8f/{seccion8f}', [Seccion8fController::class, 'update'])->name('seccion8f-update');
+Route::get('/seccion8factividad/{seccion8f}/edit', [Seccion8fController::class, 'editactividad'])->name('seccion8f-editactividad');
+Route::patch('/seccion8factividad/{seccion8f}', [Seccion8fController::class, 'updateactividad'])->name('seccion8f-updateactividad');
+Route::get('/seccion8f/getSubtemas/{CursoId}', [Seccion8fController::class, 'getSubtemas'])->name('seccion8f-getSubtemas');
+// Fin codigo seccion 8f
 
 //Pagos cliente
 Route::post('/pago/store', [PagosController::class, 'store'])->name('pago-store');
