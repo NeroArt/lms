@@ -65,7 +65,7 @@
                                     <button type="submit">Guardar</button>
                                 </form>
                             </div>
-                            <a href="{{url('/seccion8f/create')}}" class="btn btn-success">Siguiente</a>
+                            <a href="{{url('/seccion8e/create')}}" class="btn btn-success">Siguiente</a>
                         </div>
                     </div>
 
