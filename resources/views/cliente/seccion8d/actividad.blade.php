@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Modificacion de Actividad - Sección 8C</div>
+                <div class="card-header">Modificacion de Actividad - Sección 8D</div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col">
@@ -29,13 +29,13 @@
                         </div>
                     </div>
                     
-                    <form action="{{url('/seccion8cactividad/'.$desarrollo_actividad->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('/seccion8dactividad/'.$desarrollo_actividad->id)}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('PATCH')}}
                         
                         <div class="container mt-5">
                             <div>
-                                <h2>Modificación de Actividad - Seccion 8C:</h2>
+                                <h2>Modificación de Actividad - Seccion 8D:</h2>
                             </div>
 
                         </div>
