@@ -69,7 +69,7 @@
                                     <button type="submit">Guardar</button>
                                 </form>
                             </div>
-                            <a href="{{url('/seccion9b/create')}}" class="btn btn-success">Siguiente</a>
+                            <a href="{{url('/seccion9c/create')}}" class="btn btn-success">Siguiente</a>
                         </div>
                     </div>
 
