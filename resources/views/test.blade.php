@@ -8,18 +8,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Creación de curso - Sección 1</div>
+                <div class="card-header">Pago de Curso - No: 1</div>
                 <div class="card-body">
                     
-                    <a href="#" id="abrirModal">Abrir Ventana Modal</a>
-                    <div id="miModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">×</span>
-                            <div class="video-wrapper">
-                                <iframe id="miVideo"  frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
+
                     <div id="paypal-button-container"></div>
                 </div>
             </div>
