@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Modificacion de Actividad - Sección 9A</div>
+                <div class="card-header">Modificacion de Actividad - Sección 9B</div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col">

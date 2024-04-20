@@ -9,7 +9,7 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Cierre de Curso - Sección 9A</div>
+                <div class="card-header">Gestión de Cierre de Curso - Sección 9B</div>
                 <div class="card-body">
                     <div>
                         <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
@@ -32,7 +32,7 @@
             
                             <tr> 
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('/seccion9a/'.$cierre->id.'/edit')}}">Editar
+                                    <a class="btn btn-warning" href="{{url('/seccion9b/'.$cierre->id.'/edit')}}">Editar
                                     </a> 
                                 </td>
                                 
@@ -63,7 +63,7 @@
                 
                                 <tr> 
                                     <td>
-                                        <a class="btn btn-warning" href="{{url('/seccion9aactividad/'.$actividad->id.'/edit')}}">Editar
+                                        <a class="btn btn-warning" href="{{url('/seccion9bactividad/'.$actividad->id.'/edit')}}">Editar
                                         </a> 
                                     </td>
                                     <td>{{$actividad->actividad}}</td>
