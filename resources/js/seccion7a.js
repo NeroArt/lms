@@ -23,6 +23,7 @@ document.getElementById("cantidadRequerimientos").addEventListener("input", () =
     const cantidadRequerimientos = event.target.value;
     for (let i = 0; i < cantidadRequerimientos; i++) {
         content += `
+        <hr class="separador">
         <div class="mb-3">
         <div class="name">Actividad </div>
             <div class="input-group wrap-input100 validate-input" >
