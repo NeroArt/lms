@@ -28,6 +28,7 @@ use App\Http\Controllers\Seccion9fController;
 use App\Http\Controllers\Seccion9gController;
 use App\Http\Controllers\Seccion9hController;
 use App\Http\Controllers\Seccion9iController;
+use App\Http\Controllers\Seccion9jController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\SeguimientoEtapasController;
 /*
@@ -331,6 +332,16 @@ Route::patch('/seccion9i/{seccion9i}', [Seccion9iController::class, 'update'])->
 Route::get('/seccion9iactividad/{seccion9i}/edit', [Seccion9iController::class, 'editactividad'])->name('seccion9i-editactividad');
 Route::patch('/seccion9iactividad/{seccion9i}', [Seccion9iController::class, 'updateactividad'])->name('seccion9i-updateactividad');
 // Fin codigo seccion 9i
+
+//Codigo seccion 9j
+Route::get('/seccion9j', [Seccion9jController::class, 'index'])->name('seccion9j-index');
+Route::get('/seccion9j/create', [Seccion9jController::class, 'create'])->name('seccion9j-create');
+Route::post('/seccion9j/store', [Seccion9jController::class, 'store'])->name('seccion9j-store');
+Route::get('/seccion9j/{seccion9j}/edit', [Seccion9jController::class, 'edit'])->name('seccion9j-edit');
+Route::patch('/seccion9j/{seccion9j}', [Seccion9jController::class, 'update'])->name('seccion9j-update');
+Route::get('/seccion9jactividad/{seccion9j}/edit', [Seccion9jController::class, 'editactividad'])->name('seccion9j-editactividad');
+Route::patch('/seccion9jactividad/{seccion9j}', [Seccion9jController::class, 'updateactividad'])->name('seccion9j-updateactividad');
+// Fin codigo seccion 9j
 
 
 
