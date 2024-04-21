@@ -23,6 +23,8 @@ class Seccion2Controller extends Controller
     public function index()
     {
         $objetivos=DB::table('objetivos')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->where('objetivos.tipo_objetivo', '=', "general")
         ->select('objetivos.*')
         ->simplePaginate(30);

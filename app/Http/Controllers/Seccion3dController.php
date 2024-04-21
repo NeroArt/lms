@@ -23,6 +23,9 @@ class Seccion3dController extends Controller
     public function index()
     {
         $beneficios=DB::table('beneficios')
+        ->join('objetivos','objetivos.id', '=','beneficios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('beneficios.*')
         ->simplePaginate(30);
         return view('cliente.seccion3d.indexseccion3d')->with('beneficios',$beneficios);

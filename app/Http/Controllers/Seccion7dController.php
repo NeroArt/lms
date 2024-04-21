@@ -24,6 +24,8 @@ class Seccion7dController extends Controller
     public function index()
     {
         $inicio_cursos=DB::table('inicio_cursos')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->where('seccion_encuadre', 4)
         ->select('inicio_cursos.*')
         ->simplePaginate(30);

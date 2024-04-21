@@ -23,6 +23,8 @@ class Seccion6Controller extends Controller
     public function index()
     {
         $previo_inicios=DB::table('previo_inicios')
+        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('previo_inicios.*')
         ->simplePaginate(30);
 

@@ -22,6 +22,8 @@ class Seccion5Controller extends Controller
     public function index()
     {
         $evaluaciones=DB::table('evaluaciones')
+        ->join('cursos','cursos.id', '=','evaluaciones.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('evaluaciones.*')
         ->simplePaginate(30);
         return view('cliente.seccion5.indexseccion5')->with('evaluaciones',$evaluaciones);

@@ -21,6 +21,8 @@ class Seccion4Controller extends Controller
     public function index()
     {
         $requerimientos=DB::table('requerimientos')
+        ->join('cursos','cursos.id', '=','requerimientos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('requerimientos.*')
         ->simplePaginate(30);
         return view('cliente.seccion4.indexseccion4')->with('requerimientos',$requerimientos);

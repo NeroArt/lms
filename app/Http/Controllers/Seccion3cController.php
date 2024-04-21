@@ -21,6 +21,10 @@ class Seccion3cController extends Controller
     public function index()
     {
         $subtemas=DB::table('subtemas')
+        ->join('temarios','temarios.id', '=','subtemas.temarios_id')
+        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('subtemas.*')
         ->simplePaginate(30);
         return view('cliente.seccion3c.indexseccion3c')->with('subtemas',$subtemas);

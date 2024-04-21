@@ -23,6 +23,8 @@ class Seccion9Controller extends Controller
     public function index()
     {
         $cierre_cursos=DB::table('cierre_cursos')
+        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->where('seccion_encuadre', 1)
         ->select('cierre_cursos.*')
         ->simplePaginate(30);
