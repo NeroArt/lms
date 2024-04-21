@@ -99,13 +99,13 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Describir la Actividad: </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad">
+                <input id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad" required>
             </div>
         </div>
         <div class="mb-3">
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -144,7 +144,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -165,7 +165,7 @@ selectRequerimiento.onchange = function () {
         </div>
         <br>
         <label for="">Cantidad de Preguntas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <label for="exampleInputName" class="form-label">Reglas:</label>
         <div id="divReglas">
@@ -190,7 +190,7 @@ selectRequerimiento.onchange = function () {
         </div>
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -234,7 +234,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">c)	Aclarará las dudas que se presenten (Redactar la actividad):</div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="descripcion[2]" class="form-control" type="text" name="descripcion[2]" autocomplete="descripcion[2]" placeholder="Ejemplo: Aclarar las dudas que se presenten"></textarea>
+                <textarea id="descripcion[2]" class="form-control" type="text" name="descripcion[2]" autocomplete="descripcion[2]" placeholder="Ejemplo: Aclarar las dudas que se presenten" required></textarea>
                 <span class="focus-input100 "></span>
                 <span class="symbol-input100">
                     <i class="fa fa-envelope"></i>
@@ -359,7 +359,7 @@ const habilitarPreguntas = () => {
         <div class="mb-3">
         <div class="name">Describir la regla </div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad"></textarea>
+                <textarea id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad" required></textarea>
                 <span class="focus-input100 "></span>
             <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

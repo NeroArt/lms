@@ -82,7 +82,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Aspecto a evaluar:</div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="aspecto" class="form-control" type="text" name="aspecto" autocomplete="aspecto">
+                <input id="aspecto" class="form-control" type="text" name="aspecto" autocomplete="aspecto" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>
@@ -93,7 +93,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Porcentaje:</div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="porcentaje" class="form-control" type="number" name="porcentaje" autocomplete="aspecto">
+                <input id="porcentaje" class="form-control" type="number" name="porcentaje" autocomplete="aspecto" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>
@@ -104,7 +104,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Instrumento de Evaluación: </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="instrumento_evaluacion" class="form-control" type="text" name="instrumento_evaluacion" autocomplete="instrumento_evaluacion">
+                <input id="instrumento_evaluacion" class="form-control" type="text" name="instrumento_evaluacion" autocomplete="instrumento_evaluacion" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

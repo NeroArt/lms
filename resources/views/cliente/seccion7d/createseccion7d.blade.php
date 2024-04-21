@@ -17,25 +17,25 @@
                                     <div class="mb-3">
                                         <div class="name">Describir la Etapa de Apertura: </div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <textarea id="etapa_encuadre" class="form-control" type="text" name="etapa_encuadre" autocomplete="etapa_encuadre"></textarea>
+                                            <textarea id="etapa_encuadre" class="form-control" type="text" name="etapa_encuadre" autocomplete="etapa_encuadre" required></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <div class="name">Duración de la Actividad (Cuantos minutos dura la actividad): </div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                                            <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required> 
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <div class="name">Describir las Técnicas: </div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <input id="tecnicas" class="form-control" type="text" name="tecnicas" autocomplete="tecnicas">
+                                            <input id="tecnicas" class="form-control" type="text" name="tecnicas" autocomplete="tecnicas" required>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <div class="name">Material y Equipo de Apoyo: </div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <textarea id="material_equipo_apoyo" class="form-control" type="text" name="material_equipo_apoyo" autocomplete="material_equipo_apoyo"></textarea>
+                                            <textarea id="material_equipo_apoyo" class="form-control" type="text" name="material_equipo_apoyo" autocomplete="material_equipo_apoyo" required></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -45,20 +45,20 @@
                                         <label class="input-group wrap-input100 validate-input" >Indicará alcance/propósito/finalidad de la evaluación </label>
                                         <label class="input-group wrap-input100 validate-input" >Redactar el objetivo de esta evaluación</label>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <textarea id="actividad[0]" class="form-control" type="text" name="actividad[0]" autocomplete="actividad[0]"></textarea>
+                                            <textarea id="actividad[0]" class="form-control" type="text" name="actividad[0]" autocomplete="actividad[0]" required></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <div class="name">b)	Indicará las instrucciones de la evaluación: </div>
                                         <label class="input-group wrap-input100 validate-input" >Redactar para que sirve esta evaluación e Instrucciónes</label>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <textarea id="actividad[1]" class="form-control" type="text" name="actividad[1]" autocomplete="actividad[1]"></textarea>
+                                            <textarea id="actividad[1]" class="form-control" type="text" name="actividad[1]" autocomplete="actividad[1]" required></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <div class="name">c)	Indicará el tiempo para realizar la evaluación:</div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <input id="actividad[2]" class="form-control" type="text" name="actividad[2]" autocomplete="actividad[2]" placeholder="Ejemplo: 10 minutos">
+                                            <input id="actividad[2]" class="form-control" type="text" name="actividad[2]" autocomplete="actividad[2]" placeholder="Ejemplo: 10 minutos" required>
                                         </div>
                                     </div>
                                     <label class="input-group wrap-input100 validate-input" >d)	Aclarará las dudas que se presenten.</label>

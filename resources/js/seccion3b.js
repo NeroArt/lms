@@ -98,7 +98,7 @@ const renderTemas = (cantidadTemas) => {
         <div class="mb-3">
         <div class="name ">Tema ${i + 1}</div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="tema[${i}]" class="form-control" type="text" name="tema[${i}]" autocomplete="Tema" autocomplete="off">
+                <input id="tema[${i}]" class="form-control" type="text" name="tema[${i}]" autocomplete="Tema" autocomplete="off" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

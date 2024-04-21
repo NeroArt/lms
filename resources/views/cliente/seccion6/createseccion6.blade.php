@@ -16,7 +16,7 @@
                                     <div class="mb-3">
                                         <div class="name">Etapa</div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <input id="etapa" class="form-control" type="text" name="etapa" autocomplete="etapa">
+                                            <input id="etapa" class="form-control" type="text" name="etapa" autocomplete="etapa" required>
                                                 <span class="focus-input100 "></span>
                                             <span class="symbol-input100">
                                                 <i class="fa fa-envelope"></i>
@@ -27,7 +27,7 @@
                                     <div class="mb-3">
                                         <div class="name">Duración (Indicar cuantos minutos)</div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                                            <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
                                                 <span class="focus-input100 "></span>
                                             <span class="symbol-input100">
                                                 <i class="fa fa-envelope"></i>
@@ -38,7 +38,7 @@
                                     <div class="mb-3">
                                         <div class="name">Material y Equipo de Apoyo</div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <input id="material_equipo_de_apoyo" class="form-control" type="text" name="material_equipo_de_apoyo" autocomplete="Requerimiento">
+                                            <input id="material_equipo_de_apoyo" class="form-control" type="text" name="material_equipo_de_apoyo" autocomplete="Requerimiento" required>
                                                 <span class="focus-input100 "></span>
                                             <span class="symbol-input100">
                                                 <i class="fa fa-envelope"></i>
@@ -49,7 +49,7 @@
 
                                     <div>
                                         <label for="">Cantidad de Actividades</label>
-                                        <input type="number" name="cantidadRequerimientos" id="cantidadRequerimientos">
+                                        <input type="number" name="cantidadRequerimientos" id="cantidadRequerimientos" required>
                                     </div>
 
                                     <div id="divRequerimientos">

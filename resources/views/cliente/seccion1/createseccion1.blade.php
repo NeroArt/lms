@@ -28,7 +28,7 @@
                         <div class="mb-3">
                             <div class="name ">Nombre del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="nombre_curso" class="form-control" type="text" name="nombre_curso" autocomplete="Nombre del curso">
+                                    <input id="nombre_curso" class="form-control" type="text" name="nombre_curso" autocomplete="Nombre del curso" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -47,7 +47,7 @@
                         <div class="mb-3">
                             <div class="name ">Descripción del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="descripcion_curso" class="form-control" type="text" name="descripcion_curso" autocomplete="Descripción del Curso">
+                                    <input id="descripcion_curso" class="form-control" type="text" name="descripcion_curso" autocomplete="Descripción del Curso" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -64,7 +64,7 @@
                         <div class="mb-3">
                             <div class="name ">Nombre de Diseñador</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="nombre_disenador" class="form-control" type="text" name="nombre_disenador" autocomplete="Nombre de Diseñador">
+                                    <input id="nombre_disenador" class="form-control" type="text" name="nombre_disenador" autocomplete="Nombre de Diseñador" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -81,7 +81,7 @@
                         <div class="mb-3">
                             <div class="name ">Nombre de Diseñador</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="nombre_facilitador" class="form-control" type="text" name="nombre_facilitador" autocomplete="Nombre de Facilitador">
+                                    <input id="nombre_facilitador" class="form-control" type="text" name="nombre_facilitador" autocomplete="Nombre de Facilitador" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -98,7 +98,7 @@
                         <div class="mb-3">
                             <div class="name ">Lugar de Instrucción</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="lugar_instruccion" class="form-control" type="text" name="lugar_instruccion" autocomplete="Lugar de Instrucción">
+                                    <input id="lugar_instruccion" class="form-control" type="text" name="lugar_instruccion" autocomplete="Lugar de Instrucción" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -120,7 +120,7 @@
                         <div class="mb-3">
                             <div class="name ">Duración</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="duracion" class="form-control" type="text" name="duracion"  autocomplete="Lugar de Instrucción">
+                                    <input id="duracion" class="form-control" type="text" name="duracion"  autocomplete="Lugar de Instrucción" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -142,7 +142,7 @@
                         <div class="mb-3">
                             <div class="name ">Fecha de curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="fechas" class="form-control" type="date" name="fechas" autocomplete="Lugar de Instrucción">
+                                    <input id="fechas" class="form-control" type="date" name="fechas" autocomplete="Lugar de Instrucción" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -160,22 +160,22 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputNombre" class="form-label">Perfil del participante:</label>
-                            <input type="text" name="perfil_participante" class="form-control" id="perfil_participante">
+                            <input type="text" name="perfil_participante" class="form-control" id="perfil_participante" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Conocimientos:</label>
-                            <input type="text" name="perfil_participante_conocimientos" class="form-control" id="perfil_participante_conocimientos">
+                            <input type="text" name="perfil_participante_conocimientos" class="form-control" id="perfil_participante_conocimientos" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Habilidades/Desempeños:</label>
-                            <input type="text" name="perfil_participante_habilidades" class="form-control" id="perfil_participante_habilidades">
+                            <input type="text" name="perfil_participante_habilidades" class="form-control" id="perfil_participante_habilidades" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Producto:</label>
-                            <input type="text" name="perfil_participante_producto" class="form-control" id="perfil_participante_producto">
+                            <input type="text" name="perfil_participante_producto" class="form-control" id="perfil_participante_producto" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">AHV:</label>
-                            <input type="text" name="perfil_participante_ahv" class="form-control" id="perfil_participante_ahv">
+                            <input type="text" name="perfil_participante_ahv" class="form-control" id="perfil_participante_ahv" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Número de participantes:</label>
-                            <input type="number" name="no_participantes" class="form-control" id="no_participantes">
+                            <input type="number" name="no_participantes" class="form-control" id="no_participantes" required>
                             <input name="users_id" type="number" class="form-control" id="users_id" value={{ Auth::user()->id }} hidden>
 
                         </div>
@@ -194,7 +194,7 @@
                         <div class="mb-3">
                             <div class="name ">Beneficios del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="beneficios_del_curso" class="form-control" type="text" name="beneficios_del_curso" autocomplete="Beneficios del curso">
+                                    <input id="beneficios_del_curso" class="form-control" type="text" name="beneficios_del_curso" autocomplete="Beneficios del curso" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

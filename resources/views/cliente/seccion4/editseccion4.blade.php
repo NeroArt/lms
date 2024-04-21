@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name">Requerimiento</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="requerimientos" class="form-control" type="text" name="requerimientos" autocomplete="Requerimiento" value="{{isset($requerimiento->requerimientos)?$requerimiento->requerimientos:''}}">
+                                    <input id="requerimientos" class="form-control" type="text" name="requerimientos" autocomplete="Requerimiento" value="{{isset($requerimiento->requerimientos)?$requerimiento->requerimientos:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

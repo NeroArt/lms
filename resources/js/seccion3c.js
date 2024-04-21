@@ -47,7 +47,7 @@ document.getElementById("cantidadSubtemas").addEventListener("input", () => {
     let content = "";
     const cantidadTemas = event.target.value;
     for (let i = 0; i < cantidadTemas; i++) {
-        content += `<div class="mb-3"><div class="name ">Subtema </div><div class="input-group wrap-input100 validate-input" ><input id="subtema[${i}]" class="form-control" type="text" name="subtema[${i}]" autocomplete="Subtema"><span class="focus-input100 "></span><span class="symbol-input100"><i class="fa fa-envelope"></i></span></div></div>`;
+        content += `<div class="mb-3"><div class="name ">Subtema </div><div class="input-group wrap-input100 validate-input" ><input id="subtema[${i}]" class="form-control" type="text" name="subtema[${i}]" autocomplete="Subtema" required><span class="focus-input100 "></span><span class="symbol-input100"><i class="fa fa-envelope"></i></span></div></div>`;
     }
     document.getElementById("divSubtemas").innerHTML = content;
 });

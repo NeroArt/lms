@@ -25,7 +25,7 @@ document.getElementById("cantidadRequerimientos").addEventListener("input", () =
         <div class="mb-3">
         <div class="name">Actividad </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad">
+                <input id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

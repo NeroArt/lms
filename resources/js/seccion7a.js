@@ -26,7 +26,7 @@ document.getElementById("cantidadRequerimientos").addEventListener("input", () =
         <div class="mb-3">
         <div class="name">Actividad </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad">
+                <input id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>
@@ -36,7 +36,7 @@ document.getElementById("cantidadRequerimientos").addEventListener("input", () =
         <div class="mb-3">
         <div class="name">Duración </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion[${i}]" class="form-control" type="text" name="duracion[${i}]" autocomplete="duracion">
+                <input id="duracion[${i}]" class="form-control" type="text" name="duracion[${i}]" autocomplete="duracion" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>
@@ -46,7 +46,7 @@ document.getElementById("cantidadRequerimientos").addEventListener("input", () =
         <div class="mb-3">
         <div class="name">Técnicas </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="tecnicas[${i}]" class="form-control" type="text" name="tecnicas[${i}]" autocomplete="tecnicas">
+                <input id="tecnicas[${i}]" class="form-control" type="text" name="tecnicas[${i}]" autocomplete="tecnicas" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>
@@ -56,7 +56,7 @@ document.getElementById("cantidadRequerimientos").addEventListener("input", () =
         <div class="mb-3">
         <div class="name">Material y Equipo de Apoyo </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="material_equipo_apoyo[${i}]" class="form-control" type="text" name="material_equipo_apoyo[${i}]" autocomplete="material_equipo_apoyo">
+                <input id="material_equipo_apoyo[${i}]" class="form-control" type="text" name="material_equipo_apoyo[${i}]" autocomplete="material_equipo_apoyo" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

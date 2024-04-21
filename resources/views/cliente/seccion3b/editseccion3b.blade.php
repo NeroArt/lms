@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name ">Tema</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="tema" class="form-control" type="text" name="tema" autocomplete="Tema" value="{{isset($temario->tema)?$temario->tema:''}}">
+                                    <input id="tema" class="form-control" type="text" name="tema" autocomplete="Tema" value="{{isset($temario->tema)?$temario->tema:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

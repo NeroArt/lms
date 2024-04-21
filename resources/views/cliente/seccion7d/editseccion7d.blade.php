@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name">Descripción de Etapa</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="etapa_encuadre" class="form-control" type="text" name="etapa_encuadre" autocomplete="etapa_encuadre" value="{{isset($inicio_curso->etapa_encuadre)?$inicio_curso->etapa_encuadre:''}}">
+                                    <input id="etapa_encuadre" class="form-control" type="text" name="etapa_encuadre" autocomplete="etapa_encuadre" value="{{isset($inicio_curso->etapa_encuadre)?$inicio_curso->etapa_encuadre:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

@@ -36,7 +36,7 @@
                                     <div class="mb-3">
                                         <div class="name">Duración (Indicar los minutos de duración): </div>
                                             <div class="input-group wrap-input100 validate-input" >
-                                                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                                                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
                                             </div>
                                         </div>
                                         <div class="mb-3">

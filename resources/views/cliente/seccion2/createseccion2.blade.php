@@ -29,7 +29,7 @@
                         <div class="mb-3">
                             <div class="name ">Objetivo General</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="descripcion" class="form-control" type="text" name="descripcion" autocomplete="Objetivo General  ">
+                                    <input id="descripcion" class="form-control" type="text" name="descripcion" autocomplete="Objetivo General" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -69,7 +69,7 @@
                         <div class="mb-3">
                             <div class="name ">Acción</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="accion" class="form-control" type="text" name="accion" autocomplete="Acción">
+                                    <input id="accion" class="form-control" type="text" name="accion" autocomplete="Acción" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -86,7 +86,7 @@
                         <div class="mb-3">
                             <div class="name ">Condición</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="condicion" class="form-control" type="text" name="condicion" autocomplete="Condición">
+                                    <input id="condicion" class="form-control" type="text" name="condicion" autocomplete="Condición" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

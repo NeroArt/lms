@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name ">Nombre del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="nombre_curso" class="form-control" type="text" name="nombre_curso" autocomplete="Nombre del curso" value="{{isset($curso->nombre_curso)?$curso->nombre_curso:''}}">
+                                    <input id="nombre_curso" class="form-control" type="text" name="nombre_curso" autocomplete="Nombre del curso" value="{{isset($curso->nombre_curso)?$curso->nombre_curso:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -59,7 +59,7 @@
                         <div class="mb-3">
                             <div class="name ">Descripción del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="descripcion_curso" class="form-control" type="text" name="descripcion_curso" autocomplete="Descripción del Curso" value="{{isset($curso->descripcion_curso)?$curso->descripcion_curso:''}}">
+                                    <input id="descripcion_curso" class="form-control" type="text" name="descripcion_curso" autocomplete="Descripción del Curso" value="{{isset($curso->descripcion_curso)?$curso->descripcion_curso:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -76,7 +76,7 @@
                         <div class="mb-3">
                             <div class="name ">Nombre de Diseñador</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="nombre_disenador" class="form-control" type="text" name="nombre_disenador" autocomplete="Nombre de Diseñador" value="{{isset($curso->nombre_disenador)?$curso->nombre_disenador:''}}">
+                                    <input id="nombre_disenador" class="form-control" type="text" name="nombre_disenador" autocomplete="Nombre de Diseñador" value="{{isset($curso->nombre_disenador)?$curso->nombre_disenador:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -93,7 +93,7 @@
                         <div class="mb-3">
                             <div class="name ">Nombre de Diseñador</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="nombre_facilitador" class="form-control" type="text" name="nombre_facilitador" autocomplete="Nombre de Facilitador" value="{{isset($curso->nombre_facilitador)?$curso->nombre_facilitador:''}}">
+                                    <input id="nombre_facilitador" class="form-control" type="text" name="nombre_facilitador" autocomplete="Nombre de Facilitador" value="{{isset($curso->nombre_facilitador)?$curso->nombre_facilitador:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -110,7 +110,7 @@
                         <div class="mb-3">
                             <div class="name ">Lugar de Instrucción</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="lugar_instruccion" class="form-control" type="text" name="lugar_instruccion" autocomplete="Lugar de Instrucción" value="{{isset($curso->lugar_instruccion)?$curso->lugar_instruccion:''}}">
+                                    <input id="lugar_instruccion" class="form-control" type="text" name="lugar_instruccion" autocomplete="Lugar de Instrucción" value="{{isset($curso->lugar_instruccion)?$curso->lugar_instruccion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -132,7 +132,7 @@
                         <div class="mb-3">
                             <div class="name ">Duración</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="duracion" class="form-control" type="text" name="duracion"  autocomplete="Lugar de Instrucción" value="{{isset($curso->duracion)?$curso->duracion:''}}">
+                                    <input id="duracion" class="form-control" type="text" name="duracion"  autocomplete="Lugar de Instrucción" value="{{isset($curso->duracion)?$curso->duracion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -154,7 +154,7 @@
                         <div class="mb-3">
                             <div class="name ">Fecha de curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="fechas" class="form-control" type="date" name="fechas" autocomplete="Lugar de Instrucción" value="{{isset($curso->fechas)?$curso->fechas:''}}">
+                                    <input id="fechas" class="form-control" type="date" name="fechas" autocomplete="Lugar de Instrucción" value="{{isset($curso->fechas)?$curso->fechas:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -176,29 +176,29 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputNombre" class="form-label">Perfil del participante:</label>
-                            <input type="text" name="perfil_participante" class="form-control" id="perfil_participante" value="{{isset($curso->perfil_participante)?$curso->perfil_participante:''}}">
+                            <input type="text" name="perfil_participante" class="form-control" id="perfil_participante" value="{{isset($curso->perfil_participante)?$curso->perfil_participante:''}}" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Conocimientos:</label>
-                            <input type="text" name="perfil_participante_conocimientos" class="form-control" id="perfil_participante_conocimientos" value="{{isset($curso->perfil_participante_conocimientos)?$curso->perfil_participante_conocimientos:''}}">
+                            <input type="text" name="perfil_participante_conocimientos" class="form-control" id="perfil_participante_conocimientos" value="{{isset($curso->perfil_participante_conocimientos)?$curso->perfil_participante_conocimientos:''}}" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Habilidades/Desempeños:</label>
-                            <input type="text" name="perfil_participante_habilidades" class="form-control" id="perfil_participante_habilidades" value="{{isset($curso->perfil_participante_habilidades)?$curso->perfil_participante_habilidades:''}}">
+                            <input type="text" name="perfil_participante_habilidades" class="form-control" id="perfil_participante_habilidades" value="{{isset($curso->perfil_participante_habilidades)?$curso->perfil_participante_habilidades:''}}" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Producto:</label>
-                            <input type="text" name="perfil_participante_producto" class="form-control" id="perfil_participante_producto" value="{{isset($curso->perfil_participante_producto)?$curso->perfil_participante_producto:''}}">
+                            <input type="text" name="perfil_participante_producto" class="form-control" id="perfil_participante_producto" value="{{isset($curso->perfil_participante_producto)?$curso->perfil_participante_producto:''}}" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">AHV:</label>
-                            <input type="text" name="perfil_participante_ahv" class="form-control" id="perfil_participante_ahv" value="{{isset($curso->perfil_participante_ahv)?$curso->perfil_participante_ahv:''}}">
+                            <input type="text" name="perfil_participante_ahv" class="form-control" id="perfil_participante_ahv" value="{{isset($curso->perfil_participante_ahv)?$curso->perfil_participante_ahv:''}}" required>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Número de participantes:</label>
-                            <input type="number" name="no_participantes" class="form-control" id="no_participantes" value="{{isset($curso->no_participantes)?$curso->no_participantes:''}}">
+                            <input type="number" name="no_participantes" class="form-control" id="no_participantes" value="{{isset($curso->no_participantes)?$curso->no_participantes:''}}" required>
                             <input name="users_id" type="no_participantes" class="form-control" id="users_id" value="{{isset($curso->users_id)?$curso->users_id:''}}" disabled hidden>
                         </div>
 
                         <div class="mb-3">
                             <div class="name ">Beneficios del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="beneficios_del_curso" class="form-control" type="text" name="beneficios_del_curso" autocomplete="Lugar de Instrucción" value="{{isset($curso->beneficios_del_curso)?$curso->beneficios_del_curso:''}}">
+                                    <input id="beneficios_del_curso" class="form-control" type="text" name="beneficios_del_curso" autocomplete="Lugar de Instrucción" value="{{isset($curso->beneficios_del_curso)?$curso->beneficios_del_curso:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

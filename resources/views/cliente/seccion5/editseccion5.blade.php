@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name">Requerimiento</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="aspecto" class="form-control" type="text" name="aspecto" autocomplete="evaluacione" value="{{isset($evaluacione->aspecto)?$evaluacione->aspecto:''}}">
+                                    <input id="aspecto" class="form-control" type="text" name="aspecto" autocomplete="evaluacione" value="{{isset($evaluacione->aspecto)?$evaluacione->aspecto:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -53,7 +53,7 @@
                         <div class="mb-3">
                             <div class="name">Requerimiento</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="porcentaje" class="form-control" type="number" name="porcentaje" autocomplete="porcentaje" value="{{isset($evaluacione->porcentaje)?$evaluacione->porcentaje:''}}">
+                                    <input id="porcentaje" class="form-control" type="number" name="porcentaje" autocomplete="porcentaje" value="{{isset($evaluacione->porcentaje)?$evaluacione->porcentaje:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -64,7 +64,7 @@
                         <div class="mb-3">
                             <div class="name">Requerimiento</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="instrumento_evaluacion" class="form-control" type="text" name="instrumento_evaluacion" autocomplete="instrumento_evaluacion" value="{{isset($evaluacione->instrumento_evaluacion)?$evaluacione->instrumento_evaluacion:''}}">
+                                    <input id="instrumento_evaluacion" class="form-control" type="text" name="instrumento_evaluacion" autocomplete="instrumento_evaluacion" value="{{isset($evaluacione->instrumento_evaluacion)?$evaluacione->instrumento_evaluacion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -75,7 +75,7 @@
                         <div class="mb-3">
                             <div class="name">Requerimiento</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="momento_aplicacion" class="form-control" type="text" name="momento_aplicacion" autocomplete="Requerimiento" value="{{isset($evaluacione->momento_aplicacion)?$evaluacione->momento_aplicacion:''}}">
+                                    <input id="momento_aplicacion" class="form-control" type="text" name="momento_aplicacion" autocomplete="Requerimiento" value="{{isset($evaluacione->momento_aplicacion)?$evaluacione->momento_aplicacion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

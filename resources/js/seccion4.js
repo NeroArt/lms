@@ -88,7 +88,7 @@ document.getElementById("cantidadRequerimientos").addEventListener("input", () =
         <div class="mb-3">
         <div class="name">Requerimiento </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="requerimiento[${i}]" class="form-control" type="text" name="requerimiento[${i}]" autocomplete="Requerimiento">
+                <input id="requerimiento[${i}]" class="form-control" type="text" name="requerimiento[${i}]" autocomplete="Requerimiento" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

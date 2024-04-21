@@ -171,7 +171,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar las instrucciones:</div>
         </div>
         <label for="">Cantidad de Instrucciones</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -232,7 +232,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar algunas de las reglas que vas a estipular:</div>
         </div>
         <label for="">Cantidad de Reglas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -264,7 +264,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Redactar la actividad</div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad" required" placeholder="Ejemplo: El instructor brindara las condiciones que propicien el dialogo y la discusión entre los participantes"></textarea>
+                <textarea id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad" required placeholder="Ejemplo: El instructor brindara las condiciones que propicien el dialogo y la discusión entre los participantes"></textarea>
                 <span class="focus-input100 "></span>
                 <span class="symbol-input100">
                 <i class="fa fa-envelope"></i>
@@ -281,7 +281,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Redactar la actividad</div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad" required" placeholder="Ejemplo: El instructor recordará las normas a fin de que la discusión se realice en un ambiente de respeto"></textarea>
+                <textarea id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad" required placeholder="Ejemplo: El instructor recordará las normas a fin de que la discusión se realice en un ambiente de respeto"></textarea>
                 <span class="focus-input100 "></span>
                 <span class="symbol-input100">
                 <i class="fa fa-envelope"></i>
@@ -310,7 +310,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar aquí 2 ejemplos relacionados con las situaciones cotidianas:</div>
         </div>
         <label for="">Cantidad de Ejemplos</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>

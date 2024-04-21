@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name">Beneficio</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="beneficio" class="form-control" type="text" name="beneficio" autocomplete="Tema" value="{{isset($beneficio->beneficio)?$beneficio->beneficio:''}}">
+                                    <input id="beneficio" class="form-control" type="text" name="beneficio" autocomplete="Tema" value="{{isset($beneficio->beneficio)?$beneficio->beneficio:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

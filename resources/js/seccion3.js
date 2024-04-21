@@ -23,22 +23,22 @@ document.getElementById("quantity").addEventListener("input", () => {
         // Divs e inputs para los guests
         contentGuests += `<div>
             <label>Descripción de Objetivo ${i+1}</label>
-            <input type="text" id="descripcion[${i}]">
+            <input type="text" id="descripcion[${i}]" required>
         </div>`;
 
         // Divs e inputs para los objetivos
         contentObjetivos += `
         <tr>
             <td>
-                <input type="text" id="sujeto[${i}]" readonly value="El Participante">
+                <input type="text" id="sujeto[${i}]" readonly value="El Participante" required>
             </td>
             <td>
-                <input type="text" id="accion[${i}]">
+                <input type="text" id="accion[${i}]" required>
             </td>
             <td>
-                <input type="text" id="condicion[${i}]">
+                <input type="text" id="condicion[${i}]" required>
             </td>
-            <input type="text" id="tipo_objetivo[${i}]" value="particular" hidden>
+            <input type="text" id="tipo_objetivo[${i}]" value="particular" hidden required>
         </tr>`;
     }
 

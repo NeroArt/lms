@@ -72,7 +72,7 @@
                                     <div>
                                         <label for="">Redactar por lo menos dos fuentes especificas donde el participante pueda encontrar más información para enriquecer la expuesta en el curso. </label>
                                         <label for="">Cantidad de Fuentes</label>
-                                        <input type="number" name="cantidadReglas" id="cantidadReglas">
+                                        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
                                     </div>
 
                                     <div id="divRequerimientos">

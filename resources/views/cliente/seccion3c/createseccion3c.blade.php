@@ -26,7 +26,7 @@
                                 <div class="col-md-8">
                                     
                                     <label for="temas_id3c">Temas:</label>
-                                    <select name="selectTemas" id="selectTemas" class="form-control">
+                                    <select name="selectTemas" id="selectTemas" class="form-control" >
                                         
                                     </select>
                                 </div>
@@ -36,7 +36,7 @@
 
                                     <div>
                                         <label for="cantidadSubtemas2">Cantidad de Subtemas</label>
-                                        <input type="number" name="cantidadSubtemas" id="cantidadSubtemas">
+                                        <input type="number" name="cantidadSubtemas" id="cantidadSubtemas" required>
                                     </div>
                                     <div id="divSubtemas">
                                     

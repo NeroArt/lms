@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name ">Subtema</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="subtema" class="form-control" type="text" name="subtema" autocomplete="subtema" value="{{isset($subtema->subtema)?$subtema->subtema:''}}">
+                                    <input id="subtema" class="form-control" type="text" name="subtema" autocomplete="subtema" value="{{isset($subtema->subtema)?$subtema->subtema:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

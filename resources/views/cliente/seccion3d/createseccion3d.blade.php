@@ -40,7 +40,7 @@
 
                                     <div>
                                         <label for="">Cantidad de Beneficios</label>
-                                        <input type="number" name="cantidadBeneficios" id="cantidadBeneficios">
+                                        <input type="number" name="cantidadBeneficios" id="cantidadBeneficios" required>
                                     </div>
                                     <div id="divBeneficios">
                                     

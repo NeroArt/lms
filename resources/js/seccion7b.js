@@ -124,7 +124,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -218,7 +218,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -259,7 +259,7 @@ selectRequerimiento.onchange = function () {
         </div>
         <br>
         <label for="">Cantidad de Preguntas</label>
-        <input type="number" name="cantidadPreguntas" name="cantidadPreguntas" id="cantidadPreguntas">
+        <input type="number" name="cantidadPreguntas" name="cantidadPreguntas" id="cantidadPreguntas" required>
         <br>
         <label for="exampleInputName" class="form-label">Preguntas:</label>
         <div id="divPreguntas">
@@ -268,7 +268,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -314,7 +314,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -355,7 +355,7 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Duración (Indicar los minutos de duración): </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion">
+                <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="duracion" required>
             </div>
         </div>
         <div class="mb-3">
@@ -372,19 +372,19 @@ selectRequerimiento.onchange = function () {
         <div class="mb-3">
         <div class="name">Redactar Instrumento de evaluación Inicial, porcentaje y describir Finalidad/beneficio/ventaja: </div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="evaluacion[0]" class="form-control" type="text" name="evaluacion[0]" autocomplete="evaluacion"> </textarea>
+                <textarea id="evaluacion[0]" class="form-control" type="text" name="evaluacion[0]" autocomplete="evaluacion" required> </textarea>
             </div>
         </div>
         <div class="mb-3">
         <div class="name">Redactar Instrumento de evaluación Intermedio, porcentaje y describir Finalidad/beneficio/ventaja: </div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="evaluacion[1]" class="form-control" type="text" name="evaluacion[1]" autocomplete="evaluacion"></textarea>
+                <textarea id="evaluacion[1]" class="form-control" type="text" name="evaluacion[1]" autocomplete="evaluacion" required></textarea>
             </div>
         </div>
         <div class="mb-3">
         <div class="name">Redactar Instrumento de evaluación Cierre, porcentaje y describir Finalidad/beneficio/ventaja: </div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="evaluacion[2]" class="form-control" type="text" name="evaluacion[2]" autocomplete="evaluacion"></textarea>
+                <textarea id="evaluacion[2]" class="form-control" type="text" name="evaluacion[2]" autocomplete="evaluacion" required></textarea>
             </div>
         </div>
 
@@ -702,7 +702,7 @@ const habilitarPreguntas = () => {
         <div class="mb-3">
         <div class="name">Pregunta </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad">
+                <input id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

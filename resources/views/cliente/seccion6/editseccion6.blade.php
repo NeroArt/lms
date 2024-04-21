@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name">Descripción</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="etapa" class="form-control" type="text" name="etapa" autocomplete="evaluacione" value="{{isset($previo_inicio->etapa)?$previo_inicio->etapa:''}}">
+                                    <input id="etapa" class="form-control" type="text" name="etapa" autocomplete="evaluacione" value="{{isset($previo_inicio->etapa)?$previo_inicio->etapa:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -53,7 +53,7 @@
                         <div class="mb-3">
                             <div class="name">Duración del evento (En minutos)</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="porcentaje" value="{{isset($previo_inicio->duracion)?$previo_inicio->duracion:''}}">
+                                    <input id="duracion" class="form-control" type="number" name="duracion" autocomplete="porcentaje" value="{{isset($previo_inicio->duracion)?$previo_inicio->duracion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -64,7 +64,7 @@
                         <div class="mb-3">
                             <div class="name">Material y Equipo de Apoyo</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="material_equipo_de_apoyo" class="form-control" type="text" name="material_equipo_de_apoyo" autocomplete="instrumento_evaluacion" value="{{isset($previo_inicio->material_equipo_de_apoyo)?$previo_inicio->material_equipo_de_apoyo:''}}">
+                                    <input id="material_equipo_de_apoyo" class="form-control" type="text" name="material_equipo_de_apoyo" autocomplete="instrumento_evaluacion" value="{{isset($previo_inicio->material_equipo_de_apoyo)?$previo_inicio->material_equipo_de_apoyo:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

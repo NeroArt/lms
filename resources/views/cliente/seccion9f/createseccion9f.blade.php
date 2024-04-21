@@ -72,7 +72,7 @@
                                     <div>
                                         <label for="">Redactar las fuentes referencias bibliográficas. </label>
                                         <label for="">Cantidad de referencias</label>
-                                        <input type="number" name="cantidadReglas" id="cantidadReglas">
+                                        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
                                     </div>
 
                                     <div id="divRequerimientos">

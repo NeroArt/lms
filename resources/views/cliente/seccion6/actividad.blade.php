@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <div class="name">Requerimiento</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad" value="{{isset($previo_actividad->actividad)?$previo_actividad->actividad:''}}">
+                                    <input id="actividad" class="form-control" type="text" name="actividad" autocomplete="actividad" value="{{isset($previo_actividad->actividad)?$previo_actividad->actividad:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

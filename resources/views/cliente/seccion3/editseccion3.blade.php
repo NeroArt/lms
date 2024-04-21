@@ -44,7 +44,7 @@
                         <div class="mb-3">
                             <div class="name ">Objetivo General</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="descripcion" class="form-control" type="text" name="descripcion" autocomplete="Objetivo General " value="{{isset($objetivo->descripcion)?$objetivo->descripcion:''}}">
+                                    <input id="descripcion" class="form-control" type="text" name="descripcion" autocomplete="Objetivo General " value="{{isset($objetivo->descripcion)?$objetivo->descripcion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -81,7 +81,7 @@
                         <div class="mb-3">
                             <div class="name ">Acción</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="accion" class="form-control" type="text" name="accion" autocomplete="Acción" value="{{isset($objetivo->accion)?$objetivo->accion:''}}">
+                                    <input id="accion" class="form-control" type="text" name="accion" autocomplete="Acción" value="{{isset($objetivo->accion)?$objetivo->accion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -98,7 +98,7 @@
                         <div class="mb-3">
                             <div class="name ">Condición</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="condicion" class="form-control" type="text" name="condicion" autocomplete="Condición" value="{{isset($objetivo->condicion)?$objetivo->condicion:''}}">
+                                    <input id="condicion" class="form-control" type="text" name="condicion" autocomplete="Condición" value="{{isset($objetivo->condicion)?$objetivo->condicion:''}}" required>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

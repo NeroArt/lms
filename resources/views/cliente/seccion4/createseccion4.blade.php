@@ -29,7 +29,7 @@
 
                                     <div>
                                         <label for="">Cantidad de Requerimientos</label>
-                                        <input type="number" name="cantidadRequerimientos" id="cantidadRequerimientos">
+                                        <input type="number" name="cantidadRequerimientos" id="cantidadRequerimientos" required>
                                     </div>
                                     <div id="divRequerimientos">
                                     

@@ -43,7 +43,7 @@
                                             <label for="">Cantidad de Temas</label>
                                             <input type="number" name="cantidadTemas" id="cantidadTemas"
                                             class="form-control"
-                                            >
+                                             required>
                                         </div>
                                         <div id="divTemas">
                                         

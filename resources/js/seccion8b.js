@@ -120,7 +120,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar aquí al menos 3 preguntas para recuperar la experiencia:</div>
         </div>
         <label for="">Cantidad de Preguntas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -153,7 +153,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar las actividades a desarrollar:</div>
         </div>
         <label for="">Cantidad de Ejemplos</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -220,7 +220,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar aquí 3 ejemplos relacionados con las situaciones cotidianas:</div>
 
         <label for="">Cantidad de ejemplos</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -236,7 +236,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar aquí al menos 3 preguntas para recuperar la experiencia:</div>
 
         <label for="">Cantidad de preguntas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -269,7 +269,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar aquí los logros y lo que falta por abordar:</div>
 
         <label for="">Cantidad de actividades</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>

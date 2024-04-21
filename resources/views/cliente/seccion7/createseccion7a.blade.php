@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-5">
-                <div class="card-header">Creación de curso - Sección 7 A</div>
+                <div class="card-header">Creación de curso - Sección 7A</div>
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body" >
@@ -16,12 +16,12 @@
                                     <div class="mb-3">
                                         <div class="name">Descripción de Etapa de Encuadre</div>
                                         <div class="input-group wrap-input100 validate-input" >
-                                            <textarea id="etapa_encuadre" class="form-control" type="text" name="etapa_encuadre" autocomplete="etapa_encuadre"></textarea>
+                                            <textarea id="etapa_encuadre" class="form-control" type="text" name="etapa_encuadre" autocomplete="etapa_encuadre" required></textarea>
                                         </div>
                                     </div>
                                     <div>
                                         <label for="">Cantidad de Actividades</label>
-                                        <input type="number" name="cantidadRequerimientos" id="cantidadRequerimientos">
+                                        <input type="number" name="cantidadRequerimientos" id="cantidadRequerimientos" required>
                                     </div>
 
                                     <div id="divRequerimientos">

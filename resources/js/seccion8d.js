@@ -124,7 +124,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar las instrucciones:</div>
         </div>
         <label for="">Cantidad de Instrucciones</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>

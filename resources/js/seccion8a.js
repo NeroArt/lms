@@ -137,7 +137,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar aquí al menos 3 preguntas para recuperar la experiencia:</div>
         </div>
         <label for="">Cantidad de Preguntas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -165,7 +165,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar aquí 3 ejemplos relacionados con las situaciones cotidianas:</div>
 
         <label for="">Cantidad de ejemplos</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -215,7 +215,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar por lo menos 3 preguntas:</div>
 
         <label for="">Cantidad de preguntas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -231,7 +231,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar por lo menos 2 preguntas:</div>
 
         <label for="">Cantidad de preguntas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -247,7 +247,7 @@ selectRequerimiento.onchange = function () {
         <div class="name">Redactar las referencias:</div>
 
         <label for="">Cantidad de referencias bibliográficas</label>
-        <input type="number" name="cantidadReglas" id="cantidadReglas">
+        <input type="number" name="cantidadReglas" id="cantidadReglas" required>
         <br>
         <div id="divReglas">
         </div>
@@ -391,7 +391,7 @@ const habilitarPreguntas = () => {
         <div class="mb-3">
         <div class="name">Redactar </div>
             <div class="input-group wrap-input100 validate-input" >
-                <textarea id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad"></textarea>
+                <textarea id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad" required></textarea>
                 <span class="focus-input100 "></span>
             <span class="symbol-input100">
             <i class="fa fa-envelope"></i>

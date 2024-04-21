@@ -58,7 +58,7 @@ document.getElementById("cantidadBeneficios").addEventListener("input", () => {
         <div class="mb-3">
         <div class="name">Beneficio </div>
             <div class="input-group wrap-input100 validate-input" >
-                <input id="beneficio[${i}]" class="form-control" type="text" name="beneficio[${i}]" autocomplete="Beneficio">
+                <input id="beneficio[${i}]" class="form-control" type="text" name="beneficio[${i}]" autocomplete="Beneficio" required>
                 <span class="focus-input100 "></span>
         <span class="symbol-input100">
             <i class="fa fa-envelope"></i>
