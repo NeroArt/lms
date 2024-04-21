@@ -29,6 +29,7 @@ use App\Http\Controllers\Seccion9gController;
 use App\Http\Controllers\Seccion9hController;
 use App\Http\Controllers\Seccion9iController;
 use App\Http\Controllers\Seccion9jController;
+use App\Http\Controllers\Seccion9kController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\SeguimientoEtapasController;
 /*
@@ -343,6 +344,18 @@ Route::get('/seccion9jactividad/{seccion9j}/edit', [Seccion9jController::class, 
 Route::patch('/seccion9jactividad/{seccion9j}', [Seccion9jController::class, 'updateactividad'])->name('seccion9j-updateactividad');
 // Fin codigo seccion 9j
 
+//Codigo seccion 9k
+Route::get('/seccion9k', [Seccion9kController::class, 'index'])->name('seccion9k-index');
+Route::get('/seccion9k/create', [Seccion9kController::class, 'create'])->name('seccion9k-create');
+Route::post('/seccion9k/store', [Seccion9kController::class, 'store'])->name('seccion9k-store');
+Route::get('/seccion9k/{seccion9k}/edit', [Seccion9kController::class, 'edit'])->name('seccion9k-edit');
+Route::patch('/seccion9k/{seccion9k}', [Seccion9kController::class, 'update'])->name('seccion9k-update');
+Route::get('/seccion9kactividad/{seccion9k}/edit', [Seccion9kController::class, 'editactividad'])->name('seccion9k-editactividad');
+Route::patch('/seccion9kactividad/{seccion9k}', [Seccion9kController::class, 'updateactividad'])->name('seccion9k-updateactividad');
+// Fin codigo seccion 9k
+
+
+
 
 
 //Pagos cliente
@@ -350,12 +363,7 @@ Route::post('/pago/store', [PagosController::class, 'store'])->name('pago-store'
 // Fin Pagos cliente
 
 
-Route::get('/seccion4', [App\Http\Controllers\Seccion4Controller::class, 'index'])->name('seccion4');
-Route::get('/seccion5', [App\Http\Controllers\Seccion5Controller::class, 'index'])->name('seccion5');
-Route::get('/seccion6', [App\Http\Controllers\Seccion6Controller::class, 'index'])->name('seccion6');
-Route::get('/seccion7', [App\Http\Controllers\Seccion7Controller::class, 'index'])->name('seccion7');
-Route::get('/seccion8', [App\Http\Controllers\Seccion8Controller::class, 'index'])->name('seccion8');
-Route::get('/seccion9', [App\Http\Controllers\Seccion9Controller::class, 'index'])->name('seccion9');
+
 Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Controller::class, 'plantilla_cliente'])->name('seccion9');
 
 //Seguimiento de actividades para clientes
