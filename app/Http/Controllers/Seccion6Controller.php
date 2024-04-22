@@ -53,6 +53,7 @@ class Seccion6Controller extends Controller
         previo_inicio::insert($guardarEtapaPrevio);
         $Curso_Id = $request->only(['cursos_id']);
         $Previo_Id = DB::table('previo_inicios')
+        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
         ->where('cursos_id', $Curso_Id)
         ->select('previo_inicios.id')
         ->first();

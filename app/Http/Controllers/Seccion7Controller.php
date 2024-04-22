@@ -54,6 +54,7 @@ class Seccion7Controller extends Controller
         inicio_curso::insert($guardarEtapaInicio);
         $Curso_Id = $request->only(['cursos_id']);
         $Inicio_Id = DB::table('inicio_cursos')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
         ->where('cursos_id', $Curso_Id)
         ->where('seccion_encuadre', 1)
         ->select('inicio_cursos.id')

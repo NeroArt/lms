@@ -48,12 +48,7 @@ class Seccion3Controller extends Controller
         return view('cliente.seccion3.createseccion3');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $data = json_decode($request->getContent(), true);
@@ -74,9 +69,6 @@ class Seccion3Controller extends Controller
             objetivo::insert($datosObjetivo);
             
         }
-
-
-
 
         $idCurso=$data['cursos_id'];
         $datosObjetivos = DB::table('cursos')

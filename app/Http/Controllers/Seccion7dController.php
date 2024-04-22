@@ -56,6 +56,7 @@ class Seccion7dController extends Controller
         // Guardar en la tabla inicio_cursos
         inicio_curso::insert($guardarEtapaInicio);
         $Inicio_Id = DB::table('inicio_cursos')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
             ->where('cursos_id', $Curso_Id['cursos_id'])
             ->where('seccion_encuadre', 4)
             ->select('inicio_cursos.id')

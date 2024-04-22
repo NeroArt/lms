@@ -48,22 +48,14 @@ class Seccion2Controller extends Controller
         return view('cliente.seccion2.createseccion2');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
 
         //Datos que se guardan en Curso
         $datosObjetivo=request()->except(['_token','_method']);
         objetivo::insert($datosObjetivo);
-        // Obtenemos el id del curso, y lo enviamos al siguiente create
         $idCurso=$request->cursos_id;
-        //var_dump($datosObjetivo);
-        //var_dump($idCurso);
         return redirect('seccion3/create')->with('idCurso',$idCurso); 
 
     }

@@ -38,9 +38,6 @@ class Seccion5Controller extends Controller
     {
         $data = json_decode($request->getContent(), true);
         // Acceder al array de guests
-
-
-
                 evaluacione::insert($data); 
 
                 return response()->json([
