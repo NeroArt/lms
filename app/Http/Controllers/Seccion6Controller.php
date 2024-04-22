@@ -29,6 +29,9 @@ class Seccion6Controller extends Controller
         ->simplePaginate(30);
 
         $previo_inicios_actividades=DB::table('previo_inicios_actividades')
+        ->join('previo_inicios','previo_inicios.id', '=','previo_inicios_actividades.previo_inicios_id')
+        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('previo_inicios_actividades.*')
         ->simplePaginate(30);
 

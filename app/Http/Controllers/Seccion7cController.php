@@ -31,6 +31,9 @@ class Seccion7cController extends Controller
         ->simplePaginate(30);
         
         $inicio_actividades=DB::table('inicio_actividades')
+        ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('inicio_actividades.*')
         ->simplePaginate(30);
 

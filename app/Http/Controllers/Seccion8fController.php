@@ -30,6 +30,9 @@ class Seccion8fController extends Controller
         ->simplePaginate(30);
         
         $desarrollo_actividades=DB::table('desarrollo_cursos_actividades')
+        ->join('desarrollo_cursos','desarrollo_cursos.id', '=','desarrollo_cursos_actividades.desarrollo_cursos_id')
+        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('desarrollo_cursos_actividades.*')
         ->simplePaginate(30);
 

@@ -30,6 +30,9 @@ class Seccion9iController extends Controller
         ->simplePaginate(30);
         
         $cierre_actividades=DB::table('cierre_cursos_actividades')
+        ->join('cierre_cursos','cierre_cursos.id', '=','cierre_cursos_actividades.cierre_cursos_id')
+        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
         ->select('cierre_cursos_actividades.*')
         ->simplePaginate(30);
 
