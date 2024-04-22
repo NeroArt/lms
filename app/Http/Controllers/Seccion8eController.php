@@ -131,9 +131,9 @@ class Seccion8eController extends Controller
         // Obtenemos el JSON y lo asignamos a la variable $datos 
         $CursoId = intval($CursoId);
 
-        $Temas = DB::table('cursos')
-        ->join('objetivos','objetivos.cursos_id', '=','cursos.id')
-        ->join('temarios','temarios.objetivos_id', '=','objetivos.id')
+        $Temas = DB::table('temarios')
+        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
         ->where('cursos.id', '=', $CursoId)
         ->select('temarios.*')
         ->orderBy('id', 'asc')
@@ -142,6 +142,7 @@ class Seccion8eController extends Controller
         $Subtemas = DB::table('subtemas')
         ->where('subtemas.temarios_id', '=', $Temas->id)
         ->select('subtemas.*')
+        ->orderBy('id', 'desc')
         ->get();
         foreach ($Subtemas as $subtema) {
             array_push($arrayTemario, $subtema->subtema);
