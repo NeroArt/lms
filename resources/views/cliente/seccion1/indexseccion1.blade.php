@@ -9,7 +9,7 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Cursos</div>
+                <div class="card-header">Gestión de Sección 1</div> 
                 <div class="card-body">
                     <div>
                         <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
@@ -35,10 +35,6 @@
                                         <a class="btn btn-warning" href="{{url('/seccion1/'.$curso->id.'/edit')}}">Editar
                                         </a> 
                                         <br>
-                                    </div>
-                                    <div class="row">
-                                        <a class="btn btn-primary" href="{{url('/plantilla_cliente/'.$curso->id)}}">Descargar Plantilla
-                                        </a> 
                                     </div>
 
                                 </td>
