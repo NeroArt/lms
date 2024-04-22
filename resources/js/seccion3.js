@@ -1,65 +1,17 @@
 let id_curso = localStorage.getItem('curso_id');
-let maxCantidad = document.getElementById('quantity');
-
-
-maxCantidad.addEventListener('input', function () {
-    if (this.value < 1) {
-        this.value = 1;
-    }
-    if (this.value > 3) {
-        this.value = 3;
-    }
-});
-
-
-document.getElementById("quantity").addEventListener("input", () => {
-    let quantity = event.target.value;
-    
-
-    let contentGuests = '';
-    let contentObjetivos = '';
-
-    for (let i = 0; i < quantity; i++) {
-        // Divs e inputs para los guests
-        contentGuests += `<div>
-            <label>Descripción de Objetivo ${i+1}</label>
-            <input type="text" id="descripcion[${i}]" required>
-        </div>`;
-
-        // Divs e inputs para los objetivos
-        contentObjetivos += `
-        <tr>
-            <td>
-                <input type="text" id="sujeto[${i}]" readonly value="El Participante" required>
-            </td>
-            <td>
-                <input type="text" id="accion[${i}]" required>
-            </td>
-            <td>
-                <input type="text" id="condicion[${i}]" required>
-            </td>
-            <input type="text" id="tipo_objetivo[${i}]" value="particular" hidden required>
-        </tr>`;
-    }
-
-    // Asignar contenido a los elementos div respectivos
-    document.getElementById("divGuests").innerHTML = contentGuests;
-    document.getElementById("divObjetivos").innerHTML = contentObjetivos;
-});
-
 
 document.getElementById("myForm").addEventListener("submit",(event)=>{
     event.preventDefault();
 
     const url = route('seccion3-store');
     
-    const quantity=document.getElementById("quantity").value;
+  
     
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     
     data.guests= [];
-    for (let i = 0; i < quantity; i++) {
+    for (let i = 0; i < 3; i++) {
         const guest= {};
         guest.tipo_objetivo=document.getElementById(`tipo_objetivo[${i}]`).value;
         guest.descripcion=document.getElementById(`descripcion[${i}]`).value;
