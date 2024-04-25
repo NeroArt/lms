@@ -2,13 +2,22 @@ const getDataObjetivos = localStorage.getItem("dataObjetivos");
 const arrayDataObjetivos = JSON.parse(getDataObjetivos);
 const selectObjetivo3c = document.getElementById("selectObjetivoParticular3c");
 const selectTemas = document.getElementById("selectTemas");
+const cantidadSubtemas = document.getElementById("cantidadSubtemas")
 const SubtemarioHabilitado = document.getElementById("FormSubtemas");
+const curso_id = document.getElementById("curso_id");
 SubtemarioHabilitado.style.display = "none";
 let arrayTemas;
 let idTema = 0;
-let indice = 0;
-let indicesAEliminar = [];
 let CursoId = 0;
+
+cantidadSubtemas.addEventListener('input', function () {
+    if (this.value < 1) {
+        this.value = 1;
+    }
+    if (this.value > 15) {
+        this.value = 15;
+    }
+});
 
 const createOption = (text, value) => {
     let option = document.createElement("option");
@@ -31,8 +40,13 @@ selectObjetivo3c.onchange = function () {
             console.log(data);
             arrayTemas = data.data;
             cleanFormSubtemas();
-            selectTemas.add(createOption("Escoja un Tema", 0));
-            data.data.map(tema => selectTemas.add(createOption(tema.tema, tema.id)));
+
+            if (arrayTemas.length === 0) {
+                selectTemas.add(createOption("No hay temas, si no encuentra mas temas al escoger objetivos, pase a la siguiente sección", 0));    
+            }else{
+                selectTemas.add(createOption("Escoja un Tema", 0));
+                arrayTemas.map(tema => selectTemas.add(createOption(tema.tema, tema.id)));
+            }
         });
 };
 
@@ -40,14 +54,13 @@ selectTemas.onchange = function () {
     let valorSeleccionado = Number(this.value);
     SubtemarioHabilitado.style.display = valorSeleccionado !== 0 ? "block" : "none";
     idTema = valorSeleccionado;
-    indice = arrayTemas.findIndex(tema => tema.id === idTema);
 };
 
 document.getElementById("cantidadSubtemas").addEventListener("input", () => {
     let content = "";
     const cantidadTemas = event.target.value;
     for (let i = 0; i < cantidadTemas; i++) {
-        content += `<div class="mb-3"><div class="name ">Subtema </div><div class="input-group wrap-input100 validate-input" ><input id="subtema[${i}]" class="form-control" type="text" name="subtema[${i}]" autocomplete="Subtema" required><span class="focus-input100 "></span><span class="symbol-input100"><i class="fa fa-envelope"></i></span></div></div>`;
+        content += `<div class="mb-3"><div class="name ">Subtema ${i+1}</div><div class="input-group wrap-input100 validate-input" ><input id="subtema[${i}]" class="form-control" type="text" name="subtema[${i}]" autocomplete="Subtema" required><span class="focus-input100 "></span><span class="symbol-input100"><i class="fa fa-envelope"></i></span></div></div>`;
     }
     document.getElementById("divSubtemas").innerHTML = content;
 });
@@ -75,7 +88,7 @@ document.getElementById("FormSubtemas").addEventListener("submit", (event) => {
         .then(data => {
             console.log(data);
             cleanFormSubtemas();
-            destroyTemas();
+            selectTemas.add(createOption("Escoja un objetivo", 0));
         });
 });
 
@@ -86,15 +99,3 @@ const cleanFormSubtemas = () => {
     selectTemas.innerHTML = "";
 }
 
-const destroyTemas = () => {
-    indicesAEliminar.push(indice);
-    indicesAEliminar.sort((a, b) => b - a);
-    indicesAEliminar.forEach(indice => arrayTemas.splice(indice, 1));
-    selectTemas.innerHTML = "";
-    selectTemas.add(createOption("Escoja un tema", 0));
-    if (arrayTemas.length > 0) {
-        arrayTemas.map(tema => selectTemas.add(createOption(tema.tema, tema.id)));
-    } else {
-        indicesAEliminar = [];
-    }
-}

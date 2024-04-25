@@ -45,7 +45,7 @@
                                             class="form-control"
                                              required>
                                         </div>
-                                        <div id="divTemas">
+                                        <div id="divTemas" class="divTemas3b">
                                         
                                         </div>
                                         <button class="btn btn-success" type="submit">Guardar</button>
