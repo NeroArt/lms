@@ -12,7 +12,7 @@
                 <div class="card-header">Gestión de Apertura o Encuadre de Curso - Sección 7A</div>
                 <div class="card-body">
                     <div>
-                        <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
+                        <a href="{{url('/gestionsecciones/'. $cursoId)}}" class="btn btn-danger">Regresar</a>
                     </div>
                     <br>
 

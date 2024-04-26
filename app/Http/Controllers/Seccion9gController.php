@@ -40,7 +40,7 @@ class Seccion9gController extends Controller
         ->simplePaginate(30);
 
 
-        return view('cliente.seccion9g.showseccion9g')->with('cierre_actividades',$cierre_actividades)
+        return view('cliente.seccion9g.showseccion9g',['cursoId' => $cursoId])->with('cierre_actividades',$cierre_actividades)
         ->with('cierre_cursos',$cierre_cursos);
     }
     

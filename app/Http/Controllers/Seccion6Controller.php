@@ -38,7 +38,7 @@ class Seccion6Controller extends Controller
         ->simplePaginate(30);
 
 
-        return view('cliente.seccion6.showseccion6')->with('previo_inicios_actividades',$previo_inicios_actividades)
+        return view('cliente.seccion6.showseccion6',['cursoId' => $cursoId])->with('previo_inicios_actividades',$previo_inicios_actividades)
         ->with('previo_inicios',$previo_inicios);
     }
 

@@ -29,7 +29,7 @@ class Seccion3cController extends Controller
         ->where('cursos.id', '=', $cursoId)
         ->select('subtemas.*')
         ->simplePaginate(30);
-        return view('cliente.seccion3c.showseccion3c')->with('subtemas',$subtemas);
+        return view('cliente.seccion3c.showseccion3c',['cursoId' => $cursoId])->with('subtemas',$subtemas);
     }
 
     public function index()

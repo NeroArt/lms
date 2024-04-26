@@ -40,7 +40,8 @@ class Seccion8eController extends Controller
         ->simplePaginate(30);
 
 
-        return view('cliente.seccion8e.showseccion8e')->with('desarrollo_actividades',$desarrollo_actividades)
+        return view('cliente.seccion8e.showseccion8e',['cursoId' => $cursoId]
+        )->with('desarrollo_actividades',$desarrollo_actividades)
         ->with('desarrollo_cursos',$desarrollo_cursos);
     }
 

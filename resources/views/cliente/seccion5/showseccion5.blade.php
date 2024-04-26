@@ -12,7 +12,7 @@
                 <div class="card-header">Gestión de Evaluaciones</div>
                 <div class="card-body">
                     <div>
-                        <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
+                        <a href="{{url('/gestionsecciones/'. $cursoId)}}" class="btn btn-danger">Regresar</a>
                     </div>
                     <br>
 

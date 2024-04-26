@@ -43,7 +43,7 @@ class Seccion7bController extends Controller
         ->simplePaginate(30);
 
 
-        return view('cliente.seccion7b.showseccion7b')->with('inicio_actividades',$inicio_actividades)
+        return view('cliente.seccion7b.showseccion7b',['cursoId' => $cursoId])->with('inicio_actividades',$inicio_actividades)
         ->with('inicio_cursos',$inicio_cursos);
     }
     

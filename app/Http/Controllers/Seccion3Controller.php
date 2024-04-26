@@ -28,7 +28,7 @@ class Seccion3Controller extends Controller
         ->where('objetivos.tipo_objetivo', '=', "particular")
         ->select('objetivos.*')
         ->simplePaginate(30);
-        return view('cliente.seccion3.showseccion3')->with('objetivos',$objetivos);
+        return view('cliente.seccion3.showseccion3',['cursoId' => $cursoId])->with('objetivos',$objetivos);
     }
 
     public function index()

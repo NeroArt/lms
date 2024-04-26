@@ -27,7 +27,7 @@ class Seccion5Controller extends Controller
         ->where('cursos.id', '=', $cursoId)
         ->select('evaluaciones.*')
         ->simplePaginate(30);
-        return view('cliente.seccion5.showseccion5')->with('evaluaciones',$evaluaciones);
+        return view('cliente.seccion5.showseccion5',['cursoId' => $cursoId])->with('evaluaciones',$evaluaciones);
     }
     
     public function index()

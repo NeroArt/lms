@@ -28,7 +28,7 @@ class Seccion3dController extends Controller
         ->where('cursos.id', '=', $cursoId)
         ->select('beneficios.*')
         ->simplePaginate(30);
-        return view('cliente.seccion3d.showseccion3d')->with('beneficios',$beneficios);
+        return view('cliente.seccion3d.showseccion3d',['cursoId' => $cursoId])->with('beneficios',$beneficios);
     }
 
     public function index()
