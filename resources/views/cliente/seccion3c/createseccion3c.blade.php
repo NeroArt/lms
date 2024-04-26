@@ -27,29 +27,26 @@
                                     
                                     <label for="temas_id3c">Temas:</label>
                                     <select name="selectTemas" id="selectTemas" class="form-control" >
-                                        
+                                        <option value="0">Escoja un Objetivo</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
-                                <form action="" id="FormSubtemas">
-
-                                    <div>
-                                        <label for="cantidadSubtemas2">Cantidad de Subtemas</label>
-                                        <input type="number" name="cantidadSubtemas" id="cantidadSubtemas" required>
-                                    </div>
-                                    <div id="divSubtemas">
-                                    
-                                    </div>
-                                    <input type="submit" class="btn btn-success" value="Crear">
-                                </form>
-                                
+                                <div class="col-md-4">
+                                    <form action="" id="FormSubtemas" class="espacio-superior">
+                                        <div>
+                                            <label for="cantidadSubtemas2">Cantidad de Subtemas</label>
+                                            <input type="number" name="cantidadSubtemas" id="cantidadSubtemas" class="form-control" required>
+                                        </div>
+                                        <div id="divSubtemas">
+                                        </div>
+                                        <input type="submit" class="btn btn-success espacio-superior" value="Crear">
+                                    </form>
+                                </div>
                             </div>
-                            <a href="{{url('/seccion3d/create')}}" class="btn btn-success">Siguiente</a>
-            
+                            <a href="{{url('/seccion3d/create')}}" class="btn btn-primary espacio-superior">Siguiente</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

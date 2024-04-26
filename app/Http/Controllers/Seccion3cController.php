@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\subtema;
+use App\Models\temario;
 use Illuminate\Support\Facades\DB;
 
 class Seccion3cController extends Controller
@@ -33,14 +34,14 @@ class Seccion3cController extends Controller
 
     public function index()
     {
-        $subtemas=DB::table('subtemas')
-        ->join('temarios','temarios.id', '=','subtemas.temarios_id')
-        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->select('subtemas.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion3c.indexseccion3c')->with('subtemas',$subtemas);
+        $subtemas = DB::table('subtemas')
+            ->join('temarios', 'temarios.id', '=', 'subtemas.temarios_id')
+            ->join('objetivos', 'objetivos.id', '=', 'temarios.objetivos_id')
+            ->join('cursos', 'cursos.id', '=', 'objetivos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->select('subtemas.*')
+            ->simplePaginate(30);
+        return view('cliente.seccion3c.indexseccion3c')->with('subtemas', $subtemas);
     }
     public function create()
     {
@@ -54,15 +55,15 @@ class Seccion3cController extends Controller
         $subtemas  = $data['subtemas'];
         // Puedes iterar sobre el array de guests y acceder a cada objeto
         foreach ($subtemas  as $subtema) {
-            $guardarSubtemas=[
-                'subtema'=>$subtema['subtema'],
-                'temarios_id'=>$subtema['id']
+            $guardarSubtemas = [
+                'subtema' => $subtema['subtema'],
+                'temarios_id' => $subtema['id']
             ];
             // Insertar los datos en la tabla Objetivo
             subtema::insert($guardarSubtemas);
         }
- 
-                // Devolver una respuesta JSON
+
+        // Devolver una respuesta JSON
         return response()->json([
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
@@ -70,7 +71,6 @@ class Seccion3cController extends Controller
             'quantity' => count($subtemas),
             'data' => $subtemas
         ], 200);
-
     }
 
     public function getTemas($IdObjetivo, $CursoId)
@@ -79,34 +79,46 @@ class Seccion3cController extends Controller
         $IdObjetivo = intval($IdObjetivo);
         $CursoId = intval($CursoId);
 
-        $Temas = DB::table('cursos')
-        ->join('objetivos','objetivos.cursos_id', '=','cursos.id')
-        ->join('temarios','temarios.objetivos_id', '=','objetivos.id')
-        ->where('cursos.id', '=', $CursoId)
-        ->where('objetivos.id', '=', $IdObjetivo )
-        ->select('temarios.id','temarios.tema','temarios.objetivos_id')
-        ->get();
+        // $Temas = DB::table('cursos')
+        // ->join('objetivos','objetivos.cursos_id', '=','cursos.id')
+        // ->join('temarios','temarios.objetivos_id', '=','objetivos.id')
+        // ->where('cursos.id', '=', $CursoId)
+        // ->where('objetivos.id', '=', $IdObjetivo )
+        // ->select('temarios.id','temarios.tema','temarios.objetivos_id')
+        // ->get();
+
+        $temas = DB::select("
+        SELECT id,tema ,objetivos_id  
+        FROM lms.temarios tem
+        where tem.objetivos_id = :objetivoId
+        and not EXISTS(
+            select 1
+            from lms.subtemas sub
+            where tem.id = sub.temarios_id
+        )", [
+            'objetivoId' => $IdObjetivo
+        ]);
 
         return response()->json([
             'success' => true,
-            'message' => 'Los datos se procesaron correctamente',
-            'data' => $Temas,
+            'message' => 'Los temas se consultaron correctamente',
+            'data' => $temas,
 
         ], 200);
     }
 
     public function edit($id)
     {
-        $subtema=subtema::findOrFail($id);
-        return view('cliente.seccion3c.editseccion3c',compact('subtema'));
+        $subtema = subtema::findOrFail($id);
+        return view('cliente.seccion3c.editseccion3c', compact('subtema'));
     }
 
     public function update(Request $request, $id)
-    { 
-        $datosSubtema=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
+    {
+        $datosSubtema = request()->except(['_token', '_method']);
+        if (Auth::user()->roles_id == 2) {
             subtema::where('id', '=', $id)->update($datosSubtema);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
+            return redirect('home')->with('Mensaje', 'Actividad modificada con éxito');
         }
     }
 }

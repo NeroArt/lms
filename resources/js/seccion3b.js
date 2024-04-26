@@ -5,18 +5,34 @@ let dataCurso = localStorage.getItem("curso_id");
 let curso_id2 = JSON.parse(dataCurso);
 
 //se declaran las variables que se van a utilizar
-let TemarioHabilitado = document.getElementById("myForm");
-let selectObjetivo = document.getElementById("selectObjetivoParticular");
-let dataobjetivo = document.getElementById("dataobjetivo");
-let dataaccion = document.getElementById("dataaccion");
-let datacondicion = document.getElementById("datacondicion");
-let objetivos_id = document.getElementById("objetivos_id");
-let curso_id = document.getElementById("curso_id");
-let cantiTemas = document.getElementById("cantidadTemas");
-let divTemas = document.getElementById("divTemas");
+const TemarioHabilitado = document.getElementById("myForm");
+const selectObjetivo = document.getElementById("selectObjetivoParticular");
+const dataobjetivo = document.getElementById("dataobjetivo");
+const dataaccion = document.getElementById("dataaccion");
+const datacondicion = document.getElementById("datacondicion");
+const objetivos_id = document.getElementById("objetivos_id");
+const curso_id = document.getElementById("curso_id");
+const cantiTemas = document.getElementById("cantidadTemas");
+const divTemas = document.getElementById("divTemas");
+
+const cantidadTemas = document.getElementById('cantidadTemas');
+
+
+cantidadTemas.addEventListener('input', function () {
+    if (this.value < 1) {
+        this.value = 1;
+    }
+    if (this.value > 15) {
+        this.value = 15;
+    }
+});
+
+
+TemarioHabilitado.style.display = "none";
+
 
 //se oculta el formulario
-TemarioHabilitado.style.display = "none";
+
 
 const renderData = (idCurso) => {
     const url = route("seccion3b-getDataObj", {
@@ -33,6 +49,7 @@ const renderData = (idCurso) => {
 }
 
 renderData(parseInt(curso_id2));
+
 
 //funcion para renderizar el select de objetivos
 const renderSelect = (arrayData) => {
@@ -73,6 +90,7 @@ selectObjetivo.addEventListener("change", function () {
         datacondicion.innerText = objetoEncontrado.condicion;
         objetivos_id.value = objetoEncontrado.id;
         curso_id.value = objetoEncontrado.cursos_id;
+        cantiTemas.value = "";
     } else {
         TemarioHabilitado.style.display = "none";
         cleanForm();

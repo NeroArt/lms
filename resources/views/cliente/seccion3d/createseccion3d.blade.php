@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-body" >
                             <label for="">Objetivo Particular Id</label>
-                            <input type="text" id="objetivos_id" name="objetivos_id">
+                            <input type="hidden" id="objetivos_id" name="objetivos_id">
                             <div class="row">
                                 
                                 <div class="col-md-8">
@@ -36,19 +36,22 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <form action="" id="myForm">
-
-                                    <div>
-                                        <label for="">Cantidad de Beneficios</label>
-                                        <input type="number" name="cantidadBeneficios" id="cantidadBeneficios" required>
-                                    </div>
-                                    <div id="divBeneficios">
-                                    
-                                    </div>
-                                    <button type="submit">Guardar</button>
-                                </form>
+                                <div class="col-md-4">
+                                    <form action="" id="myForm">
+                                        <div>
+                                            <label for="">Cantidad de Beneficios</label>
+                                            <input type="number" name="cantidadBeneficios" id="cantidadBeneficios"
+                                            class="form-control" 
+                                            required>
+                                        </div>
+                                        <div id="divBeneficios">
+                                        
+                                        </div>
+                                        <button class="btn btn-success espacio-superior" type="submit">Guardar</button>
+                                    </form>
+                                </div>                                    
                             </div>
-                            <a href="{{url('/seccion4/create')}}" class="btn btn-success">Siguiente</a>
+                            <a href="{{url('/seccion4/create')}}" class="btn btn-primary">Siguiente</a>
                         </div>
                     </div>
 
