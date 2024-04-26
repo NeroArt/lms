@@ -21,6 +21,31 @@ class Seccion7bController extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
+
+    public function show($cursoId)
+    {
+        $inicio_cursos=DB::table('inicio_cursos')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->join('inicio_actividades','inicio_actividades.inicio_cursos_id', '=','inicio_cursos.id')
+        ->where('seccion_encuadre', 2)
+        ->select('inicio_cursos.*','inicio_actividades.material_equipo_apoyo as material')
+        ->simplePaginate(30);
+        
+        $inicio_actividades=DB::table('inicio_actividades')
+        ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 2)
+        ->select('inicio_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion7b.showseccion7b')->with('inicio_actividades',$inicio_actividades)
+        ->with('inicio_cursos',$inicio_cursos);
+    }
     
     public function index()
     {

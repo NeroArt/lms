@@ -19,6 +19,29 @@ class Seccion8Controller extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
+    public function show($cursoId)
+    {
+        $desarrollo_cursos=DB::table('desarrollo_cursos')
+        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 1)
+        ->select('desarrollo_cursos.*')
+        ->simplePaginate(30);
+        
+        $desarrollo_actividades=DB::table('desarrollo_cursos_actividades')
+        ->join('desarrollo_cursos','desarrollo_cursos.id', '=','desarrollo_cursos_actividades.desarrollo_cursos_id')
+        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 1)
+        ->select('desarrollo_cursos_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion8a.showseccion8a')->with('desarrollo_actividades',$desarrollo_actividades)
+        ->with('desarrollo_cursos',$desarrollo_cursos);
+    }
     
     public function index()
     {

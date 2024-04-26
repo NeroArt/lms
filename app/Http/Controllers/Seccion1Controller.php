@@ -17,6 +17,16 @@ class Seccion1Controller extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
+
+    public function show($cursoId)
+    {
+        $cursos=DB::table('cursos')
+        ->where('cursos.users_id', Auth::id())
+        ->where('cursos.id', '=', $cursoId)
+        ->select('cursos.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion1.showseccion1')->with('cursos',$cursos);
+    }
     
     public function index()
     {
@@ -26,6 +36,7 @@ class Seccion1Controller extends Controller
         ->simplePaginate(30);
         return view('cliente.seccion1.indexseccion1')->with('cursos',$cursos);
     }
+
 
 
     public function create()

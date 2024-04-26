@@ -19,7 +19,18 @@ class Seccion3Controller extends Controller
         $this->middleware('cliente');
     }
     
-    
+    public function show($cursoId)
+    {
+        $objetivos=DB::table('objetivos')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('objetivos.tipo_objetivo', '=', "particular")
+        ->select('objetivos.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3.showseccion3')->with('objetivos',$objetivos);
+    }
+
     public function index()
     {
         $objetivos=DB::table('objetivos')

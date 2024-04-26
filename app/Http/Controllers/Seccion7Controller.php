@@ -19,6 +19,30 @@ class Seccion7Controller extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
+
+    public function show($cursoId)
+    {
+        $inicio_cursos=DB::table('inicio_cursos')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 1)
+        ->select('inicio_cursos.*')
+        ->simplePaginate(30);
+
+        $inicio_actividades=DB::table('inicio_actividades')
+        ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 1)
+        ->select('inicio_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion7.showseccion7a')->with('inicio_actividades',$inicio_actividades)
+        ->with('inicio_cursos',$inicio_cursos);
+    }
     
     public function index()
     {

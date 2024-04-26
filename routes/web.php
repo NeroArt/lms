@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CursosClienteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Seccion3Controller;
@@ -60,6 +61,7 @@ Route::resource('seccion1', App\Http\Controllers\Seccion1Controller::class);
 Route::get('/seccion2', [App\Http\Controllers\Seccion2Controller::class, 'index'])->name('seccion2');
 Route::resource('seccion2', App\Http\Controllers\Seccion2Controller::class);
 //Codigo seccion 3
+Route::get('/seccion3/{seccion3}', [Seccion3Controller::class, 'show'])->name('seccion3-show');
 Route::get('/seccion3', [Seccion3Controller::class, 'index'])->name('seccion3');
 Route::post('/seccion3/store', [Seccion3Controller::class, 'store'])->name('seccion3-store');
 Route::get('/seccion3/create', [Seccion3Controller::class, 'create'])->name('seccion3-create');
@@ -68,6 +70,7 @@ Route::patch('/seccion3/{seccion3}', [Seccion3Controller::class, 'update'])->nam
 // Fin codigo seccion 3
 
 //Codigo seccion 3b
+Route::get('/seccion3b/{seccion3b}', [Seccion3bController::class, 'show'])->name('seccion3b-show');
 Route::get('/seccion3b', [Seccion3bController::class, 'index'])->name('seccion3b-index');
 Route::get('/seccion3b/create', [Seccion3bController::class, 'create'])->name('seccion3b-create');
 Route::post('/seccion3b/store', [Seccion3bController::class, 'store'])->name('seccion3b-store');
@@ -77,6 +80,7 @@ Route::get('/seccion3b-getDataObj/{idCurso}', [Seccion3bController::class, 'getD
 // Fin codigo seccion 3b
 
 //Codigo seccion 3c
+Route::get('/seccion3c/{seccion3c}', [Seccion3cController::class, 'show'])->name('seccion3c-show');
 Route::get('/seccion3c', [Seccion3cController::class, 'index'])->name('seccion3c-index');
 Route::get('/seccion3c/create', [Seccion3cController::class, 'create'])->name('seccion3c-create');
 Route::post('/seccion3c/store', [Seccion3cController::class, 'store'])->name('seccion3c-store');
@@ -86,6 +90,7 @@ Route::patch('/seccion3c/{seccion3c}', [Seccion3cController::class, 'update'])->
 // Fin codigo seccion 3c
 
 //Codigo seccion 3d
+Route::get('/seccion3d/{seccion3d}', [Seccion3dController::class, 'show'])->name('seccion3d-show');
 Route::get('/seccion3d', [Seccion3dController::class, 'index'])->name('seccion3d-index');
 Route::get('/seccion3d/create', [Seccion3dController::class, 'create'])->name('seccion3d-create');
 Route::post('/seccion3d/store', [Seccion3dController::class, 'store'])->name('seccion3d-store');
@@ -94,6 +99,7 @@ Route::patch('/seccion3d/{seccion3d}', [Seccion3dController::class, 'update'])->
 // Fin codigo seccion 3d
 
 //Codigo seccion 4
+Route::get('/seccion4/{seccion4}', [Seccion4Controller::class, 'show'])->name('seccion4-show');
 Route::get('/seccion4', [Seccion4Controller::class, 'index'])->name('seccion4-index');
 Route::get('/seccion4/create', [Seccion4Controller::class, 'create'])->name('seccion4-create');
 Route::post('/seccion4/store', [Seccion4Controller::class, 'store'])->name('seccion4-store');
@@ -102,6 +108,7 @@ Route::patch('/seccion4/{seccion4}', [Seccion4Controller::class, 'update'])->nam
 // Fin codigo seccion 4
 
 //Codigo seccion 5
+Route::get('/seccion5/{seccion5}', [Seccion5Controller::class, 'show'])->name('seccion5-show');
 Route::get('/seccion5', [Seccion5Controller::class, 'index'])->name('seccion5-index');
 Route::get('/seccion5/create', [Seccion5Controller::class, 'create'])->name('seccion5-create');
 Route::post('/seccion5/store', [Seccion5Controller::class, 'store'])->name('seccion5-store');
@@ -110,6 +117,7 @@ Route::patch('/seccion5/{seccion5}', [Seccion5Controller::class, 'update'])->nam
 // Fin codigo seccion 5
 
 //Codigo seccion 6
+Route::get('/seccion6/{seccion6}', [Seccion6Controller::class, 'show'])->name('seccion6-show');
 Route::get('/seccion6', [Seccion6Controller::class, 'index'])->name('seccion6-index');
 Route::get('/seccion6/create', [Seccion6Controller::class, 'create'])->name('seccion6-create');
 Route::post('/seccion6/store', [Seccion6Controller::class, 'store'])->name('seccion6-store');
@@ -120,6 +128,7 @@ Route::patch('/seccion6actividad/{seccion6}', [Seccion6Controller::class, 'updat
 // Fin codigo seccion 6
 
 //Codigo seccion 7a
+Route::get('/seccion7a/{seccion7a}', [Seccion7Controller::class, 'show'])->name('seccion7a-show');
 Route::get('/seccion7a', [Seccion7Controller::class, 'index'])->name('seccion7a-index');
 Route::get('/seccion7a/create', [Seccion7Controller::class, 'create'])->name('seccion7a-create');
 Route::post('/seccion7a/store', [Seccion7Controller::class, 'store'])->name('seccion7a-store');
@@ -130,6 +139,7 @@ Route::patch('/seccion7actividad/{seccion7a}', [Seccion7Controller::class, 'upda
 // Fin codigo seccion 7a
 
 //Codigo seccion 7b
+Route::get('/seccion7b/{seccion7b}', [Seccion7bController::class, 'show'])->name('seccion7b-show');
 Route::get('/seccion7b', [Seccion7bController::class, 'index'])->name('seccion7b-index');
 Route::get('/seccion7b/create', [Seccion7bController::class, 'create'])->name('seccion7b-create');
 Route::post('/seccion7b/store', [Seccion7bController::class, 'store'])->name('seccion7b-store');
@@ -146,6 +156,7 @@ Route::get('/seccion7b/getDescripcionCurso/{CursoId}', [Seccion7bController::cla
 // Fin codigo seccion 7b
 
 //Codigo seccion 7c
+Route::get('/seccion7c/{seccion7c}', [Seccion7cController::class, 'show'])->name('seccion7c-show');
 Route::get('/seccion7c', [Seccion7cController::class, 'index'])->name('seccion7c-index');
 Route::get('/seccion7c/create', [Seccion7cController::class, 'create'])->name('seccion7c-create');
 Route::post('/seccion7c/store', [Seccion7cController::class, 'store'])->name('seccion7c-store');
@@ -156,6 +167,7 @@ Route::patch('/seccion7cactividad/{seccion7c}', [Seccion7cController::class, 'up
 // Fin codigo seccion 7c
 
 //Codigo seccion 7d
+Route::get('/seccion7d/{seccion7d}', [Seccion7dController::class, 'show'])->name('seccion7d-show');
 Route::get('/seccion7d', [Seccion7dController::class, 'index'])->name('seccion7d-index');
 Route::get('/seccion7d/create', [Seccion7dController::class, 'create'])->name('seccion7d-create');
 Route::post('/seccion7d/store', [Seccion7dController::class, 'store'])->name('seccion7d-store');
@@ -166,6 +178,7 @@ Route::patch('/seccion7dactividad/{seccion7d}', [Seccion7dController::class, 'up
 // Fin codigo seccion 7d
 
 //Codigo seccion 8a
+Route::get('/seccion8a/{seccion8a}', [Seccion8Controller::class, 'show'])->name('seccion8a-show');
 Route::get('/seccion8a', [Seccion8Controller::class, 'index'])->name('seccion8a-index');
 Route::get('/seccion8a/create', [Seccion8Controller::class, 'create'])->name('seccion8a-create');
 Route::post('/seccion8a/store', [Seccion8Controller::class, 'store'])->name('seccion8a-store');
@@ -177,6 +190,7 @@ Route::get('/seccion8a/getSubtemas/{CursoId}', [Seccion8Controller::class, 'getS
 // Fin codigo seccion 8a
 
 //Codigo seccion 8b
+Route::get('/seccion8b/{seccion8b}', [Seccion8bController::class, 'show'])->name('seccion8b-show');
 Route::get('/seccion8b', [Seccion8bController::class, 'index'])->name('seccion8b-index');
 Route::get('/seccion8b/create', [Seccion8bController::class, 'create'])->name('seccion8b-create');
 Route::post('/seccion8b/store', [Seccion8bController::class, 'store'])->name('seccion8b-store');
@@ -188,6 +202,7 @@ Route::get('/seccion8b/getSubtemas/{CursoId}', [Seccion8bController::class, 'get
 // Fin codigo seccion 8b
 
 //Codigo seccion 8c
+Route::get('/seccion8c/{seccion8c}', [Seccion8cController::class, 'show'])->name('seccion8c-show');
 Route::get('/seccion8c', [Seccion8cController::class, 'index'])->name('seccion8c-index');
 Route::get('/seccion8c/create', [Seccion8cController::class, 'create'])->name('seccion8c-create');
 Route::post('/seccion8c/store', [Seccion8cController::class, 'store'])->name('seccion8c-store');
@@ -199,6 +214,7 @@ Route::get('/seccion8c/getSubtemas/{CursoId}', [Seccion8cController::class, 'get
 // Fin codigo seccion 8c
 
 //Codigo seccion 8d
+Route::get('/seccion8d/{seccion8d}', [Seccion8dController::class, 'show'])->name('seccion8d-show');
 Route::get('/seccion8d', [Seccion8dController::class, 'index'])->name('seccion8d-index');
 Route::get('/seccion8d/create', [Seccion8dController::class, 'create'])->name('seccion8d-create');
 Route::post('/seccion8d/store', [Seccion8dController::class, 'store'])->name('seccion8d-store');
@@ -209,6 +225,7 @@ Route::patch('/seccion8dactividad/{seccion8d}', [Seccion8dController::class, 'up
 // Fin codigo seccion 8d
 
 //Codigo seccion 8e
+Route::get('/seccion8e/{seccion8e}', [Seccion8eController::class, 'show'])->name('seccion8e-show');
 Route::get('/seccion8e', [Seccion8eController::class, 'index'])->name('seccion8e-index');
 Route::get('/seccion8e/create', [Seccion8eController::class, 'create'])->name('seccion8e-create');
 Route::post('/seccion8e/store', [Seccion8eController::class, 'store'])->name('seccion8e-store');
@@ -220,6 +237,7 @@ Route::get('/seccion8e/getSubtemas/{CursoId}', [Seccion8Controller::class, 'getS
 // Fin codigo seccion 8e
 
 //Codigo seccion 8f
+Route::get('/seccion8f/{seccion8f}', [Seccion8fController::class, 'show'])->name('seccion8f-show');
 Route::get('/seccion8f', [Seccion8fController::class, 'index'])->name('seccion8f-index');
 Route::get('/seccion8f/create', [Seccion8fController::class, 'create'])->name('seccion8f-create');
 Route::post('/seccion8f/store', [Seccion8fController::class, 'store'])->name('seccion8f-store');
@@ -231,6 +249,7 @@ Route::get('/seccion8f/getSubtemas/{CursoId}', [Seccion8fController::class, 'get
 // Fin codigo seccion 8f
 
 //Codigo seccion 9a
+Route::get('/seccion9a/{seccion9a}', [Seccion9Controller::class, 'show'])->name('seccion9a-show');
 Route::get('/seccion9a', [Seccion9Controller::class, 'index'])->name('seccion9a-index');
 Route::get('/seccion9a/create', [Seccion9Controller::class, 'create'])->name('seccion9a-create');
 Route::post('/seccion9a/store', [Seccion9Controller::class, 'store'])->name('seccion9a-store');
@@ -242,6 +261,7 @@ Route::get('/seccion9a/getSubtemas/{CursoId}', [Seccion9Controller::class, 'getS
 // Fin codigo seccion 9a
 
 //Codigo seccion 9b
+Route::get('/seccion9b/{seccion9b}', [Seccion9bController::class, 'show'])->name('seccion9b-show');
 Route::get('/seccion9b', [Seccion9bController::class, 'index'])->name('seccion9b-index');
 Route::get('/seccion9b/create', [Seccion9bController::class, 'create'])->name('seccion9b-create');
 Route::post('/seccion9b/store', [Seccion9bController::class, 'store'])->name('seccion9b-store');
@@ -253,6 +273,7 @@ Route::get('/seccion9b/getSubtemas/{CursoId}', [Seccion9bController::class, 'get
 // Fin codigo seccion 9b
 
 //Codigo seccion 9c
+Route::get('/seccion9c/{seccion9c}', [Seccion9cController::class, 'show'])->name('seccion9c-show');
 Route::get('/seccion9c', [Seccion9cController::class, 'index'])->name('seccion9c-index');
 Route::get('/seccion9c/create', [Seccion9cController::class, 'create'])->name('seccion9c-create');
 Route::post('/seccion9c/store', [Seccion9cController::class, 'store'])->name('seccion9c-store');
@@ -263,6 +284,7 @@ Route::patch('/seccion9cactividad/{seccion9c}', [Seccion9cController::class, 'up
 // Fin codigo seccion 9c
 
 //Codigo seccion 9d
+Route::get('/seccion9d/{seccion9d}', [Seccion9dController::class, 'show'])->name('seccion9d-show');
 Route::get('/seccion9d', [Seccion9dController::class, 'index'])->name('seccion9d-index');
 Route::get('/seccion9d/create', [Seccion9dController::class, 'create'])->name('seccion9d-create');
 Route::post('/seccion9d/store', [Seccion9dController::class, 'store'])->name('seccion9d-store');
@@ -274,6 +296,7 @@ Route::get('/seccion9d/getDescripcionCurso/{CursoId}', [Seccion9dController::cla
 // Fin codigo seccion 9d
 
 //Codigo seccion 9e
+Route::get('/seccion9e/{seccion9e}', [Seccion9eController::class, 'show'])->name('seccion9e-show');
 Route::get('/seccion9e', [Seccion9eController::class, 'index'])->name('seccion9e-index');
 Route::get('/seccion9e/create', [Seccion9eController::class, 'create'])->name('seccion9e-create');
 Route::post('/seccion9e/store', [Seccion9eController::class, 'store'])->name('seccion9e-store');
@@ -285,6 +308,7 @@ Route::get('/seccion9e/getDescripcionCurso/{CursoId}', [Seccion9eController::cla
 // Fin codigo seccion 9e
 
 //Codigo seccion 9f
+Route::get('/seccion9f/{seccion9f}', [Seccion9fController::class, 'show'])->name('seccion9f-show');
 Route::get('/seccion9f', [Seccion9fController::class, 'index'])->name('seccion9f-index');
 Route::get('/seccion9f/create', [Seccion9fController::class, 'create'])->name('seccion9f-create');
 Route::post('/seccion9f/store', [Seccion9fController::class, 'store'])->name('seccion9f-store');
@@ -295,6 +319,7 @@ Route::patch('/seccion9factividad/{seccion9f}', [Seccion9fController::class, 'up
 // Fin codigo seccion 9f
 
 //Codigo seccion 9g
+Route::get('/seccion9g/{seccion9g}', [Seccion9gController::class, 'show'])->name('seccion9g-show');
 Route::get('/seccion9g', [Seccion9gController::class, 'index'])->name('seccion9g-index');
 Route::get('/seccion9g/create', [Seccion9gController::class, 'create'])->name('seccion9g-create');
 Route::post('/seccion9g/store', [Seccion9gController::class, 'store'])->name('seccion9g-store');
@@ -305,6 +330,7 @@ Route::patch('/seccion9gactividad/{seccion9g}', [Seccion9gController::class, 'up
 // Fin codigo seccion 9g
 
 //Codigo seccion 9h
+Route::get('/seccion9h/{seccion9h}', [Seccion9hController::class, 'show'])->name('seccion9h-show');
 Route::get('/seccion9h', [Seccion9hController::class, 'index'])->name('seccion9h-index');
 Route::get('/seccion9h/create', [Seccion9hController::class, 'create'])->name('seccion9h-create');
 Route::post('/seccion9h/store', [Seccion9hController::class, 'store'])->name('seccion9h-store');
@@ -315,6 +341,7 @@ Route::patch('/seccion9hactividad/{seccion9h}', [Seccion9hController::class, 'up
 // Fin codigo seccion 9h
 
 //Codigo seccion 9i
+Route::get('/seccion9i/{seccion9i}', [Seccion9iController::class, 'show'])->name('seccion9i-show');
 Route::get('/seccion9i', [Seccion9iController::class, 'index'])->name('seccion9i-index');
 Route::get('/seccion9i/create', [Seccion9iController::class, 'create'])->name('seccion9i-create');
 Route::post('/seccion9i/store', [Seccion9iController::class, 'store'])->name('seccion9i-store');
@@ -325,6 +352,7 @@ Route::patch('/seccion9iactividad/{seccion9i}', [Seccion9iController::class, 'up
 // Fin codigo seccion 9i
 
 //Codigo seccion 9j
+Route::get('/seccion9j/{seccion9j}', [Seccion9jController::class, 'show'])->name('seccion9j-show');
 Route::get('/seccion9j', [Seccion9jController::class, 'index'])->name('seccion9j-index');
 Route::get('/seccion9j/create', [Seccion9jController::class, 'create'])->name('seccion9j-create');
 Route::post('/seccion9j/store', [Seccion9jController::class, 'store'])->name('seccion9j-store');
@@ -335,6 +363,7 @@ Route::patch('/seccion9jactividad/{seccion9j}', [Seccion9jController::class, 'up
 // Fin codigo seccion 9j
 
 //Codigo seccion 9k
+Route::get('/seccion9k/{seccion9k}', [Seccion9kController::class, 'show'])->name('seccion9k-show');
 Route::get('/seccion9k', [Seccion9kController::class, 'index'])->name('seccion9k-index');
 Route::get('/seccion9k/create', [Seccion9kController::class, 'create'])->name('seccion9k-create');
 Route::post('/seccion9k/store', [Seccion9kController::class, 'store'])->name('seccion9k-store');
@@ -344,6 +373,13 @@ Route::get('/seccion9kactividad/{seccion9k}/edit', [Seccion9kController::class, 
 Route::patch('/seccion9kactividad/{seccion9k}', [Seccion9kController::class, 'updateactividad'])->name('seccion9k-updateactividad');
 // Fin codigo seccion 9k
 
+//gestioncursos
+Route::get('/gestioncursos', [CursosClienteController::class, 'index'])->name('gestioncursos-index');
+//gestioncursos
+
+//gestionsecciones
+Route::get('/gestionsecciones/{idCurso}', [CursosClienteController::class, 'indexGestionSecciones'])->name('gestionsecciones-index');
+//gestionsecciones
 
 
 

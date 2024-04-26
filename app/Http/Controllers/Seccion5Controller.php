@@ -18,6 +18,17 @@ class Seccion5Controller extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
+
+    public function show($cursoId)
+    {
+        $evaluaciones=DB::table('evaluaciones')
+        ->join('cursos','cursos.id', '=','evaluaciones.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('evaluaciones.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion5.showseccion5')->with('evaluaciones',$evaluaciones);
+    }
     
     public function index()
     {

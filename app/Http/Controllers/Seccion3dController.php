@@ -19,7 +19,18 @@ class Seccion3dController extends Controller
         $this->middleware('cliente');
     }
     
-    
+    public function show($cursoId)
+    {
+        $beneficios=DB::table('beneficios')
+        ->join('objetivos','objetivos.id', '=','beneficios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('beneficios.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3d.showseccion3d')->with('beneficios',$beneficios);
+    }
+
     public function index()
     {
         $beneficios=DB::table('beneficios')

@@ -20,6 +20,17 @@ class Seccion3bController extends Controller
         $this->middleware('cliente');
     }
     
+    public function show($cursoId)
+    {
+        $temas=DB::table('temarios')
+        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('temarios.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3b.showseccion3b')->with('temas',$temas);
+    }
     
     public function index()
     {

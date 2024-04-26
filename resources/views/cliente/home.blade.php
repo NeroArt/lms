@@ -16,7 +16,7 @@
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/seccion1') }}"><input
+                        <a href="{{ url('/gestioncursos') }}"><input
                             class="btn-primary" type="submit"
                                 value="Gestión de Cursos"></a>
                     </div>

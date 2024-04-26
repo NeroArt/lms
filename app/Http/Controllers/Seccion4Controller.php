@@ -17,6 +17,17 @@ class Seccion4Controller extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
+
+    public function show($cursoId)
+    {
+        $requerimientos=DB::table('requerimientos')
+        ->join('cursos','cursos.id', '=','requerimientos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('requerimientos.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion4.showseccion4')->with('requerimientos',$requerimientos);
+    }
     
     public function index()
     {

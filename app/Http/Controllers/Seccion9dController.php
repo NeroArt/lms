@@ -20,6 +20,29 @@ class Seccion9dController extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
+
+    public function show($cursoId)
+    {
+        $cierre_cursos=DB::table('cierre_cursos')
+        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 4)
+        ->select('cierre_cursos.*')
+        ->simplePaginate(30);
+        
+        $cierre_actividades=DB::table('cierre_cursos_actividades')
+        ->join('cierre_cursos','cierre_cursos.id', '=','cierre_cursos_actividades.cierre_cursos_id')
+        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 4)
+        ->select('cierre_cursos_actividades.*')
+        ->simplePaginate(30);
+
+        return view('cliente.seccion9d.showseccion9d')->with('cierre_actividades',$cierre_actividades)
+        ->with('cierre_cursos',$cierre_cursos);
+    }
     
     public function index()
     {

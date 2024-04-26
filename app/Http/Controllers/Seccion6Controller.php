@@ -20,6 +20,29 @@ class Seccion6Controller extends Controller
         $this->middleware('cliente');
     }
     
+    public function show($cursoId)
+    {
+        $previo_inicios=DB::table('previo_inicios')
+        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('previo_inicios.*')
+        ->simplePaginate(30);
+
+        $previo_inicios_actividades=DB::table('previo_inicios_actividades')
+        ->join('previo_inicios','previo_inicios.id', '=','previo_inicios_actividades.previo_inicios_id')
+        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('previo_inicios_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion6.showseccion6')->with('previo_inicios_actividades',$previo_inicios_actividades)
+        ->with('previo_inicios',$previo_inicios);
+    }
+
+
     public function index()
     {
         $previo_inicios=DB::table('previo_inicios')

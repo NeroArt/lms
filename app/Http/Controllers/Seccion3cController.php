@@ -18,6 +18,19 @@ class Seccion3cController extends Controller
         $this->middleware('cliente');
     }
 
+    public function show($cursoId)
+    {
+        $subtemas=DB::table('subtemas')
+        ->join('temarios','temarios.id', '=','subtemas.temarios_id')
+        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('subtemas.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3c.showseccion3c')->with('subtemas',$subtemas);
+    }
+
     public function index()
     {
         $subtemas=DB::table('subtemas')
