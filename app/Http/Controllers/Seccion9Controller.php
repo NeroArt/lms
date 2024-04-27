@@ -20,29 +20,7 @@ class Seccion9Controller extends Controller
         $this->middleware('cliente');
     }
 
-    public function show($cursoId)
-    {
-        $cierre_cursos=DB::table('cierre_cursos')
-        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 1)
-        ->select('cierre_cursos.*')
-        ->simplePaginate(30);
-        
-        $cierre_actividades=DB::table('cierre_cursos_actividades')
-        ->join('cierre_cursos','cierre_cursos.id', '=','cierre_cursos_actividades.cierre_cursos_id')
-        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 1)
-        ->select('cierre_cursos_actividades.*')
-        ->simplePaginate(30);
-
-
-        return view('cliente.seccion9a.showseccion9a',['cursoId' => $cursoId])->with('cierre_actividades',$cierre_actividades)
-        ->with('cierre_cursos',$cierre_cursos);
-    }
+   
     
     public function index()
     {
@@ -119,10 +97,35 @@ class Seccion9Controller extends Controller
         ], 200);
     }
 
+    public function show($cursoId)
+    {
+        $cierre_cursos=DB::table('cierre_cursos')
+        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 1)
+        ->select('cierre_cursos.*')
+        ->simplePaginate(30);
+        
+        $cierre_actividades=DB::table('cierre_cursos_actividades')
+        ->join('cierre_cursos','cierre_cursos.id', '=','cierre_cursos_actividades.cierre_cursos_id')
+        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 1)
+        ->select('cierre_cursos_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion9a.showseccion9a',['cursoId' => $cursoId])->with('cierre_actividades',$cierre_actividades)
+        ->with('cierre_cursos',$cierre_cursos);
+    }
+
     public function edit($id)
     {
-        $cierre_curso=cierre_curso::findOrFail($id);
-        return view('cliente.seccion9a.editseccion9a',compact('cierre_curso'));
+        $cierre_curso = cierre_curso::findOrFail($id);
+        $curso_id = $cierre_curso->cursos_id; // Accede al id del curso
+        return view('cliente.seccion9a.editseccion9a',compact('cierre_curso', 'curso_id'));
     }
 
     public function update(Request $request, $id)
@@ -154,8 +157,10 @@ class Seccion9Controller extends Controller
 
     public function editactividad($id)
     {
-        $cierre_actividad=cierre_cursos_actividade::findOrFail($id);
-        return view('cliente.seccion9a.actividad',compact('cierre_actividad'));
+        $cierre_actividad = cierre_cursos_actividade::findOrFail($id);
+        $cierre_curso = cierre_curso::findOrFail($cierre_actividad->cierre_cursos_id); // Accede al cierre_curso asociado
+        $curso_id = $cierre_curso->cursos_id; // Accede al id del curso
+        return view('cliente.seccion9a.actividad',compact('cierre_actividad', 'curso_id'));
     }
 
     public function updateactividad(Request $request, $id)

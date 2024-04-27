@@ -18,17 +18,7 @@ class Seccion4Controller extends Controller
         $this->middleware('cliente');
     }
 
-    public function show($cursoId)
-    {
-        $requerimientos=DB::table('requerimientos')
-        ->join('cursos','cursos.id', '=','requerimientos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('requerimientos.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion4.showseccion4',['cursoId' => $cursoId])->with('requerimientos',$requerimientos);
-    }
-    
+
     public function index()
     {
         $requerimientos=DB::table('requerimientos')
@@ -71,10 +61,23 @@ class Seccion4Controller extends Controller
 
     }
 
+    public function show($cursoId)
+    {
+        $requerimientos=DB::table('requerimientos')
+        ->join('cursos','cursos.id', '=','requerimientos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('requerimientos.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion4.showseccion4',['cursoId' => $cursoId])->with('requerimientos',$requerimientos);
+    }
+    
+
     public function edit($id)
     {
-        $requerimiento=requerimiento::findOrFail($id);
-        return view('cliente.seccion4.editseccion4',compact('requerimiento'));
+        $requerimiento = requerimiento::findOrFail($id);
+        $cursos_id = $requerimiento->cursos_id; // Accede al id del curso
+        return view('cliente.seccion4.editseccion4',compact('requerimiento','cursos_id'));
     }
 
     public function update(Request $request, $id)

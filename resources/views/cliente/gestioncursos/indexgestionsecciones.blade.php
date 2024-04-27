@@ -12,7 +12,7 @@
                 <div class="card-header">Gestión de Secciones de Curso</div>
                 <div class="card-body">
                     <div>
-                        <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
+                        <a href="{{url('/gestioncursos')}}" class="btn btn-danger">Regresar</a>
                     </div>
                     <br>
 

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\subtema;
 use App\Models\temario;
+use App\Models\objetivo;
 use Illuminate\Support\Facades\DB;
 
 class Seccion3cController extends Controller
@@ -19,18 +20,7 @@ class Seccion3cController extends Controller
         $this->middleware('cliente');
     }
 
-    public function show($cursoId)
-    {
-        $subtemas=DB::table('subtemas')
-        ->join('temarios','temarios.id', '=','subtemas.temarios_id')
-        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('subtemas.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion3c.showseccion3c',['cursoId' => $cursoId])->with('subtemas',$subtemas);
-    }
+    
 
     public function index()
     {
@@ -73,6 +63,18 @@ class Seccion3cController extends Controller
         ], 200);
     }
 
+    public function show($cursoId)
+    {
+        $subtemas=DB::table('subtemas')
+        ->join('temarios','temarios.id', '=','subtemas.temarios_id')
+        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('subtemas.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3c.showseccion3c',['cursoId' => $cursoId])->with('subtemas',$subtemas);
+    }
     public function getTemas($IdObjetivo, $CursoId)
     {
         // Obtenemos el JSON y lo asignamos a la variable $datos
@@ -110,7 +112,11 @@ class Seccion3cController extends Controller
     public function edit($id)
     {
         $subtema = subtema::findOrFail($id);
-        return view('cliente.seccion3c.editseccion3c', compact('subtema'));
+        $temario = temario::findOrFail($subtema->temarios_id); // Accede al temario asociado
+        $objetivo = objetivo::findOrFail($temario->objetivos_id); // Accede al objetivo asociado
+        $curso_id = $objetivo->cursos_id; // Accede al id del curso
+        
+        return view('cliente.seccion3c.editseccion3c', compact('subtema', 'curso_id'));
     }
 
     public function update(Request $request, $id)

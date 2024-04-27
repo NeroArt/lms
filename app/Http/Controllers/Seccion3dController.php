@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\beneficio;
+use App\Models\objetivo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -19,17 +20,7 @@ class Seccion3dController extends Controller
         $this->middleware('cliente');
     }
     
-    public function show($cursoId)
-    {
-        $beneficios=DB::table('beneficios')
-        ->join('objetivos','objetivos.id', '=','beneficios.objetivos_id')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('beneficios.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion3d.showseccion3d',['cursoId' => $cursoId])->with('beneficios',$beneficios);
-    }
+ 
 
     public function index()
     {
@@ -73,10 +64,24 @@ class Seccion3dController extends Controller
 
     }
 
+    public function show($cursoId)
+    {
+        $beneficios=DB::table('beneficios')
+        ->join('objetivos','objetivos.id', '=','beneficios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('beneficios.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3d.showseccion3d',['cursoId' => $cursoId])->with('beneficios',$beneficios);
+    }
+
     public function edit($id)
     {
-        $beneficio=beneficio::findOrFail($id);
-        return view('cliente.seccion3d.editseccion3d',compact('beneficio'));
+        $beneficio = beneficio::findOrFail($id);
+        $objetivo = objetivo::findOrFail($beneficio->objetivos_id); // Accede al objetivo asociado
+        $curso_id = $objetivo->cursos_id; // Accede al id del curso
+        return view('cliente.seccion3d.editseccion3d',compact('beneficio', 'curso_id'));
     }
 
     public function update(Request $request, $id)

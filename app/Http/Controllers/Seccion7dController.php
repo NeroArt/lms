@@ -21,29 +21,7 @@ class Seccion7dController extends Controller
         $this->middleware('cliente');
     }
 
-    public function show($cursoId)
-    {
-        $inicio_cursos=DB::table('inicio_cursos')
-        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 4)
-        ->select('inicio_cursos.*')
-        ->simplePaginate(30);
-        
-        $inicio_actividades=DB::table('inicio_actividades')
-        ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
-        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 4)
-        ->select('inicio_actividades.*')
-        ->simplePaginate(30);
-
-
-        return view('cliente.seccion7d.showseccion7d',['cursoId' => $cursoId])->with('inicio_actividades',$inicio_actividades)
-        ->with('inicio_cursos',$inicio_cursos);
-    }
+    
     
     public function index()
     {
@@ -122,10 +100,35 @@ class Seccion7dController extends Controller
 
     }
 
+    public function show($cursoId)
+    {
+        $inicio_cursos=DB::table('inicio_cursos')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 4)
+        ->select('inicio_cursos.*')
+        ->simplePaginate(30);
+        
+        $inicio_actividades=DB::table('inicio_actividades')
+        ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 4)
+        ->select('inicio_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion7d.showseccion7d',['cursoId' => $cursoId])->with('inicio_actividades',$inicio_actividades)
+        ->with('inicio_cursos',$inicio_cursos);
+    }
+
     public function edit($id)
     {
         $inicio_curso=inicio_curso::findOrFail($id);
-        return view('cliente.seccion7d.editseccion7d',compact('inicio_curso'));
+        $curso_id = $inicio_curso->cursos_id; 
+        return view('cliente.seccion7d.editseccion7d',compact('inicio_curso', 'curso_id'));
     }
 
     public function update(Request $request, $id)
@@ -154,8 +157,10 @@ class Seccion7dController extends Controller
 
     public function editactividad($id)
     {
-        $inicio_actividade=inicio_actividade::findOrFail($id);
-        return view('cliente.seccion7d.actividad',compact('inicio_actividade'));
+        $inicio_actividade = inicio_actividade::findOrFail($id);
+        $inicio_curso = inicio_curso::findOrFail($inicio_actividade->inicio_cursos_id); // Accede al previo_inicio asociado
+        $curso_id = $inicio_curso->cursos_id; // Accede al id del curso
+        return view('cliente.seccion7d.actividad',compact('inicio_actividade', 'curso_id'));
     }
 
     public function updateactividad(Request $request, $id)

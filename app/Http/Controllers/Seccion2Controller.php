@@ -19,17 +19,6 @@ class Seccion2Controller extends Controller
         $this->middleware('cliente');
     }
     
-    public function show($cursoId)
-    {
-        $objetivos=DB::table('objetivos')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('objetivos.tipo_objetivo', '=', "general")
-        ->select('objetivos.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion2.showseccion2',['cursoId' => $cursoId])->with('objetivos',$objetivos);
-    }
 
     
     public function index()
@@ -72,11 +61,24 @@ class Seccion2Controller extends Controller
 
     }
 
+    public function show($cursoId)
+    {
+        $objetivos=DB::table('objetivos')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('objetivos.tipo_objetivo', '=', "general")
+        ->select('objetivos.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion2.showseccion2',['cursoId' => $cursoId])->with('objetivos',$objetivos);
+    }
+
 
     public function edit($id)
     {
         $objetivo=objetivo::findOrFail($id);
-        return view('cliente.seccion2.editseccion2',compact('objetivo'));
+        $curso_id = $objetivo->cursos_id;
+        return view('cliente.seccion2.editseccion2',compact('objetivo', 'curso_id'));
     }
 
 

@@ -19,16 +19,7 @@ class Seccion5Controller extends Controller
         $this->middleware('cliente');
     }
 
-    public function show($cursoId)
-    {
-        $evaluaciones=DB::table('evaluaciones')
-        ->join('cursos','cursos.id', '=','evaluaciones.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('evaluaciones.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion5.showseccion5',['cursoId' => $cursoId])->with('evaluaciones',$evaluaciones);
-    }
+   
     
     public function index()
     {
@@ -60,10 +51,22 @@ class Seccion5Controller extends Controller
                 ], 200);
     }
 
+    public function show($cursoId)
+    {
+        $evaluaciones=DB::table('evaluaciones')
+        ->join('cursos','cursos.id', '=','evaluaciones.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('evaluaciones.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion5.showseccion5',['cursoId' => $cursoId])->with('evaluaciones',$evaluaciones);
+    }
+
     public function edit($id)
     {
         $evaluacione=evaluacione::findOrFail($id);
-        return view('cliente.seccion5.editseccion5',compact('evaluacione'));
+        $curso_id = $evaluacione->cursos_id; // Accede al id del curso
+        return view('cliente.seccion5.editseccion5',compact('evaluacione', 'curso_id'));
     }
 
     public function update(Request $request, $id)

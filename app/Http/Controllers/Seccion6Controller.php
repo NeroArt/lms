@@ -20,27 +20,7 @@ class Seccion6Controller extends Controller
         $this->middleware('cliente');
     }
     
-    public function show($cursoId)
-    {
-        $previo_inicios=DB::table('previo_inicios')
-        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('previo_inicios.*')
-        ->simplePaginate(30);
 
-        $previo_inicios_actividades=DB::table('previo_inicios_actividades')
-        ->join('previo_inicios','previo_inicios.id', '=','previo_inicios_actividades.previo_inicios_id')
-        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('previo_inicios_actividades.*')
-        ->simplePaginate(30);
-
-
-        return view('cliente.seccion6.showseccion6',['cursoId' => $cursoId])->with('previo_inicios_actividades',$previo_inicios_actividades)
-        ->with('previo_inicios',$previo_inicios);
-    }
 
 
     public function index()
@@ -103,10 +83,33 @@ class Seccion6Controller extends Controller
 
     }
 
+    public function show($cursoId)
+    {
+        $previo_inicios=DB::table('previo_inicios')
+        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('previo_inicios.*')
+        ->simplePaginate(30);
+
+        $previo_inicios_actividades=DB::table('previo_inicios_actividades')
+        ->join('previo_inicios','previo_inicios.id', '=','previo_inicios_actividades.previo_inicios_id')
+        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('previo_inicios_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion6.showseccion6',['cursoId' => $cursoId])->with('previo_inicios_actividades',$previo_inicios_actividades)
+        ->with('previo_inicios',$previo_inicios);
+    }
+
     public function edit($id)
     {
         $previo_inicio=previo_inicio::findOrFail($id);
-        return view('cliente.seccion6.editseccion6',compact('previo_inicio'));
+        $curso_id = $previo_inicio->cursos_id;
+        return view('cliente.seccion6.editseccion6',compact('previo_inicio', 'curso_id'));
     }
 
     public function update(Request $request, $id)
@@ -120,8 +123,12 @@ class Seccion6Controller extends Controller
 
     public function editactividad($id)
     {
-        $previo_actividad=previo_inicios_actividade::findOrFail($id);
-        return view('cliente.seccion6.actividad',compact('previo_actividad'));
+
+        $previo_actividad = previo_inicios_actividade::findOrFail($id);
+        $previo_inicio = previo_inicio::findOrFail($previo_actividad->previo_inicios_id); // Accede al previo_inicio asociado
+        $curso_id = $previo_inicio->cursos_id; // Accede al id del curso
+
+        return view('cliente.seccion6.actividad',compact('previo_actividad', 'curso_id'));
     }
 
     public function updateactividad(Request $request, $id)

@@ -21,29 +21,7 @@ class Seccion8dController extends Controller
         $this->middleware('cliente');
     }
 
-    public function show($cursoId)
-    {
-        $desarrollo_cursos=DB::table('desarrollo_cursos')
-        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 4)
-        ->select('desarrollo_cursos.*')
-        ->simplePaginate(30);
-        
-        $desarrollo_actividades=DB::table('desarrollo_cursos_actividades')
-        ->join('desarrollo_cursos','desarrollo_cursos.id', '=','desarrollo_cursos_actividades.desarrollo_cursos_id')
-        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 4)
-        ->select('desarrollo_cursos_actividades.*')
-        ->simplePaginate(30);
-
-
-        return view('cliente.seccion8d.showseccion8d',['cursoId' => $cursoId])->with('desarrollo_actividades',$desarrollo_actividades)
-        ->with('desarrollo_cursos',$desarrollo_cursos);
-    }
+    
     
     public function index()
     {
@@ -149,10 +127,35 @@ class Seccion8dController extends Controller
         ], 200);
     }
 
+    public function show($cursoId)
+    {
+        $desarrollo_cursos=DB::table('desarrollo_cursos')
+        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 4)
+        ->select('desarrollo_cursos.*')
+        ->simplePaginate(30);
+        
+        $desarrollo_actividades=DB::table('desarrollo_cursos_actividades')
+        ->join('desarrollo_cursos','desarrollo_cursos.id', '=','desarrollo_cursos_actividades.desarrollo_cursos_id')
+        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->where('seccion_encuadre', 4)
+        ->select('desarrollo_cursos_actividades.*')
+        ->simplePaginate(30);
+
+
+        return view('cliente.seccion8d.showseccion8d',['cursoId' => $cursoId])->with('desarrollo_actividades',$desarrollo_actividades)
+        ->with('desarrollo_cursos',$desarrollo_cursos);
+    }
+
     public function edit($id)
     {
-        $desarrollo_curso=desarrollo_curso::findOrFail($id);
-        return view('cliente.seccion8d.editseccion8d',compact('desarrollo_curso'));
+        $desarrollo_curso = desarrollo_curso::findOrFail($id);
+        $curso_id = $desarrollo_curso->cursos_id; // Accede al id del curso
+        return view('cliente.seccion8d.editseccion8d',compact('desarrollo_curso', 'curso_id'));
     }
 
     public function update(Request $request, $id)
@@ -184,8 +187,10 @@ class Seccion8dController extends Controller
 
     public function editactividad($id)
     {
-        $desarrollo_actividad=desarrollo_cursos_actividade::findOrFail($id);
-        return view('cliente.seccion8d.actividad',compact('desarrollo_actividad'));
+        $desarrollo_actividad = desarrollo_cursos_actividade::findOrFail($id);
+        $desarrollo_curso = desarrollo_curso::findOrFail($desarrollo_actividad->desarrollo_cursos_id); // Accede al desarrollo_curso asociado
+        $curso_id = $desarrollo_curso->cursos_id; // Accede al id del curso
+        return view('cliente.seccion8d.actividad',compact('desarrollo_actividad', 'curso_id'));
     }
 
     public function updateactividad(Request $request, $id)

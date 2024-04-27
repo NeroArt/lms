@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Illuminate\Support\Facades\DB;
 use App\Models\temario;
+use App\Models\objetivo;
 
 
 class Seccion3bController extends Controller
@@ -20,17 +21,7 @@ class Seccion3bController extends Controller
         $this->middleware('cliente');
     }
     
-    public function show($cursoId)
-    {
-        $temas=DB::table('temarios')
-        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('temarios.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion3b.showseccion3b',['cursoId' => $cursoId])->with('temas',$temas);
-    }
+
     
     public function index()
     {
@@ -90,6 +81,18 @@ class Seccion3bController extends Controller
             'data' => 1
         ], 200);
     }
+
+    public function show($cursoId)
+    {
+        $temas=DB::table('temarios')
+        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+        ->where('cursos.users_id', '=', Auth::user()->id)
+        ->where('cursos.id', '=', $cursoId)
+        ->select('temarios.*')
+        ->simplePaginate(30);
+        return view('cliente.seccion3b.showseccion3b',['cursoId' => $cursoId])->with('temas',$temas);
+    }
     public function getDataObj($idCurso)
     {
         $tipoObjetivo = 'particular';
@@ -129,8 +132,10 @@ class Seccion3bController extends Controller
 
     public function edit($id)
     {
-        $temario=temario::findOrFail($id);
-        return view('cliente.seccion3b.editseccion3b',compact('temario'));
+        $temario = temario::findOrFail($id);
+        $objetivo = objetivo::findOrFail($temario->objetivos_id); // Accede al objetivo asociado
+        $curso_id = $objetivo->cursos_id; // Accede al id del curso
+        return view('cliente.seccion3b.editseccion3b',compact('temario', 'curso_id'));
     }
 
 
