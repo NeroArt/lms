@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+@vite(['resources/js/seccion1.js'])
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     
-                    <form action="{{url('/seccion1')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('/seccion1')}}" method="POST" enctype="multipart/form-data" id="myForm">
                         {{csrf_field()}}
                         
                         <!-- Nombre del curso -->
@@ -202,7 +202,7 @@
                                 </div>
                         </div>
 
-                        <input type="submit" class="btn btn-success" value="Crear">
+                        <input type="submit" class="btn btn-success" id="save1" value="Crear">
                     </form>
                 </div>
             </div>

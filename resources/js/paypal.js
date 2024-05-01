@@ -11,7 +11,7 @@ paypal.Buttons({
     onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
             alert('Gracias por tu compra, ' + details.payer.name.given_name);
-            //window.location.href = route("home"); // Redirige a otra página
+            window.location.href = route("home"); // Redirige a otra página
             console.log(details);
             const url = route("pago-store");
             let data = {};
