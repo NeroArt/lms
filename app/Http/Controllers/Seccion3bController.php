@@ -78,7 +78,8 @@ class Seccion3bController extends Controller
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
-            'data' => 1
+            'data' => $data
+            // NO SE POR QUE ESTABA ASI 'data' => $data
         ], 200);
     }
 
