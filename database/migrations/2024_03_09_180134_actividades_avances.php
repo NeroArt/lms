@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('actividades_avances', function (Blueprint $table) {
             $table->id();
-            $table->string('actividad');
-            $table->integer('porcentaje_actividad');
+            $table->string('seccion');
+            $table->integer('porcentaje_seccion');
             $table->boolean('status')->default(false);
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
             $table->timestamps();
