@@ -93,9 +93,9 @@
                             </span>
                                 </div>
                         </div>
-                        @if(session('idCurso'))
-                            <input name="cursos_id" type="number" class="form-control" id="cursos_id" value={{ session('idCurso') }} >
-                        @endif
+                        
+                            <input name="cursos_id" type="number" class="form-control" id="cursos_id" value={{ session('idCurso') }} readonly>
+                    
 
                         
                         <input type="submit" class="btn btn-success" value="Crear">

@@ -1,4 +1,7 @@
 let vista_indice =parseInt(localStorage.getItem('vista_indice'));
+if(localStorage.getItem('curso_id')){
+    document.getElementById("cursos_id").value = parseInt(localStorage.getItem('curso_id'));
+}
 if (localStorage.getItem('indicesViews')) {
     let views = localStorage.getItem("indicesViews");
     let view = JSON.parse(views);
