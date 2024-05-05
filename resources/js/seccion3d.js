@@ -33,109 +33,152 @@ function redireccionSeccion (variable_ruta) {
     window.location.href = route(variable_ruta); // Redirige a otra página
 }
 
-// Obtén la cadena JSON del Local Storage y conviértela en un array de objetos JavaScript
-const arrayDataObjetivos = JSON.parse(localStorage.getItem("dataObjetivos"));
-let copiaGetDataObjetivos = [...arrayDataObjetivos];
+let getDataObjetivos = localStorage.getItem("dataObjetivos");
 
-const selectObjetivo = document.getElementById("selectObjetivoParticular");
-const dataobjetivo = document.getElementById("dataobjetivo");
-const dataaccion = document.getElementById("dataaccion");
-const datacondicion = document.getElementById("datacondicion");
-const objetivos_id = document.getElementById("objetivos_id");
+// Conviértela en un array de objetos JavaScript
+let arrayDataObjetivos = JSON.parse(getDataObjetivos);
+let copiaGetDataObjetivos3d;
+
+if(localStorage.getItem("copiaGetDataObjetivos3d"))
+{
+    copiaGetDataObjetivos3d = JSON.parse(localStorage.getItem("copiaGetDataObjetivos3d"));
+}else{
+    copiaGetDataObjetivos3d = [...arrayDataObjetivos];
+    localStorage.setItem("copiaGetDataObjetivos3d", JSON.stringify(copiaGetDataObjetivos3d));
+}
+
+let selectRequerimiento = document.getElementById("selectObjetivoParticular");
 let indice = 0;
-let indicesAEliminar = [];
+let requerimientos_id = document.getElementById("objetivos_id");
+let cantidad;
+
 
 // Ve si esta habilitado el beneficiario
-const BeneficiarioHabilitado = document.getElementById("myForm");
+let BeneficiarioHabilitado = document.getElementById("myForm");
 BeneficiarioHabilitado.style.display = "none";
 
-// Ahora puedes acceder y manipular los datos
-arrayDataObjetivos.forEach((objetivo) => {
-    const opcion = document.createElement("option");
-    opcion.text = objetivo.descripcion;
-    opcion.value = objetivo.id;
-    selectObjetivo.add(opcion);
+//Navegamos en el array y mostramos los options en el select
+copiaGetDataObjetivos3d.map((requerimiento) => {
+    let opcion = document.createElement("option");
+    opcion.text = requerimiento.descripcion;
+    opcion.value = requerimiento.id;
+    selectRequerimiento.add(opcion);
 });
 
-selectObjetivo.onchange = function () {
-    const valorSeleccionado = Number(this.value);
-    BeneficiarioHabilitado.style.display = valorSeleccionado !== 0 ? "block" : "none";
-
-    const objetoEncontrado = arrayDataObjetivos.find(
+selectRequerimiento.onchange = function () {
+    let valorSeleccionado = Number(this.value);
+    
+    if (valorSeleccionado !== 0) {
+        BeneficiarioHabilitado.style.display = "block";
+    } else {
+        BeneficiarioHabilitado.style.display = "none";
+    }
+    indice = copiaGetDataObjetivos3d.find(
         (objeto) => objeto.id === valorSeleccionado
     );
+    let content = "";
+    content += `
+    <label for="">Cantidad de Beneficios</label>
+    <input type="number" name="cantidadPreguntas" name="cantidadPreguntas" id="cantidadPreguntas" required>
+    <br>
+    <label for="exampleInputName" class="form-label">Preguntas:</label>
+    <div id="divPreguntas">
+    </div>
+    `;
 
-    dataobjetivo.innerText = objetoEncontrado.sujeto;
-    dataaccion.innerText = objetoEncontrado.accion;
-    datacondicion.innerText = objetoEncontrado.condicion;
-    objetivos_id.value = objetoEncontrado.id;
-
-    indice = arrayDataObjetivos.findIndex(
-        (objetivo) => objetivo.id === objetoEncontrado.id
-    );
+    document.getElementById("divBeneficios").innerHTML = content;
+    habilitarPreguntas();
+    requerimientos_id.value = indice.id;
+    let selectedOption = this.options[this.selectedIndex];
+    requerimientos_id.text = selectedOption.text;
+    console.log("El objeto seleccionado es: ", indice);
 };
 
-document.getElementById("cantidadBeneficios").addEventListener("input", () => {
-    const cantidadBeneficios = event.target.value;
-    document.getElementById("divBeneficios").innerHTML = Array(cantidadBeneficios).fill().map((_, i) => `
-        <div class="mb-3">
-            <div class="name">Beneficio </div>
-            <div class="input-group wrap-input100 validate-input" >
-                <input id="beneficio[${i}]" class="form-control" type="text" name="beneficio[${i}]" autocomplete="Beneficio" required>
-                <span class="focus-input100 "></span>
-                <span class="symbol-input100">
-                    <i class="fa fa-envelope"></i>
-                </span>
-            </div>
-        </div>
-    `).join('');
-});
 
-document.getElementById("myForm").addEventListener("submit", async (event) => {
+document.getElementById("myForm").addEventListener("submit", (event) => {
     event.preventDefault();
     const url = route("seccion3d-store");
-    const cantidadBeneficios = document.getElementById("cantidadBeneficios").value;
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
-
-    data.beneficios = Array(cantidadBeneficios).fill().map((_, i) => ({
-        beneficio: document.getElementById(`beneficio[${i}]`).value,
-        objetivos_id: objetivos_id.value
-    }));
-
+  
+    data.indice=indice.id;
+    if(document.getElementById("cantidadPreguntas")){
+        cantidad = document.getElementById("cantidadPreguntas").value;
+    }
+    data.beneficios = [];
+    for (let i = 0; i < cantidad; i++) {
+        const constanterequerimiento = {};
+        constanterequerimiento.beneficio = document.getElementById(`actividad[${i}]`).value;
+        data.beneficios.push(constanterequerimiento);
+    }
+    
+    console.log(data);
+   
     const requestOptions = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+            "X-CSRF-TOKEN": document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
         },
         body: JSON.stringify(data),
     };
 
-    const response = await fetch(url, requestOptions);
-    const responseData = await response.json();
+    fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            BeneficiarioHabilitado.style.display = "none";
+            document.getElementById(`divBeneficios`).innerHTML = "";
+            console.log("indice para eliminar " + indice);
+            
+            // Eliminamos los elementos
+            copiaGetDataObjetivos3d = copiaGetDataObjetivos3d.filter(obj => obj.id != indice.id);
+            localStorage.setItem('copiaGetDataObjetivos3d', JSON.stringify(copiaGetDataObjetivos3d));
+            //location.reload();
+         
+            
+            console.log('Despues de el for each',copiaGetDataObjetivos3d); // Imprime el array después de eliminar los elementos
+            selectRequerimiento.innerHTML = "";
 
-    BeneficiarioHabilitado.style.display = "none";
-    document.getElementById(`divBeneficios`).innerHTML = "";
+            let opcionDefecto = document.createElement("option");
+            opcionDefecto.text = "Escoja una opción";
+            opcionDefecto.value = 0;
+            selectRequerimiento.add(opcionDefecto);
 
-    indicesAEliminar.push(indice);
-    indicesAEliminar.sort((a, b) => b - a);
-    indicesAEliminar.forEach((indice) => copiaGetDataObjetivos.splice(indice, 1));
+            copiaGetDataObjetivos3d.map((requerimiento) => {
+                let opcion = document.createElement("option");
+                opcion.text = requerimiento.descripcion;
+                opcion.value = requerimiento.id;
+                selectRequerimiento.add(opcion);
+            });
 
-    selectObjetivo.innerHTML = "";
-    const opcionDefecto = document.createElement("option");
-    opcionDefecto.text = "Escoja un Objetivo";
-    opcionDefecto.value = 0;
-    selectObjetivo.add(opcionDefecto);
-
-    if (copiaGetDataObjetivos.length > 0) {
-        copiaGetDataObjetivos.forEach((objetivo) => {
-            const opcion = document.createElement("option");
-            opcion.text = objetivo.descripcion;
-            opcion.value = objetivo.id;
-            selectObjetivo.add(opcion);
-        });                
-    } else {
-        indicesAEliminar = [];
-    }
+        });
+    
 });
+
+
+const habilitarPreguntas = () => {
+    document.getElementById("cantidadPreguntas").addEventListener("input", () => {
+    let content = "";
+    const cantidadPreguntas = event.target.value;
+    for (let i = 0; i < cantidadPreguntas; i++) {
+        content += `
+        <div class="mb-3">
+        <div class="name">Pregunta </div>
+            <div class="input-group wrap-input100 validate-input" >
+                <input id="actividad[${i}]" class="form-control" type="text" name="actividad[${i}]" autocomplete="actividad" required>
+                <span class="focus-input100 "></span>
+        <span class="symbol-input100">
+            <i class="fa fa-envelope"></i>
+        </span>
+            </div>
+        </div>
+        `;
+    }
+    document.getElementById("divPreguntas").innerHTML = content;
+});
+
+}
+

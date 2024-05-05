@@ -41,22 +41,29 @@ class Seccion3dController extends Controller
     public function store(Request $request)
     {
         $data = json_decode($request->getContent(), true);
+        $objetivo_id = intval($data['indice']);
         // Acceder al array de guests
         $beneficios  = $data['beneficios'];
+      
+        $arrayVacio = [];
         // Puedes iterar sobre el array de guests y acceder a cada objeto
         foreach ($beneficios  as $beneficio) {
-            $guardarBeneficios=[
-                'beneficio'=>$beneficio['beneficio'],
-                'objetivos_id'=>$beneficio['objetivos_id']
+            $nuevoElemento = [
+                'beneficio' => $beneficio['beneficio'],
+                // Añade aquí los datos adicionales que quieras
+                'objetivos_id' => $objetivo_id
             ];
-            // Insertar los datos en la tabla Objetivo
-            beneficio::insert($guardarBeneficios);
+            $arrayVacio[] = $nuevoElemento; 
+        }  
+        // Insertar los datos en la tabla
+        foreach ($arrayVacio as $elemento) {
+            beneficio::insert($elemento);
         }
- 
-                // Devolver una respuesta JSON
+
+        // Devolver una respuesta JSON
         return response()->json([
             'success' => true,
-            'message' => 'Los datos se procesaron correctamente',
+            'message' => 'Los datos se procesaron correctamente',   
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
             'quantity' => count($beneficios),
             'data' => $beneficios
