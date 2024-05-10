@@ -19,6 +19,156 @@
     "src": "resources/js/scripts.js",
     "isEntry": true
   },
+  "resources/js/seccion1.js": {
+    "file": "assets/seccion1-0DwOI_oJ.js",
+    "src": "resources/js/seccion1.js",
+    "isEntry": true
+  },
+  "resources/js/seccion2.js": {
+    "file": "assets/seccion2-xPmjQkk_.js",
+    "src": "resources/js/seccion2.js",
+    "isEntry": true
+  },
+  "resources/js/seccion3.js": {
+    "file": "assets/seccion3-C_9YMpKi.js",
+    "src": "resources/js/seccion3.js",
+    "isEntry": true
+  },
+  "resources/js/seccion3b.js": {
+    "file": "assets/seccion3b-DAqpxa_r.js",
+    "src": "resources/js/seccion3b.js",
+    "isEntry": true
+  },
+  "resources/js/seccion3c.js": {
+    "file": "assets/seccion3c-7KUO_pdB.js",
+    "src": "resources/js/seccion3c.js",
+    "isEntry": true
+  },
+  "resources/js/seccion3d.js": {
+    "file": "assets/seccion3d-DMgMQhIR.js",
+    "src": "resources/js/seccion3d.js",
+    "isEntry": true
+  },
+  "resources/js/seccion4.js": {
+    "file": "assets/seccion4-CFYgVarf.js",
+    "src": "resources/js/seccion4.js",
+    "isEntry": true
+  },
+  "resources/js/seccion5.js": {
+    "file": "assets/seccion5-6i0pWIoW.js",
+    "src": "resources/js/seccion5.js",
+    "isEntry": true
+  },
+  "resources/js/seccion6.js": {
+    "file": "assets/seccion6-9n-6ZA_W.js",
+    "src": "resources/js/seccion6.js",
+    "isEntry": true
+  },
+  "resources/js/seccion7a.js": {
+    "file": "assets/seccion7a-DtY-3Pn8.js",
+    "src": "resources/js/seccion7a.js",
+    "isEntry": true
+  },
+  "resources/js/seccion7b.js": {
+    "file": "assets/seccion7b-91MrAvsa.js",
+    "src": "resources/js/seccion7b.js",
+    "isEntry": true
+  },
+  "resources/js/seccion7c.js": {
+    "file": "assets/seccion7c-BeOufPHr.js",
+    "src": "resources/js/seccion7c.js",
+    "isEntry": true
+  },
+  "resources/js/seccion7d.js": {
+    "file": "assets/seccion7d-DSo9QXUr.js",
+    "src": "resources/js/seccion7d.js",
+    "isEntry": true
+  },
+  "resources/js/seccion8a.js": {
+    "file": "assets/seccion8a-C1uyYkjB.js",
+    "src": "resources/js/seccion8a.js",
+    "isEntry": true
+  },
+  "resources/js/seccion8b.js": {
+    "file": "assets/seccion8b-DzPypSEJ.js",
+    "src": "resources/js/seccion8b.js",
+    "isEntry": true
+  },
+  "resources/js/seccion8c.js": {
+    "file": "assets/seccion8c-Dlq_nYD1.js",
+    "src": "resources/js/seccion8c.js",
+    "isEntry": true
+  },
+  "resources/js/seccion8d.js": {
+    "file": "assets/seccion8d-BNjuSkxx.js",
+    "src": "resources/js/seccion8d.js",
+    "isEntry": true
+  },
+  "resources/js/seccion8e.js": {
+    "file": "assets/seccion8e-D6C83M9k.js",
+    "src": "resources/js/seccion8e.js",
+    "isEntry": true
+  },
+  "resources/js/seccion8f.js": {
+    "file": "assets/seccion8f-Cu22Gq_4.js",
+    "src": "resources/js/seccion8f.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9a.js": {
+    "file": "assets/seccion9a-DM4GftDD.js",
+    "src": "resources/js/seccion9a.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9b.js": {
+    "file": "assets/seccion9b-8t1JlFFP.js",
+    "src": "resources/js/seccion9b.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9c.js": {
+    "file": "assets/seccion9c-Cf4Nn3ir.js",
+    "src": "resources/js/seccion9c.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9d.js": {
+    "file": "assets/seccion9d-DqroRYAG.js",
+    "src": "resources/js/seccion9d.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9e.js": {
+    "file": "assets/seccion9e-B6V5HYMk.js",
+    "src": "resources/js/seccion9e.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9f.js": {
+    "file": "assets/seccion9f-DHHpJq3I.js",
+    "src": "resources/js/seccion9f.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9g.js": {
+    "file": "assets/seccion9g-BM1rlKSM.js",
+    "src": "resources/js/seccion9g.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9h.js": {
+    "file": "assets/seccion9h-CakmcVm_.js",
+    "src": "resources/js/seccion9h.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9i.js": {
+    "file": "assets/seccion9i-XJBip2G8.js",
+    "src": "resources/js/seccion9i.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9j.js": {
+    "file": "assets/seccion9j-BA6pr0kD.js",
+    "src": "resources/js/seccion9j.js",
+    "isEntry": true
+  },
+  "resources/js/seccion9k.js": {
+    "file": "assets/seccion9k-B-rp3x0W.js",
+    "src": "resources/js/seccion9k.js",
+    "isEntry": true
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-D-sv12UV.css",
     "src": "resources/sass/app.scss",
