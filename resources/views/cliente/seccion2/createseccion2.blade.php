@@ -105,5 +105,5 @@
         </div>
     </div>
 </div>
-@vite(['resources/js/menulateral.js'])
+
 @endsection

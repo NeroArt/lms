@@ -39,7 +39,8 @@ export default defineConfig({
                 'resources/js/seccion9h.js',
                 'resources/js/seccion9i.js',
                 'resources/js/seccion9j.js',
-                'resources/js/seccion9k.js'
+                'resources/js/seccion9k.js',
+                
             ],
             refresh: true,
         }),
