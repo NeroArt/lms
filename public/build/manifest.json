@@ -9,6 +9,11 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
+  "resources/js/scripts.js": {
+    "file": "assets/scripts-DMlU6Kfa.js",
+    "src": "resources/js/scripts.js",
+    "isEntry": true
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-D-sv12UV.css",
     "src": "resources/sass/app.scss",
