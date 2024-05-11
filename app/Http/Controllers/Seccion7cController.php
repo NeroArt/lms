@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\curso;
 use App\Models\inicio_curso;
 use App\Models\inicio_actividade;
+use App\Models\actividades_avance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -256,8 +257,34 @@ class Seccion7cController extends Controller
             inicio_actividade::where('id', '=', $id)->update($datosActividad);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
         }
+    }
 
-        
+    public function seguimiento7c($nombreVista, $CursoId)
+    {
+    // Obtenemos el JSON y lo asignamos a la variable $datos
+    $nombreVista = strval($nombreVista);
+    $CursoId = intval($CursoId);
+
+    // Realiza la consulta a la tabla actividades_avances
+    $actividad = actividades_avance::where('actividades_avances.cursos_id', '=', $CursoId)
+        ->where('actividades_avances.seccion', '=', $nombreVista)
+        ->first();
+
+    // Inicializa la variable alcanzado en false
+    $alcanzado = false;
+
+    // Si la actividad existe y su porcentaje_seccion es 100, entonces alcanzado es true
+    if ($actividad && $actividad->porcentaje_seccion == 100) {
+        $alcanzado = true;
+    }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Los temas se consultaron correctamente',
+            'data' => $nombreVista,
+            'alcanzado' => $alcanzado,
+
+        ], 200);
     }
 
 

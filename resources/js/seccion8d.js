@@ -41,6 +41,7 @@ let arrayDataInicio8d = [
     { id: 3, descripcion: 'c)	Mencionará el tiempo para realizarla:  ' }
 ];
 
+consultarAvances();
 
 
 // Conviértela en un array de objetos JavaScript
@@ -58,6 +59,7 @@ if (localStorage.getItem('copiaGetDataInicio8d')) {
     copiaGetDataInicio8d = JSON.parse(localStorage.getItem('copiaGetDataInicio8d'));
   }else{
     copiaGetDataInicio8d = [...arrayDataInicio8d];
+    localStorage.setItem('copiaGetDataInicio8d', JSON.stringify(copiaGetDataInicio8d));
   }
 
   if (localStorage.getItem('habilitarInputs8d')) {
@@ -276,6 +278,22 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
     tecnicas8d = document.getElementById("tecnicas").value;
     localStorage.setItem('tecnicas8d', JSON.stringify(tecnicas8d));
     habilitarContenido();
+
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[16].vista_guardada = 0;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[16].nombre_vista_actual;
+    let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+    
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
     
 });
 
@@ -320,4 +338,34 @@ const habilitarPreguntas = () => {
     }
     document.getElementById("divReglas").innerHTML = content;
 });
+}
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[16].nombre_vista_actual;
+    let url = route('seguimiento8d', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[16].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataInicio8d');
+                localStorage.removeItem('valorEtapa_encuadre8d');
+                localStorage.removeItem('valorMaterial_equipo_apoyo8d');
+                localStorage.removeItem('duracion8d');
+                localStorage.removeItem('tecnicas8d');
+                localStorage.removeItem('habilitarInputs8d');
+                window.location.href = route('seccion8e-create'); // Redirige a otra página
+            }
+        });
 }

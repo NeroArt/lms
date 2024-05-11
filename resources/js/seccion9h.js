@@ -44,6 +44,8 @@ let arrayDataInicio9h = [
     { id: 3, descripcion: 'c.	Aclarará las dudas que se presenten' }
 ];
 
+consultarAvances();
+
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
 let copiaGetDataInicio9h;
@@ -59,6 +61,7 @@ if (localStorage.getItem('copiaGetDataInicio9h')) {
     copiaGetDataInicio9h = JSON.parse(localStorage.getItem('copiaGetDataInicio9h'));
   }else{
     copiaGetDataInicio9h = [...arrayDataInicio9h];
+    localStorage.setItem('copiaGetDataInicio9h', JSON.stringify(copiaGetDataInicio9h));
   }
 
   if (localStorage.getItem('habilitarInputs9h')) {
@@ -219,7 +222,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             // Eliminamos los elementos
             copiaGetDataInicio9h = copiaGetDataInicio9h.filter(obj => obj.id != indice.id);
             localStorage.setItem('copiaGetDataInicio9h', JSON.stringify(copiaGetDataInicio9h));
-            //location.reload();
+            location.reload();
          
             
             console.log('Despues de el for each',copiaGetDataInicio9h); // Imprime el array después de eliminar los elementos
@@ -250,6 +253,22 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
     tecnicas9h = document.getElementById("tecnicas").value;
     localStorage.setItem('tecnicas9h', JSON.stringify(tecnicas9h));
     habilitarContenido();
+
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[26].vista_guardada = 0;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[26].nombre_vista_actual;
+    let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+    
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
     
 });
 
@@ -271,5 +290,34 @@ const habilitarContenido = () => {
         inputDuracion.readOnly = true;
         inputTecnicas.readOnly = true;
     }
+}
 
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[26].nombre_vista_actual;
+    let url = route('seguimiento9h', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[26].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataInicio9h');
+                localStorage.removeItem('valorEtapa_encuadre9h');
+                localStorage.removeItem('valorMaterial_equipo_apoyo9h');
+                localStorage.removeItem('duracion9h');
+                localStorage.removeItem('tecnicas9h');
+                localStorage.removeItem('habilitarInputs9h');
+                window.location.href = route('seccion9i-create'); // Redirige a otra página
+            }
+        });
 }

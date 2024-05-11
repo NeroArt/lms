@@ -55,6 +55,7 @@ if (localStorage.getItem('copiaGetDataEvaluaciones')) {
     copiaGetDataEvaluaciones = JSON.parse(localStorage.getItem('copiaGetDataEvaluaciones'));
   }else{
     copiaGetDataEvaluaciones = [...arrayDataEvaluaciones];
+    localStorage.setItem('copiaGetDataEvaluaciones', JSON.stringify(copiaGetDataEvaluaciones));
   }
 
 
@@ -190,7 +191,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             // Eliminamos los elementos
             copiaGetDataEvaluaciones = copiaGetDataEvaluaciones.filter(obj => obj.id != indice.id);
             localStorage.setItem('copiaGetDataEvaluaciones', JSON.stringify(copiaGetDataEvaluaciones));
-          
+            //location.reload();
             
             
             console.log('Despues de el for each',copiaGetDataEvaluaciones); // Imprime el array después de eliminar los elementos
@@ -210,6 +211,47 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
 
         });
 
-
+        let views = localStorage.getItem("indicesViews");
+        let view = JSON.parse(views);
+        view[7].vista_guardada = 0;
+        console.log(view);
+        localStorage.setItem('indicesViews', JSON.stringify(view));
+        let CursoId = localStorage.getItem('curso_id');
+        let nombreVista = view[7].nombre_vista_actual;
+        let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+        
+        fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                
+            });
+        consultarAvances();
     
 });
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[7].nombre_vista_actual;
+    let url = route('seguimiento5', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[7].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataEvaluaciones');
+                window.location.href = route('seccion6-create'); // Redirige a otra página
+            }
+        });
+}
+

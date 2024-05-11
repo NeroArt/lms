@@ -11,7 +11,7 @@
                     <div class="row justify-content-center">
                         <div class="col">
                             <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
-                            <span id="mySIdenavIcon">&#9776; Secciones</span>
+                            
                         </div>
                     </div>
                     

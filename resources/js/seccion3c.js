@@ -77,7 +77,8 @@ selectObjetivo3c.onchange = function () {
             cleanFormSubtemas();
 
             if (arrayTemas.length === 0) {
-                selectTemas.add(createOption("No hay temas, si no encuentra mas temas al escoger objetivos, pase a la siguiente sección", 0));    
+                selectTemas.add(createOption("No hay temas, si no encuentra mas temas al escoger objetivos, pase a la siguiente sección", 0));
+              
             }else{
                 selectTemas.add(createOption("Escoja un Tema", 0));
                 arrayTemas.map(tema => selectTemas.add(createOption(tema.tema, tema.id)));
@@ -125,6 +126,23 @@ document.getElementById("FormSubtemas").addEventListener("submit", (event) => {
             cleanFormSubtemas();
             selectTemas.add(createOption("Escoja un objetivo", 0));
         });
+
+        let views = localStorage.getItem("indicesViews");
+        let view = JSON.parse(views);
+        view[4].vista_guardada = 0;
+        console.log(view);
+        localStorage.setItem('indicesViews', JSON.stringify(view));
+        let CursoId = localStorage.getItem('curso_id');
+        let nombreVista = view[4].nombre_vista_actual;
+        let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+        
+        fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                
+            });
+    consultarAvances();
 });
 
 const cleanFormSubtemas = () => {
@@ -132,5 +150,29 @@ const cleanFormSubtemas = () => {
     document.getElementById("divSubtemas").innerHTML = "";
     document.getElementById("cantidadSubtemas").value='';
     selectTemas.innerHTML = "";
+}
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[4].nombre_vista_actual;
+    let url = route('seguimiento3c', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[4].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                window.location.href = route('seccion3d-create'); // Redirige a otra página
+            }
+        });
 }
 

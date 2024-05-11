@@ -141,4 +141,24 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             console.log(data);
             document.getElementById(`divRequerimientos`).innerHTML = "";
         });
+
+        let views = localStorage.getItem("indicesViews");
+        let view = JSON.parse(views);
+        view[9].vista_guardada = 1;
+        console.log(view);
+        localStorage.setItem('indicesViews', JSON.stringify(view));
+        vista_indice++;
+        localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+    
+        let CursoId = localStorage.getItem('curso_id');
+        let nombreVista = view[9].nombre_vista_actual;
+        let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+        
+        fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                
+            });
+        window.location.href = route('seccion7b-create'); // Redirige a otra página
 });

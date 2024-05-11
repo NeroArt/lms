@@ -42,6 +42,29 @@ if (cursoElement) {
 
 console.log('curso_id', curso_id);
 
+const save2 = document.getElementById("save2");
+
+save2.addEventListener("click", (event) => {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[1].vista_guardada = 1;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    vista_indice++;
+    localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[1].nombre_vista_actual;
+    let url = route('actualizar-seguimiento', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
+});
+
 function redireccionSeccion (variable_ruta) {
     window.location.href = route(variable_ruta); // Redirige a otra página
 }

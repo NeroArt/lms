@@ -1,0 +1,12 @@
+let n=parseInt(localStorage.getItem("vista_indice"));if(localStorage.getItem("indicesViews")){let e=localStorage.getItem("indicesViews"),a=JSON.parse(e),t=a[8];console.log(t.id),console.log(t.vista_guardada);let s=a.find(d=>d.id===n),o=t.id,r=t.vista_guardada===1;o!=n&&r&&m(s.variable_ruta),o!=n&&!r&&m(s.variable_ruta)}else alert("No se ha creado ningun curso, se te redirecionara al panel de control!!"),window.location.href=route("home");function m(e){window.location.href=route(e)}let S=localStorage.getItem("dataObjetivos"),g=JSON.parse(S),l=0;console.log(l);g?g.forEach(function(e){l=e.cursos_id,console.log(l)}):console.log("El array no existe en el Local Storage");document.getElementById("cantidadRequerimientos").addEventListener("input",()=>{let e="";const a=event.target.value;for(let t=0;t<a;t++)e+=`
+        <div class="mb-3">
+        <div class="name">Actividad </div>
+            <div class="input-group wrap-input100 validate-input" >
+                <input id="actividad[${t}]" class="form-control" type="text" name="actividad[${t}]" autocomplete="actividad" required>
+                <span class="focus-input100 "></span>
+        <span class="symbol-input100">
+            <i class="fa fa-envelope"></i>
+        </span>
+            </div>
+        </div>
+        `;document.getElementById("divRequerimientos").innerHTML=e});document.getElementById("myForm").addEventListener("submit",e=>{e.preventDefault();const a=route("seccion6-store"),t=document.getElementById("cantidadRequerimientos").value,s=new FormData(e.target),o=Object.fromEntries(s.entries());o.cursos_id=l,o.requerimientos=[];for(let i=0;i<t;i++){const u={};u.requerimiento=document.getElementById(`actividad[${i}]`).value,o.requerimientos.push(u)}console.log(o);const r={method:"POST",headers:{"Content-Type":"application/json","X-CSRF-TOKEN":document.querySelector('meta[name="csrf-token"]').getAttribute("content")},body:JSON.stringify(o)};fetch(a,r).then(i=>i.json()).then(i=>{console.log(i),document.getElementById("divRequerimientos").innerHTML=""});let d=localStorage.getItem("indicesViews"),c=JSON.parse(d);c[8].vista_guardada=1,console.log(c),localStorage.setItem("indicesViews",JSON.stringify(c)),n++,localStorage.setItem("vista_indice",JSON.stringify(n));let v=localStorage.getItem("curso_id"),p=c[8].nombre_vista_actual,f=route("actualizar-seguimiento",{nombreVista:p,CursoId:v});fetch(f).then(i=>i.json()).then(i=>{console.log(i)}),window.location.href=route("seccion7a-create")});

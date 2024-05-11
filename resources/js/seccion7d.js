@@ -67,4 +67,26 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
         .then((data) => {
             console.log(data);
         });
+
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[12].vista_guardada = 1;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    vista_indice++;
+    localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[12].nombre_vista_actual;
+    let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+    
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
+    window.location.href = route('seccion8a-create'); // Redirige a otra página
 });
+
+

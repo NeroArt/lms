@@ -12,7 +12,7 @@
                     <div class="row justify-content-center">
                         <div class="col">
                             <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
-                            <span id="mySIdenavIcon">&#9776; Secciones</span>
+                         
                         </div>
                     </div>
                     
@@ -38,17 +38,7 @@
                         </div>
 
                         <!-- Sujeto  -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Sujeto:</h2>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Video de Ejemplo</h5>
-                                    <p class="card-text">Descripción del video o cualquier otra información relevante.</p>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="mb-3">
                             <div class="name ">Sujeto</div>
                                 <div class="input-group wrap-input100 validate-input" >
@@ -94,11 +84,9 @@
                                 </div>
                         </div>
                         
-                            <input name="cursos_id" type="number" class="form-control" id="cursos_id" value={{ session('idCurso') }} readonly>
+                            <input name="cursos_id" type="number" class="form-control" id="cursos_id" value={{ session('idCurso') }} readonly hidden>
                     
-
-                        
-                        <input type="submit" class="btn btn-success" value="Crear">
+                        <input type="submit" class="btn btn-success" value="Crear" id="save2">
                     </form>
                 </div>
             </div>

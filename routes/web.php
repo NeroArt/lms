@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActualizarSeguimientoController;
 use App\Http\Controllers\CursosClienteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -80,6 +81,7 @@ Route::get('/seccion3b/{seccion3b}', [Seccion3bController::class, 'show'])->name
 Route::get('/seccion3b/{seccion3b}/edit', [Seccion3bController::class, 'edit'])->name('seccion3b-edit');
 Route::patch('/seccion3b/{seccion3b}', [Seccion3bController::class, 'update'])->name('seccion3b-update');
 Route::get('/seccion3b-getDataObj/{idCurso}', [Seccion3bController::class, 'getDataObj'])->name('seccion3b-getDataObj');
+Route::get('/seccion3b/validacion/{nombreVista}/{CursoId}', [Seccion3bController::class, 'seguimiento3b'])->name('seguimiento3b');
 // Fin codigo seccion 3b
 
 //Codigo seccion 3c
@@ -90,6 +92,7 @@ Route::get('/seccion3c/{seccion3c}', [Seccion3cController::class, 'show'])->name
 Route::get('/seccion3c/getTemas/{IdObjetivo}/{CursoId}', [Seccion3cController::class, 'getTemas'])->name('seccion3c-getTemas');
 Route::get('/seccion3c/{seccion3c}/edit', [Seccion3cController::class, 'edit'])->name('seccion3c-edit');
 Route::patch('/seccion3c/{seccion3c}', [Seccion3cController::class, 'update'])->name('seccion3c-update');
+Route::get('/seccion3c/validacion/{nombreVista}/{CursoId}', [Seccion3cController::class, 'seguimiento3c'])->name('seguimiento3c');
 // Fin codigo seccion 3c
 
 //Codigo seccion 3d
@@ -99,6 +102,7 @@ Route::post('/seccion3d/store', [Seccion3dController::class, 'store'])->name('se
 Route::get('/seccion3d/{seccion3d}', [Seccion3dController::class, 'show'])->name('seccion3d-show');
 Route::get('/seccion3d/{seccion3d}/edit', [Seccion3dController::class, 'edit'])->name('seccion3d-edit');
 Route::patch('/seccion3d/{seccion3d}', [Seccion3dController::class, 'update'])->name('seccion3d-update');
+Route::get('/seccion3d/validacion/{nombreVista}/{CursoId}', [Seccion3dController::class, 'seguimiento3d'])->name('seguimiento3d');
 // Fin codigo seccion 3d
 
 //Codigo seccion 4
@@ -108,6 +112,7 @@ Route::post('/seccion4/store', [Seccion4Controller::class, 'store'])->name('secc
 Route::get('/seccion4/{seccion4}', [Seccion4Controller::class, 'show'])->name('seccion4-show');
 Route::get('/seccion4/{seccion4}/edit', [Seccion4Controller::class, 'edit'])->name('seccion4-edit');
 Route::patch('/seccion4/{seccion4}', [Seccion4Controller::class, 'update'])->name('seccion4-update');
+Route::get('/seccion4/validacion/{nombreVista}/{CursoId}', [Seccion4Controller::class, 'seguimiento4'])->name('seguimiento4');
 // Fin codigo seccion 4
 
 //Codigo seccion 5
@@ -117,6 +122,7 @@ Route::post('/seccion5/store', [Seccion5Controller::class, 'store'])->name('secc
 Route::get('/seccion5/{seccion5}', [Seccion5Controller::class, 'show'])->name('seccion5-show');
 Route::get('/seccion5/{seccion5}/edit', [Seccion5Controller::class, 'edit'])->name('seccion5-edit');
 Route::patch('/seccion5/{seccion5}', [Seccion5Controller::class, 'update'])->name('seccion5-update');
+Route::get('/seccion5/validacion/{nombreVista}/{CursoId}', [Seccion5Controller::class, 'seguimiento5'])->name('seguimiento5');
 // Fin codigo seccion 5
 
 //Codigo seccion 6
@@ -128,6 +134,7 @@ Route::get('/seccion6/{seccion6}/edit', [Seccion6Controller::class, 'edit'])->na
 Route::patch('/seccion6/{seccion6}', [Seccion6Controller::class, 'update'])->name('seccion6-update');
 Route::get('/seccion6actividad/{seccion6}/edit', [Seccion6Controller::class, 'editactividad'])->name('seccion6-editactividad');
 Route::patch('/seccion6actividad/{seccion6}', [Seccion6Controller::class, 'updateactividad'])->name('seccion6-updateactividad');
+Route::get('/seccion6/validacion/{nombreVista}/{CursoId}', [Seccion6Controller::class, 'seguimiento6'])->name('seguimiento6');
 // Fin codigo seccion 6
 
 //Codigo seccion 7a
@@ -156,6 +163,7 @@ Route::get('/seccion7b/getTemario/{CursoId}', [Seccion7bController::class, 'getT
 Route::get('/seccion7b/getBeneficios/{CursoId}', [Seccion7bController::class, 'getBeneficios'])->name('seccion7b-getBeneficios');
 Route::get('/seccion7b/getEvaluaciones/{CursoId}', [Seccion7bController::class, 'getEvaluaciones'])->name('seccion7b-getEvaluaciones');
 Route::get('/seccion7b/getDescripcionCurso/{CursoId}', [Seccion7bController::class, 'getDescripcionCurso'])->name('seccion7b-getDescripcionCurso');
+Route::get('/seccion7b/validacion/{nombreVista}/{CursoId}', [Seccion7bController::class, 'seguimiento7b'])->name('seguimiento7b');
 // Fin codigo seccion 7b
 
 //Codigo seccion 7c
@@ -167,6 +175,7 @@ Route::get('/seccion7c/{seccion7c}/edit', [Seccion7cController::class, 'edit'])-
 Route::patch('/seccion7c/{seccion7c}', [Seccion7cController::class, 'update'])->name('seccion7c-update');
 Route::get('/seccion7cactividad/{seccion7c}/edit', [Seccion7cController::class, 'editactividad'])->name('seccion7c-editactividad');
 Route::patch('/seccion7cactividad/{seccion7c}', [Seccion7cController::class, 'updateactividad'])->name('seccion7c-updateactividad');
+Route::get('/seccion7c/validacion/{nombreVista}/{CursoId}', [Seccion7cController::class, 'seguimiento7c'])->name('seguimiento7c');
 // Fin codigo seccion 7c
 
 //Codigo seccion 7d
@@ -190,6 +199,7 @@ Route::patch('/seccion8a/{seccion8a}', [Seccion8Controller::class, 'update'])->n
 Route::get('/seccion8aactividad/{seccion8a}/edit', [Seccion8Controller::class, 'editactividad'])->name('seccion8a-editactividad');
 Route::patch('/seccion8aactividad/{seccion8a}', [Seccion8Controller::class, 'updateactividad'])->name('seccion8a-updateactividad');
 Route::get('/seccion8a/getSubtemas/{CursoId}', [Seccion8Controller::class, 'getSubtemas'])->name('seccion8a-getSubtemas');
+Route::get('/seccion8a/validacion/{nombreVista}/{CursoId}', [Seccion8Controller::class, 'seguimiento8a'])->name('seguimiento8a');
 // Fin codigo seccion 8a
 
 //Codigo seccion 8b
@@ -202,6 +212,7 @@ Route::patch('/seccion8b/{seccion8b}', [Seccion8bController::class, 'update'])->
 Route::get('/seccion8bactividad/{seccion8b}/edit', [Seccion8bController::class, 'editactividad'])->name('seccion8b-editactividad');
 Route::patch('/seccion8bactividad/{seccion8b}', [Seccion8bController::class, 'updateactividad'])->name('seccion8b-updateactividad');
 Route::get('/seccion8b/getSubtemas/{CursoId}', [Seccion8bController::class, 'getSubtemas'])->name('seccion8b-getSubtemas');
+Route::get('/seccion8b/validacion/{nombreVista}/{CursoId}', [Seccion8bController::class, 'seguimiento8b'])->name('seguimiento8b');
 // Fin codigo seccion 8b
 
 //Codigo seccion 8c
@@ -214,6 +225,7 @@ Route::patch('/seccion8c/{seccion8c}', [Seccion8cController::class, 'update'])->
 Route::get('/seccion8cactividad/{seccion8c}/edit', [Seccion8cController::class, 'editactividad'])->name('seccion8c-editactividad');
 Route::patch('/seccion8cactividad/{seccion8c}', [Seccion8cController::class, 'updateactividad'])->name('seccion8c-updateactividad');
 Route::get('/seccion8c/getSubtemas/{CursoId}', [Seccion8cController::class, 'getSubtemas'])->name('seccion8c-getSubtemas');
+Route::get('/seccion8c/validacion/{nombreVista}/{CursoId}', [Seccion8cController::class, 'seguimiento8c'])->name('seguimiento8c');
 // Fin codigo seccion 8c
 
 //Codigo seccion 8d
@@ -225,6 +237,7 @@ Route::get('/seccion8d/{seccion8d}/edit', [Seccion8dController::class, 'edit'])-
 Route::patch('/seccion8d/{seccion8d}', [Seccion8dController::class, 'update'])->name('seccion8d-update');
 Route::get('/seccion8dactividad/{seccion8d}/edit', [Seccion8dController::class, 'editactividad'])->name('seccion8d-editactividad');
 Route::patch('/seccion8dactividad/{seccion8d}', [Seccion8dController::class, 'updateactividad'])->name('seccion8d-updateactividad');
+Route::get('/seccion8d/validacion/{nombreVista}/{CursoId}', [Seccion8dController::class, 'seguimiento8d'])->name('seguimiento8d');
 // Fin codigo seccion 8d
 
 //Codigo seccion 8e
@@ -236,7 +249,8 @@ Route::get('/seccion8e/{seccion8e}/edit', [Seccion8eController::class, 'edit'])-
 Route::patch('/seccion8e/{seccion8e}', [Seccion8eController::class, 'update'])->name('seccion8e-update');
 Route::get('/seccion8eactividad/{seccion8e}/edit', [Seccion8eController::class, 'editactividad'])->name('seccion8e-editactividad');
 Route::patch('/seccion8eactividad/{seccion8e}', [Seccion8eController::class, 'updateactividad'])->name('seccion8e-updateactividad');
-Route::get('/seccion8e/getSubtemas/{CursoId}', [Seccion8Controller::class, 'getSubtemas'])->name('seccion8e-getSubtemas');
+Route::get('/seccion8e/getSubtemas/{CursoId}', [Seccion8eController::class, 'getSubtemas'])->name('seccion8e-getSubtemas');
+Route::get('/seccion8e/validacion/{nombreVista}/{CursoId}', [Seccion8eController::class, 'seguimiento8e'])->name('seguimiento8e');
 // Fin codigo seccion 8e
 
 //Codigo seccion 8f
@@ -249,6 +263,7 @@ Route::patch('/seccion8f/{seccion8f}', [Seccion8fController::class, 'update'])->
 Route::get('/seccion8factividad/{seccion8f}/edit', [Seccion8fController::class, 'editactividad'])->name('seccion8f-editactividad');
 Route::patch('/seccion8factividad/{seccion8f}', [Seccion8fController::class, 'updateactividad'])->name('seccion8f-updateactividad');
 Route::get('/seccion8f/getSubtemas/{CursoId}', [Seccion8fController::class, 'getSubtemas'])->name('seccion8f-getSubtemas');
+Route::get('/seccion8f/validacion/{nombreVista}/{CursoId}', [Seccion8fController::class, 'seguimiento8f'])->name('seguimiento8f');
 // Fin codigo seccion 8f
 
 //Codigo seccion 9a
@@ -261,6 +276,7 @@ Route::patch('/seccion9a/{seccion9a}', [Seccion9Controller::class, 'update'])->n
 Route::get('/seccion9aactividad/{seccion9a}/edit', [Seccion9Controller::class, 'editactividad'])->name('seccion9a-editactividad');
 Route::patch('/seccion9aactividad/{seccion9a}', [Seccion9Controller::class, 'updateactividad'])->name('seccion9a-updateactividad');
 Route::get('/seccion9a/getSubtemas/{CursoId}', [Seccion9Controller::class, 'getSubtemas'])->name('seccion9a-getSubtemas');
+Route::get('/seccion9a/validacion/{nombreVista}/{CursoId}', [Seccion9Controller::class, 'seguimiento9a'])->name('seguimiento9a');
 // Fin codigo seccion 9a
 
 //Codigo seccion 9b
@@ -341,6 +357,7 @@ Route::get('/seccion9h/{seccion9h}/edit', [Seccion9hController::class, 'edit'])-
 Route::patch('/seccion9h/{seccion9h}', [Seccion9hController::class, 'update'])->name('seccion9h-update');
 Route::get('/seccion9hactividad/{seccion9h}/edit', [Seccion9hController::class, 'editactividad'])->name('seccion9h-editactividad');
 Route::patch('/seccion9hactividad/{seccion9h}', [Seccion9hController::class, 'updateactividad'])->name('seccion9h-updateactividad');
+Route::get('/seccion9h/validacion/{nombreVista}/{CursoId}', [Seccion9hController::class, 'seguimiento9h'])->name('seguimiento9h');
 // Fin codigo seccion 9h
 
 //Codigo seccion 9i
@@ -384,7 +401,9 @@ Route::get('/gestioncursos', [CursosClienteController::class, 'index'])->name('g
 Route::get('/gestionsecciones/{idCurso}', [CursosClienteController::class, 'indexGestionSecciones'])->name('gestionsecciones-index');
 //gestionsecciones
 
-
+//Actualizacion de seguimiento secciones
+Route::get('/seguimiento/actualizacion/{nombreVista}/{CursoId}', [ActualizarSeguimientoController::class, 'actualizarSeguimiento'])->name('actualizar-seguimiento');
+//Fin Actualizacion de seguimiento secciones
 
 
 //Pagos cliente

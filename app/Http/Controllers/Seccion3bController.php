@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Illuminate\Support\Facades\DB;
 use App\Models\temario;
+use App\Models\actividades_avance;
 use App\Models\objetivo;
 
 
@@ -78,7 +79,7 @@ class Seccion3bController extends Controller
             'success' => true,
             'message' => 'Los datos se procesaron correctamente',
             // Si quieres devolver la cantidad de guests, puedes hacerlo así
-            'data' => $data
+            'data' => 1
             // NO SE POR QUE ESTABA ASI 'data' => $data
         ], 200);
     }
@@ -147,5 +148,33 @@ class Seccion3bController extends Controller
             temario::where('id', '=', $id)->update($datosTema);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
         }
+    }
+
+    public function seguimiento3b($nombreVista, $CursoId)
+    {
+    // Obtenemos el JSON y lo asignamos a la variable $datos
+    $nombreVista = strval($nombreVista);
+    $CursoId = intval($CursoId);
+
+    // Realiza la consulta a la tabla actividades_avances
+    $actividad = actividades_avance::where('actividades_avances.cursos_id', '=', $CursoId)
+        ->where('actividades_avances.seccion', '=', $nombreVista)
+        ->first();
+
+    // Inicializa la variable alcanzado en false
+    $alcanzado = false;
+
+    // Si la actividad existe y su porcentaje_seccion es 100, entonces alcanzado es true
+    if ($actividad && $actividad->porcentaje_seccion == 100) {
+        $alcanzado = true;
+    }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Los temas se consultaron correctamente',
+            'data' => $nombreVista,
+            'alcanzado' => $alcanzado,
+
+        ], 200);
     }
 }

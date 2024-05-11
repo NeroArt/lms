@@ -58,6 +58,8 @@ if (localStorage.getItem('copiaGetDataRequerimientos')) {
     copiaGetDataRequerimientos = JSON.parse(localStorage.getItem('copiaGetDataRequerimientos'));
   }else{
     copiaGetDataRequerimientos = [...arrayDataRequerimientos];
+    localStorage.setItem('copiaGetDataRequerimientos', JSON.stringify(copiaGetDataRequerimientos));
+           
   }
 
 // Acceder a la propiedad 'cursos_id'
@@ -173,6 +175,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             // Eliminamos los elementos
             copiaGetDataRequerimientos = copiaGetDataRequerimientos.filter(obj => obj.id != indice.id);
             localStorage.setItem('copiaGetDataRequerimientos', JSON.stringify(copiaGetDataRequerimientos));
+            location.reload();
            
             
             console.log('Despues de el for each',copiaGetDataRequerimientos); // Imprime el array después de eliminar los elementos
@@ -190,7 +193,48 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
                 selectRequerimiento.add(opcion);
             });
             
-
-
         });
+
+        let views = localStorage.getItem("indicesViews");
+        let view = JSON.parse(views);
+        view[6].vista_guardada = 0;
+        console.log(view);
+        localStorage.setItem('indicesViews', JSON.stringify(view));
+        let CursoId = localStorage.getItem('curso_id');
+        let nombreVista = view[6].nombre_vista_actual;
+        let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+        
+        fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                
+            });
+        consultarAvances();
 });
+
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[6].nombre_vista_actual;
+    let url = route('seguimiento4', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[6].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataRequerimientos');
+                window.location.href = route('seccion5-create'); // Redirige a otra página
+            }
+        });
+}

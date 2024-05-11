@@ -136,7 +136,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             // Eliminamos los elementos
             copiaGetDataObjetivos3d = copiaGetDataObjetivos3d.filter(obj => obj.id != indice.id);
             localStorage.setItem('copiaGetDataObjetivos3d', JSON.stringify(copiaGetDataObjetivos3d));
-            //location.reload();
+            location.reload();
          
             
             console.log('Despues de el for each',copiaGetDataObjetivos3d); // Imprime el array después de eliminar los elementos
@@ -155,6 +155,23 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             });
 
         });
+
+        let views = localStorage.getItem("indicesViews");
+        let view = JSON.parse(views);
+        view[5].vista_guardada = 0;
+        console.log(view);
+        localStorage.setItem('indicesViews', JSON.stringify(view));
+        let CursoId = localStorage.getItem('curso_id');
+        let nombreVista = view[5].nombre_vista_actual;
+        let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+        
+        fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                
+            });
+        consultarAvances();
     
 });
 
@@ -179,6 +196,31 @@ const habilitarPreguntas = () => {
     }
     document.getElementById("divPreguntas").innerHTML = content;
 });
+}
 
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[5].nombre_vista_actual;
+    let url = route('seguimiento3d', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[5].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataObjetivos3d');
+                window.location.href = route('seccion4-create'); // Redirige a otra página
+            }
+        });
 }
 

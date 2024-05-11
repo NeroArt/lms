@@ -34,6 +34,7 @@ function redireccionSeccion (variable_ruta) {
 }
 
 
+
 // Obtén la cadena JSON del Local Storage y su conversion a su valor original
 let getDataObjetivos = localStorage.getItem("dataObjetivos");
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
@@ -97,9 +98,11 @@ const renderSelect = (arrayData) => {
             opcion.text = objetivo.descripcion;
             opcion.value = objetivo.id;
             selectObjetivo.add(opcion);
+            console.log('Este es el largo del array',arrayData.length);
         });
     }else{
         renderOptionDefault('No hay datos disponibles ve a la siguiente sección');
+        consultarAvances();
     }
 }
 
@@ -172,10 +175,30 @@ TemarioHabilitado.addEventListener("submit", (event) => {
 
     const requestOptions = obtenerRequestOptions(data);
 
+
+
     fetch(url, requestOptions)
         .then((response) => response.json())
         .then(manejarRespuesta)
         .catch((error) => console.error("Error:", error));
+
+        let views = localStorage.getItem("indicesViews");
+        let view = JSON.parse(views);
+        view[3].vista_guardada = 0;
+        console.log(view);
+        localStorage.setItem('indicesViews', JSON.stringify(view));
+        let CursoId = localStorage.getItem('curso_id');
+        let nombreVista = view[3].nombre_vista_actual;
+        let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+        
+        fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                
+            });
+
+       
 });
 
 const obtenerData = (event, cantidadTemas) => {
@@ -221,4 +244,28 @@ const cleanForm = () => {
     datacondicion.innerText = "";
 }
 
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[3].nombre_vista_actual;
+    let url = route('seguimiento3b', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[3].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                window.location.href = route('seccion3c-create'); // Redirige a otra página
+            }
+        });
+}
 

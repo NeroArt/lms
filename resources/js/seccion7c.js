@@ -43,7 +43,7 @@ let arrayDataInicio7c = [
     { id: 3, descripcion: '3.	El instructor realizará el contrato de aprendizaje de acuerdo con los objetivos' }
 ];
 
-
+consultarAvances();
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
 let copiaGetDataInicio7c;
@@ -57,6 +57,7 @@ if (localStorage.getItem('copiaGetDataInicio7c')) {
     copiaGetDataInicio7c = JSON.parse(localStorage.getItem('copiaGetDataInicio7c'));
   }else{
     copiaGetDataInicio7c = [...arrayDataInicio7c];
+    localStorage.setItem('copiaGetDataInicio7c', JSON.stringify(copiaGetDataInicio7c));
   }
 
   if (localStorage.getItem('habilitarInputs7c')) {
@@ -370,6 +371,22 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
     valorEtapa_encuadre7c = document.getElementById("etapa_encuadre").value;
     localStorage.setItem('valorEtapa_encuadre7c', JSON.stringify(valorEtapa_encuadre7c));
     habilitarContenido();
+
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[11].vista_guardada = 0;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[11].nombre_vista_actual;
+    let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+    
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
     
 });
 
@@ -406,4 +423,31 @@ const habilitarPreguntas = () => {
     document.getElementById("divReglas").innerHTML = content;
 });
 
+}
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[11].nombre_vista_actual;
+    let url = route('seguimiento7c', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[11].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataInicio7c');
+                localStorage.removeItem('valorEtapa_encuadre7c');
+                localStorage.removeItem('habilitarInputs7c');
+                window.location.href = route('seccion7d-create'); // Redirige a otra página
+            }
+        });
 }

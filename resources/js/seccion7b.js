@@ -46,7 +46,7 @@ let arrayDataInicio = [
     { id: 6, descripcion: '6.	El instructor especificará el tipo de evaluaciones a realizar, los instrumentos a utilizar, el momento de aplicarlos y los criterios a utilizar.' }
 ];
 
-
+consultarAvances();
 
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
@@ -61,6 +61,7 @@ if (localStorage.getItem('copiaGetDataInicio')) {
     copiaGetDataInicio = JSON.parse(localStorage.getItem('copiaGetDataInicio'));
   }else{
     copiaGetDataInicio = [...arrayDataInicio];
+    localStorage.setItem('copiaGetDataInicio', JSON.stringify(copiaGetDataInicio));
   }
 
   if (localStorage.getItem('habilitarInputs')) {
@@ -526,7 +527,22 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
     valorMaterial_equipo_apoyo = document.getElementById("material_equipo_apoyo").value;
     localStorage.setItem('valorMaterial_equipo_apoyo', JSON.stringify(valorMaterial_equipo_apoyo));
     habilitarContenido();
+
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[10].vista_guardada = 0;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[10].nombre_vista_actual;
+    let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
     
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
 });
 
 const consultarObjetivoGeneral = () => {
@@ -748,7 +764,36 @@ const habilitarPreguntas = () => {
     }
     document.getElementById("divPreguntas").innerHTML = content;
 });
+}
 
+
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[10].nombre_vista_actual;
+    let url = route('seguimiento7b', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[10].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataInicio');
+                localStorage.removeItem('valorEtapa_encuadre');
+                localStorage.removeItem('valorMaterial_equipo_apoyo');
+                localStorage.removeItem('habilitarInputs');
+                window.location.href = route('seccion7c-create'); // Redirige a otra página
+            }
+        });
 }
 
 

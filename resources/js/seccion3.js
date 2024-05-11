@@ -35,9 +35,6 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
     event.preventDefault();
 
     const url = route('seccion3-store');
-    
-  
-    
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     
@@ -52,11 +49,8 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
         guest.cursos_id=parseInt(id_curso);
         data.guests.push(guest);   
     }
-
     data.cursos_id=parseInt(id_curso);
     console.log(data);
-    
-
     const requestOptions={
         method: 'POST',
         headers: {
@@ -64,7 +58,6 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
         body: JSON.stringify(data) 
-        
     };
 
     fetch(url, requestOptions)
@@ -78,6 +71,25 @@ document.getElementById("myForm").addEventListener("submit",(event)=>{
         localStorage.setItem('bandera', JSON.stringify(bandera));
         window.location.href = miRuta;
     });
+
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[2].vista_guardada = 1;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    vista_indice++;
+    localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+    
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[2].nombre_vista_actual;
+    let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+    
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
     
 });
 

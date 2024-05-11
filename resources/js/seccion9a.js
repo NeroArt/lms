@@ -41,7 +41,7 @@ let arrayDataInicio9a = [
     { id: 3, descripcion: 'c.	Preguntar la opinión de los participantes sobre la aplicación de los temas tratados.' }
 ];
 
-
+consultarAvances();
 
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
@@ -58,6 +58,7 @@ if (localStorage.getItem('copiaGetDataInicio9a')) {
     copiaGetDataInicio9a = JSON.parse(localStorage.getItem('copiaGetDataInicio9a'));
   }else{
     copiaGetDataInicio9a = [...arrayDataInicio9a];
+    localStorage.setItem('copiaGetDataInicio9a', JSON.stringify(copiaGetDataInicio9a));
   }
 
   if (localStorage.getItem('habilitarInputs9a')) {
@@ -259,7 +260,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             // Eliminamos los elementos
             copiaGetDataInicio9a = copiaGetDataInicio9a.filter(obj => obj.id != indice.id);
             localStorage.setItem('copiaGetDataInicio9a', JSON.stringify(copiaGetDataInicio9a));
-            //location.reload();
+            location.reload();
       
             
             console.log('Despues de el for each',copiaGetDataInicio9a); // Imprime el array después de eliminar los elementos
@@ -294,6 +295,22 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
     tecnicas9a = document.getElementById("tecnicas").value;
     localStorage.setItem('tecnicas9a', JSON.stringify(tecnicas9a));
     habilitarContenido();
+
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+    view[19].vista_guardada = 0;
+    console.log(view);
+    localStorage.setItem('indicesViews', JSON.stringify(view));
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[19].nombre_vista_actual;
+    let url2 = route('actualizar-seguimiento', { nombreVista, CursoId });
+    
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        });
     
 });
 
@@ -338,4 +355,34 @@ const habilitarPreguntas = () => {
     }
     document.getElementById("divReglas").innerHTML = content;
 });
+}
+
+function consultarAvances() {
+    let views = localStorage.getItem("indicesViews");
+    let view = JSON.parse(views);
+
+    let CursoId = localStorage.getItem('curso_id');
+    let nombreVista = view[19].nombre_vista_actual;
+    let url = route('seguimiento9a', { nombreVista, CursoId });
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.alcanzado) {
+                // Incrementa vista_indice si alcanzado es true
+                view[19].vista_guardada = 1;
+                console.log(view);
+                localStorage.setItem('indicesViews', JSON.stringify(view));
+                vista_indice++;
+                localStorage.setItem('vista_indice', JSON.stringify(vista_indice));
+                localStorage.removeItem('copiaGetDataInicio9a');
+                localStorage.removeItem('valorEtapa_encuadre9a');
+                localStorage.removeItem('valorMaterial_equipo_apoyo9a');
+                localStorage.removeItem('duracion9a');
+                localStorage.removeItem('tecnicas9a');
+                localStorage.removeItem('habilitarInputs9a');
+                window.location.href = route('seccion9b-create'); // Redirige a otra página
+            }
+        });
 }
