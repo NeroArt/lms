@@ -24,9 +24,26 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    INCEC
-                </a>
+                <div class="row">
+                    <div class="col">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            INCEC
+                        </a>
+                    </div>
+                  
+                        @auth
+                        <div class="col">
+                            @if (!Route::is('home'))
+                                <a class="btn btn-primary" href="{{ route('home') }}">Panel de Control</a>
+                            @endif
+                        </div>
+                    @else
+                        <!-- Mostrar botones de inicio de sesión y registro -->
+                    @endauth
+      
+                </div>
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
