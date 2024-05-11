@@ -33,7 +33,8 @@ use App\Http\Controllers\Seccion9iController;
 use App\Http\Controllers\Seccion9jController;
 use App\Http\Controllers\Seccion9kController;
 use App\Http\Controllers\PagosController;
-use App\Http\Controllers\SeguimientoEtapasController;
+use App\Http\Controllers\SeguimientoClienteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -405,23 +406,19 @@ Route::get('/gestionsecciones/{idCurso}', [CursosClienteController::class, 'inde
 Route::get('/seguimiento/actualizacion/{nombreVista}/{CursoId}', [ActualizarSeguimientoController::class, 'actualizarSeguimiento'])->name('actualizar-seguimiento');
 //Fin Actualizacion de seguimiento secciones
 
+//Gestion Seguimiento
+Route::get('/seguimiento', [SeguimientoClienteController::class, 'index'])->name('seguimiento-index');
+Route::get('/seguimiento/{idCurso}', [SeguimientoClienteController::class, 'show'])->name('seguimiento-show');
+//Fin Gestion Seguimiento
 
 //Pagos cliente
 Route::post('/pago/store', [PagosController::class, 'store'])->name('pago-store');
 // Fin Pagos cliente
 
+//Plantilla cliente
+Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Controller::class, 'plantilla_cliente'])->name('plantilla-cliente');
+// Fin Plantilla cliente
 
-
-Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Controller::class, 'plantilla_cliente'])->name('seccion9');
-
-//Seguimiento de actividades para clientes
-Route::get('/actividades_cliente', [App\Http\Controllers\SeguimientoActividadesClienteController::class, 'index'])->name('seguimiento_actividades');
-Route::get('/actividades_cliente/{idCurso}', [App\Http\Controllers\SeguimientoActividadesClienteController::class, 'seguimiento_actividades'])->name('seccion9');
-//FinSeguimiento de actividades para clientes
-
-//Seguimiento de etapas para clientes
-Route::get('/etapas_cliente', [SeguimientoEtapasController::class, 'index'])->name('seccion3d-index');
-//Fin Seguimiento de etapas para clientes
 
 
 //Vista de administradores

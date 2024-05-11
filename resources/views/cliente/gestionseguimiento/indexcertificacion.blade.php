@@ -23,6 +23,8 @@
                             <th class="card-title">Acción</th>
                             <th class="card-title">Nombre de Curso</th>
                             <th class="card-title">Descripción</th>
+                            <th class="card-title">Porcentaje</th>
+                            <th class="card-title">Status</th>
                             
                         </tr>
                     </thead>
@@ -32,18 +34,25 @@
                             <tr> 
                                 <td>
                                     <div class="btn">
-                                        <a class="btn btn-warning" href="{{url('/gestionsecciones/'.$curso->id)}}">Editar
-                                        </a> 
-                                        <br>
-                                        <a class="btn btn-primary" href="{{url('/plantilla_cliente/'.$curso->id)}}">Plantilla
+                                        <a class="btn btn-warning" href="{{url('/seguimiento/'.$curso->id)}}">Consultar Avances
                                         </a>
                                     </div>
 
                                 </td>
-                                
                                 <td>{{$curso->nombre_curso}}</td>
                                 <td>{{$curso->descripcion_curso}}</td>
-                                
+                                <td>{{$curso->porcentaje_avance}}%</td>
+                                @if ($curso->porcentaje_avance >= 100)
+                                <td style="background-color: rgb(114, 224, 110);">
+                                    Completo
+                                </td>
+                                @endif
+                                @if ($curso->porcentaje_avance <= 99)
+                                <td  style="background-color: rgb(219, 97, 97);">
+                                    Incompleto
+                                </td>
+                                @endif
+
                             </tr>
                         @endforeach
                     </tbody>

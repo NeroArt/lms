@@ -12,17 +12,17 @@
                     <div>
                         <a href="{{ url('/seccion1/create') }}"><input
                                 class="btn-primary" type="submit"
-                                value="Creación de Cursos"></a>
+                                value="Certificación de Curso"></a>
                     </div>
                     <br>
                     <div>
                         <a href="{{ url('/gestioncursos') }}"><input
                             class="btn-primary" type="submit"
-                                value="Gestión de Cursos"></a>
+                                value="Gestión de Certificaciones"></a>
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/team_entrenadores') }}"><input
+                        <a href="{{ url('/seguimiento') }}"><input
                             class="btn-primary" type="submit"
                                 value="Seguimiento de Certificación"></a>
                     </div>
