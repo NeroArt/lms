@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('concepto_pago');
             $table->string('metodo_pago');
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
-            $table->string('nombre_comprador');
-            $table->string('email_comprador');
             $table->string('nombre_usuario');
             $table->string('email_usuario');
             $table->timestamps();
