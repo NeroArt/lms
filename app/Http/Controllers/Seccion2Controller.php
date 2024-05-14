@@ -18,7 +18,6 @@ class Seccion2Controller extends Controller
         $this->middleware('auth');
         $this->middleware('cliente');
     }
-    
 
     
     public function index()
