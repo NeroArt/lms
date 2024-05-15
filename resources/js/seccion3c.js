@@ -33,6 +33,8 @@ function redireccionSeccion (variable_ruta) {
     window.location.href = route(variable_ruta); // Redirige a otra página
 }
 
+consultarAvances();
+
 const getDataObjetivos = localStorage.getItem("dataObjetivos");
 const arrayDataObjetivos = JSON.parse(getDataObjetivos);
 const selectObjetivo3c = document.getElementById("selectObjetivoParticular3c");
@@ -142,7 +144,7 @@ document.getElementById("FormSubtemas").addEventListener("submit", (event) => {
                 console.log(data);
                 
             });
-    consultarAvances();
+            location.reload();
 });
 
 const cleanFormSubtemas = () => {

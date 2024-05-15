@@ -32,7 +32,7 @@ if (localStorage.getItem('indicesViews')) {
 function redireccionSeccion (variable_ruta) {
     window.location.href = route(variable_ruta); // Redirige a otra página
 }
-
+consultarAvances();
 let getDataObjetivos = localStorage.getItem("dataObjetivos");
 
 // Conviértela en un array de objetos JavaScript
@@ -171,7 +171,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
                 console.log(data);
                 
             });
-        consultarAvances();
+        
     
 });
 

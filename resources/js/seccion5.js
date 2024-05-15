@@ -43,7 +43,7 @@ let arrayDataEvaluaciones = [
     { id: 3, descripcion: 'Cierre' },
 ];
 
-
+consultarAvances();
 
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
@@ -191,7 +191,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
             // Eliminamos los elementos
             copiaGetDataEvaluaciones = copiaGetDataEvaluaciones.filter(obj => obj.id != indice.id);
             localStorage.setItem('copiaGetDataEvaluaciones', JSON.stringify(copiaGetDataEvaluaciones));
-            //location.reload();
+            location.reload();
             
             
             console.log('Despues de el for each',copiaGetDataEvaluaciones); // Imprime el array después de eliminar los elementos
@@ -226,7 +226,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
                 console.log(data);
                 
             });
-        consultarAvances();
+        
     
 });
 

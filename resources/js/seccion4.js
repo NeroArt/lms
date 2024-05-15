@@ -46,7 +46,7 @@ let arrayDataRequerimientos = [
     { id: 6, descripcion: 'Material y equipo para las medidas de: salud/seguridad/higiene/ protección civil' },
 ];
 
-
+consultarAvances();
 
 // Conviértela en un array de objetos JavaScript
 let arrayDataObjetivos = JSON.parse(getDataObjetivos);
@@ -210,7 +210,7 @@ document.getElementById("myForm").addEventListener("submit", (event) => {
                 console.log(data);
                 
             });
-        consultarAvances();
+        
 });
 
 
