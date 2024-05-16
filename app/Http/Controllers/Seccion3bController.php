@@ -19,10 +19,19 @@ class Seccion3bController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
-    
-
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }    
     
     public function index()
     {
@@ -86,14 +95,24 @@ class Seccion3bController extends Controller
 
     public function show($cursoId)
     {
-        $temas=DB::table('temarios')
-        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('temarios.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion3b.showseccion3b',['cursoId' => $cursoId])->with('temas',$temas);
+        if(Auth::user()->roles_id==2){
+            $temas=DB::table('temarios')
+            ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->select('temarios.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion3b.showseccion3b',['cursoId' => $cursoId])->with('temas',$temas);
+        }else{
+            $temas=DB::table('temarios')
+            ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('temarios.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion3b.showseccion3b',['cursoId' => $cursoId])->with('temas',$temas);
+        }
     }
     public function getDataObj($idCurso)
     {
@@ -144,10 +163,8 @@ class Seccion3bController extends Controller
     public function update(Request $request, $id)
     { 
         $datosTema=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            temario::where('id', '=', $id)->update($datosTema);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        temario::where('id', '=', $id)->update($datosTema);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function seguimiento3b($nombreVista, $CursoId)

@@ -17,8 +17,19 @@ class Seccion7Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    } 
 
     
     
@@ -89,22 +100,40 @@ class Seccion7Controller extends Controller
 
     public function show($cursoId)
     {
-        $inicio_cursos=DB::table('inicio_cursos')
-        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 1)
-        ->select('inicio_cursos.*')
-        ->simplePaginate(30);
-
-        $inicio_actividades=DB::table('inicio_actividades')
-        ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
-        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 1)
-        ->select('inicio_actividades.*')
-        ->simplePaginate(30);
+        if(Auth::user()->roles_id==2){
+            $inicio_cursos=DB::table('inicio_cursos')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('inicio_cursos.*')
+            ->simplePaginate(30);
+    
+            $inicio_actividades=DB::table('inicio_actividades')
+            ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('inicio_actividades.*')
+            ->simplePaginate(30);
+        }else{
+            $inicio_cursos=DB::table('inicio_cursos')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('inicio_cursos.*')
+            ->simplePaginate(30);
+    
+            $inicio_actividades=DB::table('inicio_actividades')
+            ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('inicio_actividades.*')
+            ->simplePaginate(30);
+        }
+        
 
 
         return view('cliente.seccion7.showseccion7a',['cursoId' => $cursoId])->with('inicio_actividades',$inicio_actividades)
@@ -122,10 +151,8 @@ class Seccion7Controller extends Controller
     public function update(Request $request, $id)
     { 
         $datosRequerimiento=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            inicio_curso::where('id', '=', $id)->update($datosRequerimiento);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        inicio_curso::where('id', '=', $id)->update($datosRequerimiento);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function editactividad($id)
@@ -140,10 +167,8 @@ class Seccion7Controller extends Controller
     public function updateactividad(Request $request, $id)
     { 
         $datosActividada=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            inicio_actividade::where('id', '=', $id)->update($datosActividada);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        inicio_actividade::where('id', '=', $id)->update($datosActividada);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
 }

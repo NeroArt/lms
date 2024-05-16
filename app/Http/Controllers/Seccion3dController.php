@@ -18,8 +18,19 @@ class Seccion3dController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }    
     
  
 
@@ -74,14 +85,25 @@ class Seccion3dController extends Controller
 
     public function show($cursoId)
     {
-        $beneficios=DB::table('beneficios')
-        ->join('objetivos','objetivos.id', '=','beneficios.objetivos_id')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('beneficios.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion3d.showseccion3d',['cursoId' => $cursoId])->with('beneficios',$beneficios);
+        if(Auth::user()->roles_id==2){
+            $beneficios=DB::table('beneficios')
+            ->join('objetivos','objetivos.id', '=','beneficios.objetivos_id')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->select('beneficios.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion3d.showseccion3d',['cursoId' => $cursoId])->with('beneficios',$beneficios);
+        }else{
+            $beneficios=DB::table('beneficios')
+            ->join('objetivos','objetivos.id', '=','beneficios.objetivos_id')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('beneficios.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion3d.showseccion3d',['cursoId' => $cursoId])->with('beneficios',$beneficios);
+        }
+
     }
 
     public function edit($id)
@@ -95,10 +117,8 @@ class Seccion3dController extends Controller
     public function update(Request $request, $id)
     { 
         $datosBeneficio=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
             beneficio::where('id', '=', $id)->update($datosBeneficio);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
     }
 
     public function seguimiento3d($nombreVista, $CursoId)

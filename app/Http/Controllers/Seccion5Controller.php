@@ -17,8 +17,19 @@ class Seccion5Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }    
 
    
     
@@ -54,13 +65,23 @@ class Seccion5Controller extends Controller
 
     public function show($cursoId)
     {
-        $evaluaciones=DB::table('evaluaciones')
-        ->join('cursos','cursos.id', '=','evaluaciones.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('evaluaciones.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion5.showseccion5',['cursoId' => $cursoId])->with('evaluaciones',$evaluaciones);
+        if(Auth::user()->roles_id==2){
+            $evaluaciones=DB::table('evaluaciones')
+            ->join('cursos','cursos.id', '=','evaluaciones.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->select('evaluaciones.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion5.showseccion5',['cursoId' => $cursoId])->with('evaluaciones',$evaluaciones);
+        }else{
+            $evaluaciones=DB::table('evaluaciones')
+            ->join('cursos','cursos.id', '=','evaluaciones.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('evaluaciones.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion5.showseccion5',['cursoId' => $cursoId])->with('evaluaciones',$evaluaciones);
+        }
+
     }
 
     public function edit($id)
@@ -73,10 +94,8 @@ class Seccion5Controller extends Controller
     public function update(Request $request, $id)
     { 
         $datosEvaluacion=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            evaluacione::where('id', '=', $id)->update($datosEvaluacion);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        evaluacione::where('id', '=', $id)->update($datosEvaluacion);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function seguimiento5($nombreVista, $CursoId)

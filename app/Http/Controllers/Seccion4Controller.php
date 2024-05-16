@@ -16,8 +16,19 @@ class Seccion4Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }       
 
 
     public function index()
@@ -64,13 +75,23 @@ class Seccion4Controller extends Controller
 
     public function show($cursoId)
     {
-        $requerimientos=DB::table('requerimientos')
-        ->join('cursos','cursos.id', '=','requerimientos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('requerimientos.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion4.showseccion4',['cursoId' => $cursoId])->with('requerimientos',$requerimientos);
+        if(Auth::user()->roles_id==2){
+            $requerimientos=DB::table('requerimientos')
+            ->join('cursos','cursos.id', '=','requerimientos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->select('requerimientos.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion4.showseccion4',['cursoId' => $cursoId])->with('requerimientos',$requerimientos);
+        }else{
+            $requerimientos=DB::table('requerimientos')
+            ->join('cursos','cursos.id', '=','requerimientos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('requerimientos.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion4.showseccion4',['cursoId' => $cursoId])->with('requerimientos',$requerimientos);
+        }
+
     }
     
 
@@ -84,10 +105,8 @@ class Seccion4Controller extends Controller
     public function update(Request $request, $id)
     { 
         $datosRequerimiento=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            requerimiento::where('id', '=', $id)->update($datosRequerimiento);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        requerimiento::where('id', '=', $id)->update($datosRequerimiento);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function seguimiento4($nombreVista, $CursoId)

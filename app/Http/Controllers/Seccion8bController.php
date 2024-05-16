@@ -18,8 +18,19 @@ class Seccion8bController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }  
 
    
     
@@ -125,22 +136,40 @@ class Seccion8bController extends Controller
 
     public function show($cursoId)
     {
-        $desarrollo_cursos=DB::table('desarrollo_cursos')
-        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 2)
-        ->select('desarrollo_cursos.*')
-        ->simplePaginate(30);
-        
-        $desarrollo_actividades=DB::table('desarrollo_cursos_actividades')
-        ->join('desarrollo_cursos','desarrollo_cursos.id', '=','desarrollo_cursos_actividades.desarrollo_cursos_id')
-        ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId) 
-        ->where('seccion_encuadre', 2)
-        ->select('desarrollo_cursos_actividades.*')
-        ->simplePaginate(30);
+        if(Auth::user()->roles_id==2){
+            $desarrollo_cursos=DB::table('desarrollo_cursos')
+            ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 2)
+            ->select('desarrollo_cursos.*')
+            ->simplePaginate(30);
+            
+            $desarrollo_actividades=DB::table('desarrollo_cursos_actividades')
+            ->join('desarrollo_cursos','desarrollo_cursos.id', '=','desarrollo_cursos_actividades.desarrollo_cursos_id')
+            ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId) 
+            ->where('seccion_encuadre', 2)
+            ->select('desarrollo_cursos_actividades.*')
+            ->simplePaginate(30);
+        }else{
+            $desarrollo_cursos=DB::table('desarrollo_cursos')
+            ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 2)
+            ->select('desarrollo_cursos.*')
+            ->simplePaginate(30);
+            
+            $desarrollo_actividades=DB::table('desarrollo_cursos_actividades')
+            ->join('desarrollo_cursos','desarrollo_cursos.id', '=','desarrollo_cursos_actividades.desarrollo_cursos_id')
+            ->join('cursos','cursos.id', '=','desarrollo_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId) 
+            ->where('seccion_encuadre', 2)
+            ->select('desarrollo_cursos_actividades.*')
+            ->simplePaginate(30);
+        }
+
 
 
         return view('cliente.seccion8b.showseccion8b',['cursoId' => $cursoId])->with('desarrollo_actividades',$desarrollo_actividades)
@@ -176,10 +205,8 @@ class Seccion8bController extends Controller
                 ->update(['etapa_encuadre' => $etapa_encuadre,'duracion' => $duracion,'tecnicas' => $tecnicas,'material_equipo_apoyo' => $material_equipo_apoyo]);
         }
 
-        if (Auth::user()->roles_id==2) {
             desarrollo_curso::where('id', '=', $id)->update($datos);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
 
     }
 
@@ -194,10 +221,8 @@ class Seccion8bController extends Controller
     public function updateactividad(Request $request, $id)
     { 
         $datosActividad=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
             desarrollo_cursos_actividade::where('id', '=', $id)->update($datosActividad);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
     }
 
     public function seguimiento8b($nombreVista, $CursoId)

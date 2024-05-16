@@ -33,9 +33,6 @@
                                 <td>
                                     <a class="btn btn-warning" href="{{url('/seccion2/'.$objetivo->id.'/edit')}}">Editar
                                     </a> 
-                                    <br>
-                                    <a class="btn btn-warning" href="{{url('/plantilla_cliente/'.$objetivo->id)}}">Plantilla
-                                    </a> 
                                 </td>
                                 
                                 <td>{{$objetivo->tipo_objetivo}}</td>

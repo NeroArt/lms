@@ -19,8 +19,19 @@ class Seccion7cController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }    
 
    
 
@@ -170,24 +181,41 @@ class Seccion7cController extends Controller
 
     public function show($cursoId)
     {
-        $inicio_cursos=DB::table('inicio_cursos')
-        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 3)
-        ->select('inicio_cursos.*')
-        ->simplePaginate(30);
-        
-        $inicio_actividades=DB::table('inicio_actividades')
-        ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
-        ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 3)
-        ->select('inicio_actividades.*')
-        ->simplePaginate(30);
-
-
+        if(Auth::user()->roles_id==2){
+            $inicio_cursos=DB::table('inicio_cursos')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 3)
+            ->select('inicio_cursos.*')
+            ->simplePaginate(30);
+            
+            $inicio_actividades=DB::table('inicio_actividades')
+            ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 3)
+            ->select('inicio_actividades.*')
+            ->simplePaginate(30);
+    
+        }else{
+            $inicio_cursos=DB::table('inicio_cursos')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 3)
+            ->select('inicio_cursos.*')
+            ->simplePaginate(30);
+            
+            $inicio_actividades=DB::table('inicio_actividades')
+            ->join('inicio_cursos','inicio_cursos.id', '=','inicio_actividades.inicio_cursos_id')
+            ->join('cursos','cursos.id', '=','inicio_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 3)
+            ->select('inicio_actividades.*')
+            ->simplePaginate(30);
+        }
+       
         return view('cliente.seccion7c.showseccion7c',['cursoId' => $cursoId])->with('inicio_actividades',$inicio_actividades)
         ->with('inicio_cursos',$inicio_cursos);
     }
@@ -217,10 +245,8 @@ class Seccion7cController extends Controller
                 ->update(['etapa_encuadre' => $etapa_encuadre]);
         }
 
-        if (Auth::user()->roles_id==2) {
-            inicio_curso::where('id', '=', $id)->update($datos);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        inicio_curso::where('id', '=', $id)->update($datos);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
 
     }
 
@@ -253,10 +279,8 @@ class Seccion7cController extends Controller
                 ->update(['duracion' => $duracion, 'tecnicas' => $tecnicas,'material_equipo_apoyo' => $material_equipo_apoyo]);
         }
 
-        if (Auth::user()->roles_id==2) {
-            inicio_actividade::where('id', '=', $id)->update($datosActividad);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        inicio_actividade::where('id', '=', $id)->update($datosActividad);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function seguimiento7c($nombreVista, $CursoId)

@@ -16,8 +16,19 @@ class Seccion2Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }  
 
     
     public function index()
@@ -62,14 +73,25 @@ class Seccion2Controller extends Controller
 
     public function show($cursoId)
     {
-        $objetivos=DB::table('objetivos')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('objetivos.tipo_objetivo', '=', "general")
-        ->select('objetivos.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion2.showseccion2',['cursoId' => $cursoId])->with('objetivos',$objetivos);
+        if(Auth::user()->roles_id==2){
+            $objetivos=DB::table('objetivos')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('objetivos.tipo_objetivo', '=', "general")
+            ->select('objetivos.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion2.showseccion2',['cursoId' => $cursoId])->with('objetivos',$objetivos);
+        }else{
+            $objetivos=DB::table('objetivos')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('objetivos.tipo_objetivo', '=', "general")
+            ->select('objetivos.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion2.showseccion2',['cursoId' => $cursoId])->with('objetivos',$objetivos);
+        }
+
     }
 
 
@@ -84,10 +106,8 @@ class Seccion2Controller extends Controller
     public function update(Request $request, $id)
     { 
         $datosObjetivo=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            objetivo::where('id', '=', $id)->update($datosObjetivo);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        objetivo::where('id', '=', $id)->update($datosObjetivo);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
 }

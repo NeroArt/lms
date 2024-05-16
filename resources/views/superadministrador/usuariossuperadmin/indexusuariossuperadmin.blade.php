@@ -44,10 +44,7 @@
                                 Editar
                                 </a>
                                 @endif
-
-                         
-
-                            </td>
+                                </td>
                                 <td>{{$usuario->name}}</td>
                                 <td>{{$usuario->email}}</td>
                                 <td>{{$usuario->descripcion}}</td>

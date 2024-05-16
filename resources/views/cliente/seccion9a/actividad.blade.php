@@ -16,13 +16,13 @@
                         </div>
                     </div>
                     
-                    <form action="{{url('/seccion9bactividad/'.$cierre_actividad->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('/seccion9aactividad/'.$cierre_actividad->id)}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('PATCH')}}
                         
                         <div class="container mt-5">
                             <div>
-                                <h2>Modificación de Actividad - Seccion 9B:</h2>
+                                <h2>Modificación de Actividad - Seccion 9A:</h2>
                             </div>
 
                         </div>

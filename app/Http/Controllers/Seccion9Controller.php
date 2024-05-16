@@ -18,8 +18,19 @@ class Seccion9Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }      
 
    
     
@@ -100,24 +111,40 @@ class Seccion9Controller extends Controller
 
     public function show($cursoId)
     {
-        $cierre_cursos=DB::table('cierre_cursos')
-        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 1)
-        ->select('cierre_cursos.*')
-        ->simplePaginate(30);
-        
-        $cierre_actividades=DB::table('cierre_cursos_actividades')
-        ->join('cierre_cursos','cierre_cursos.id', '=','cierre_cursos_actividades.cierre_cursos_id')
-        ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->where('seccion_encuadre', 1)
-        ->select('cierre_cursos_actividades.*')
-        ->simplePaginate(30);
-
-
+        if(Auth::user()->roles_id==2){
+            $cierre_cursos=DB::table('cierre_cursos')
+            ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('cierre_cursos.*')
+            ->simplePaginate(30);
+            
+            $cierre_actividades=DB::table('cierre_cursos_actividades')
+            ->join('cierre_cursos','cierre_cursos.id', '=','cierre_cursos_actividades.cierre_cursos_id')
+            ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('cierre_cursos_actividades.*')
+            ->simplePaginate(30);
+        }else{
+            $cierre_cursos=DB::table('cierre_cursos')
+            ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('cierre_cursos.*')
+            ->simplePaginate(30);
+            
+            $cierre_actividades=DB::table('cierre_cursos_actividades')
+            ->join('cierre_cursos','cierre_cursos.id', '=','cierre_cursos_actividades.cierre_cursos_id')
+            ->join('cursos','cursos.id', '=','cierre_cursos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->where('seccion_encuadre', 1)
+            ->select('cierre_cursos_actividades.*')
+            ->simplePaginate(30);
+        }
+       
         return view('cliente.seccion9a.showseccion9a',['cursoId' => $cursoId])->with('cierre_actividades',$cierre_actividades)
         ->with('cierre_cursos',$cierre_cursos);
     }
@@ -150,10 +177,8 @@ class Seccion9Controller extends Controller
                 ->update(['etapa_encuadre' => $etapa_encuadre,'duracion' => $duracion,'tecnicas' => $tecnicas,'material_equipo_apoyo' => $material_equipo_apoyo]);
         }
 
-        if (Auth::user()->roles_id==2) {
-            cierre_curso::where('id', '=', $id)->update($datos);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        cierre_curso::where('id', '=', $id)->update($datos);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function editactividad($id)
@@ -167,10 +192,8 @@ class Seccion9Controller extends Controller
     public function updateactividad(Request $request, $id)
     { 
         $datosActividad=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
             cierre_cursos_actividade::where('id', '=', $id)->update($datosActividad);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
     }
 
     public function seguimiento9a($nombreVista, $CursoId)

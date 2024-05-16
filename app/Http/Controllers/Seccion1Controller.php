@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\actividades_avance;
 use App\Http\Controllers\Controller;
 use App\Models\curso;
+use App\Models\pago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -15,17 +16,38 @@ class Seccion1Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
     }
 
 
     public function index()
     {
-        $cursos=DB::table('cursos')
-        ->where('cursos.users_id', Auth::id())
-        ->select('cursos.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion1.indexseccion1')->with('cursos',$cursos);
+
+        if(Auth::user()->roles_id==2){
+            $cursos=DB::table('cursos')
+            ->where('cursos.users_id', Auth::id())
+            ->select('cursos.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion1.indexseccion1')->with('cursos',$cursos);
+        }else{
+            $cursos=DB::table('cursos')
+            ->select('cursos.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion1.indexseccion1')->with('cursos',$cursos);
+        }
+
+        
     }
 
 
@@ -42,11 +64,18 @@ class Seccion1Controller extends Controller
         $datosActividad=request()->except(['_token','_method']);
         curso::insert($datosActividad);
 
+        if(Auth::user()->roles_id==2){
         // Obtenemos el id del ultimo curso, y lo enviamos al siguiente create
         $idCurso = DB::table('cursos')
         ->where('cursos.users_id', Auth::id())
         ->latest('id')
         ->value('id');
+        }else{
+            $idCurso = DB::table('cursos')
+            ->latest('id')
+            ->value('id');
+        }
+
 
         $seccion1 = array(
             "seccion" => "Sección 1",
@@ -287,6 +316,19 @@ class Seccion1Controller extends Controller
             "cursos_id" => $idCurso
         );
         actividades_avance::insert($seccion9k);
+        //"fecha_pago" =>  date('Y-m-d H:i:s'),
+        $guardarPago = array(
+            "id_transaccion" => "No aplica",
+            "status" => "Pendiente",
+            "fecha_pago" => date('Y-m-d H:i:s'),
+            "monto_pago" => 0,
+            "concepto_pago" => "Pago de Certificación",
+            "metodo_pago" => "Pendiente",
+            "cursos_id" => $idCurso,
+            "nombre_usuario" => Auth::user()->name,
+            "email_usuario" => Auth::user()->email
+        );
+        pago::insert($guardarPago);
       
         //var_dump($idCurso);
         return redirect('seccion2/create')->with('idCurso',$idCurso); 
@@ -295,11 +337,19 @@ class Seccion1Controller extends Controller
 
     public function show($cursoId)
     {
-        $cursos=DB::table('cursos')
-        ->where('cursos.users_id', Auth::id())
-        ->where('cursos.id', '=', $cursoId)
-        ->select('cursos.*')
-        ->simplePaginate(30);
+        if(Auth::user()->roles_id==2){
+            $cursos=DB::table('cursos')
+            ->where('cursos.users_id', Auth::id())
+            ->where('cursos.id', '=', $cursoId)
+            ->select('cursos.*')
+            ->simplePaginate(30);
+        }else{
+            $cursos=DB::table('cursos')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('cursos.*')
+            ->simplePaginate(30);
+        }
+
         return view('cliente.seccion1.showseccion1', ['cursoId' => $cursoId])->with('cursos',$cursos);
     }
     
@@ -314,10 +364,9 @@ class Seccion1Controller extends Controller
     public function update(Request $request, $id)
     { 
         $datosCurso=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
+    
             curso::where('id', '=', $id)->update($datosCurso);
-            return redirect('actividades')->with('Mensaje','Actividad modificada con éxito');
-        }
+            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function plantilla_cliente($id)

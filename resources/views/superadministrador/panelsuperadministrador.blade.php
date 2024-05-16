@@ -16,23 +16,23 @@
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/formentrenadores') }}"><input
+                        <a href="{{ url('/superadminpagos') }}"><input
                             class="btn-primary" type="submit"
-                                value="Gestión de Pagos de Clientes"></a>
+                                value="Gestión de Pagos"></a>
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/team_entrenadores') }}"><input
+                        <a href="{{ url('/seguimientosuperadmin') }}"><input
                             class="btn-primary" type="submit"
-                                value="Visualización de Cursos por Cliente"></a>
+                                value="Seguimiento de Certificaciones"></a>
                     </div>
+
                     <br>
                     <div>
-                        <a href="{{ url('/formusuario') }}"><input
+                        <a href="{{ url('/transferencia') }}"><input
                             class="btn-primary" type="submit"
-                                value="Seguimiento de Certificación de Cursos"></a>
+                                value="Gestión de No. de Cuentas"></a>
                     </div>
-                    <br>
 
                 </div>
             </div>

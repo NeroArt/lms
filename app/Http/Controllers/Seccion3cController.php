@@ -18,9 +18,19 @@ class Seccion3cController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
-
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }        
     
 
     public function index()
@@ -66,15 +76,27 @@ class Seccion3cController extends Controller
 
     public function show($cursoId)
     {
-        $subtemas=DB::table('subtemas')
-        ->join('temarios','temarios.id', '=','subtemas.temarios_id')
-        ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
-        ->join('cursos','cursos.id', '=','objetivos.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('subtemas.*')
-        ->simplePaginate(30);
-        return view('cliente.seccion3c.showseccion3c',['cursoId' => $cursoId])->with('subtemas',$subtemas);
+        if(Auth::user()->roles_id==2){
+            $subtemas=DB::table('subtemas')
+            ->join('temarios','temarios.id', '=','subtemas.temarios_id')
+            ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->select('subtemas.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion3c.showseccion3c',['cursoId' => $cursoId])->with('subtemas',$subtemas);
+        }else{
+            $subtemas=DB::table('subtemas')
+            ->join('temarios','temarios.id', '=','subtemas.temarios_id')
+            ->join('objetivos','objetivos.id', '=','temarios.objetivos_id')
+            ->join('cursos','cursos.id', '=','objetivos.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('subtemas.*')
+            ->simplePaginate(30);
+            return view('cliente.seccion3c.showseccion3c',['cursoId' => $cursoId])->with('subtemas',$subtemas);
+        }
+
     }
     public function getTemas($IdObjetivo, $CursoId)
     {
@@ -123,10 +145,8 @@ class Seccion3cController extends Controller
     public function update(Request $request, $id)
     {
         $datosSubtema = request()->except(['_token', '_method']);
-        if (Auth::user()->roles_id == 2) {
-            subtema::where('id', '=', $id)->update($datosSubtema);
-            return redirect('home')->with('Mensaje', 'Actividad modificada con éxito');
-        }
+        subtema::where('id', '=', $id)->update($datosSubtema);
+        return redirect('home')->with('Mensaje', 'Actividad modificada con éxito');
     }
 
     public function seguimiento3c($nombreVista, $CursoId)

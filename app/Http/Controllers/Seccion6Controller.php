@@ -18,8 +18,19 @@ class Seccion6Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('cliente');
-    }
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->roles_id==1){
+                $this->middleware('administrador');
+            }
+            if(Auth::user()->roles_id==2){
+                $this->middleware('cliente');
+            }
+            if(Auth::user()->roles_id==3){
+                $this->middleware('superadmin');
+            }
+            return $next($request);
+        });
+    }    
     
 
 
@@ -86,20 +97,36 @@ class Seccion6Controller extends Controller
 
     public function show($cursoId)
     {
-        $previo_inicios=DB::table('previo_inicios')
-        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('previo_inicios.*')
-        ->simplePaginate(30);
-
-        $previo_inicios_actividades=DB::table('previo_inicios_actividades')
-        ->join('previo_inicios','previo_inicios.id', '=','previo_inicios_actividades.previo_inicios_id')
-        ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
-        ->where('cursos.users_id', '=', Auth::user()->id)
-        ->where('cursos.id', '=', $cursoId)
-        ->select('previo_inicios_actividades.*')
-        ->simplePaginate(30);
+        if(Auth::user()->roles_id==2){
+            $previo_inicios=DB::table('previo_inicios')
+            ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->select('previo_inicios.*')
+            ->simplePaginate(30);
+    
+            $previo_inicios_actividades=DB::table('previo_inicios_actividades')
+            ->join('previo_inicios','previo_inicios.id', '=','previo_inicios_actividades.previo_inicios_id')
+            ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+            ->where('cursos.users_id', '=', Auth::user()->id)
+            ->where('cursos.id', '=', $cursoId)
+            ->select('previo_inicios_actividades.*')
+            ->simplePaginate(30);
+        }else{
+            $previo_inicios=DB::table('previo_inicios')
+            ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('previo_inicios.*')
+            ->simplePaginate(30);
+    
+            $previo_inicios_actividades=DB::table('previo_inicios_actividades')
+            ->join('previo_inicios','previo_inicios.id', '=','previo_inicios_actividades.previo_inicios_id')
+            ->join('cursos','cursos.id', '=','previo_inicios.cursos_id')
+            ->where('cursos.id', '=', $cursoId)
+            ->select('previo_inicios_actividades.*')
+            ->simplePaginate(30);
+        }
+       
 
 
         return view('cliente.seccion6.showseccion6',['cursoId' => $cursoId])->with('previo_inicios_actividades',$previo_inicios_actividades)
@@ -116,10 +143,8 @@ class Seccion6Controller extends Controller
     public function update(Request $request, $id)
     { 
         $datosRequerimiento=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            previo_inicio::where('id', '=', $id)->update($datosRequerimiento);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        previo_inicio::where('id', '=', $id)->update($datosRequerimiento);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function editactividad($id)
@@ -135,10 +160,8 @@ class Seccion6Controller extends Controller
     public function updateactividad(Request $request, $id)
     { 
         $datosRequerimiento=request()->except(['_token','_method']);
-        if (Auth::user()->roles_id==2) {
-            previo_inicios_actividade::where('id', '=', $id)->update($datosRequerimiento);
-            return redirect('home')->with('Mensaje','Actividad modificada con éxito');
-        }
+        previo_inicios_actividade::where('id', '=', $id)->update($datosRequerimiento);
+        return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
 
     public function seguimiento6($nombreVista, $CursoId)

@@ -9,10 +9,10 @@
     @endif
         <div class="col-md-8">
             <div class="card card-5">
-                <div class="card-header">Gestión de Objetivo General</div>
+                <div class="card-header">Seguimiento de curso {{$nombreCurso}}</div> 
                 <div class="card-body">
                     <div>
-                        <a href="{{url('/gestionsecciones/'. $cursoId)}}" class="btn btn-danger">Regresar</a>
+                        <a href="{{url('/seguimientosuperadmin')}}" class="btn btn-danger">Regresar</a>
                     </div>
                     <br>
 
@@ -20,32 +20,35 @@
                 <table class="table table-bordered table-hover" >
                     <thead class="thead-dark" >
                         <tr>
-                            <th class="card-title">Acción</th>
-                            <th class="card-title">Tipo de Objetivo</th>
-                            <th class="card-title">Descripción</th>
+                            <th class="card-title">Sección</th>
+                            <th class="card-title">Porcentaje</th>
+                            <th class="card-title">Status</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($objetivos as $objetivo)
+                        @foreach ($avances as $avance)
             
                             <tr> 
-                                <td>
-                                    <a class="btn btn-warning" href="{{url('/seccion2/'.$objetivo->id.'/edit')}}">Editar
-                                    </a> 
+
+                                <td>{{$avance->seccion}}</td>
+                                <td>{{$avance->porcentaje_seccion}}%</td>
+                                @if ($avance->status == 1)
+                                <td style="background-color: rgb(114, 224, 110);">
+                                    Completo
                                 </td>
-                                
-                                <td>{{$objetivo->tipo_objetivo}}</td>
-                                <td>{{$objetivo->descripcion}}</td>
-                                
+                                @endif
+                                @if ($avance->status == 0)
+                                <td  style="background-color: rgb(219, 97, 97);">
+                                    Incompleto
+                                </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
                 </div>
-                <div class="pagination">
-                    {{ $objetivos->links() }}
-                </div>
+             
                 </div>
             </div>
         </div>
