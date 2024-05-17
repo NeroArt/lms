@@ -16,9 +16,9 @@
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/formentrenadores') }}"><input
+                        <a href="{{ url('/adminpagos') }}"><input
                             class="btn-primary" type="submit"
-                                value="Gestión de Pagos de Clientes"></a>
+                                value="Gestión de Pagos"></a>
                     </div>
                     <br>
                     <div>

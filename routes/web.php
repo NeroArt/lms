@@ -437,6 +437,10 @@ Route::get('/superadministrador', [App\Http\Controllers\PanelSuperAdministradorC
 Route::resource('/usuariossuperadmin', App\Http\Controllers\UsuariosSuperAdminController::class);
 //Fin vista de super administradores
 
+//Gestion de pagos administrador
+Route::resource('/adminpagos', App\Http\Controllers\AdminPagosController::class);
+//Fin Gestion de pagos administrador
+
 //Gestion de pagos superadministrador
 Route::resource('/superadminpagos', App\Http\Controllers\SuperAdminPagosController::class);
 //Fin Gestion de pagos superadministrador

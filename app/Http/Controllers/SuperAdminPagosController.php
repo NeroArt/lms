@@ -39,8 +39,6 @@ class SuperAdminPagosController extends Controller
     {
         $pago = pago::findOrFail($id);
         $curso = curso::findOrFail($pago->cursos_id);
-       
-       
         return view('superadministrador.pagos.editpagos',compact('pago','curso'));
     }
 
