@@ -50,15 +50,15 @@
                                         @if ($pago->status == "Cancelado")
                                         <option value="Cancelado" style="background-color: rgb(215, 235, 35);">Actual: Cancelado</option>
                                         @endif
-                                        @if ($pago->status == "En proceso")
-                                        <option value="En proceso" style="background-color: rgb(215, 235, 35);">Actual: En proceso</option>
+                                        @if ($pago->status == "En Proceso")
+                                        <option value="En Proceso" style="background-color: rgb(215, 235, 35);">Actual: En proceso</option>
                                         @endif
                                         <option value="Pendiente" >Pendiente</option>
                                         <option value="Pagado" >Pagado</option>
                                         <option value="Fallido" >Fallido</option>
                                         <option value="Reembolsado" >Reembolsado</option>
                                         <option value="Cancelado" >Cancelado</option>
-                                        <option value="En proceso" >En proceso</option>
+                                        <option value="En Proceso" >En Proceso</option>
                                     </select>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">

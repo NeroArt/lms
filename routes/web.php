@@ -34,6 +34,8 @@ use App\Http\Controllers\Seccion9jController;
 use App\Http\Controllers\Seccion9kController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\SeguimientoClienteController;
+use App\Http\Controllers\SeguimientoSuperAdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -412,7 +414,11 @@ Route::get('/seguimiento/{idCurso}', [SeguimientoClienteController::class, 'show
 //Fin Gestion Seguimiento
 
 //Pagos cliente
+Route::get('/pagos', [PagosController::class, 'index'])->name('pago-index');
 Route::post('/pago/store', [PagosController::class, 'store'])->name('pago-store');
+Route::get('/pago/{pagoId}', [PagosController::class, 'show'])->name('pago-show');
+Route::get('/pago/update/{idCurso}', [PagosController::class, 'pagoupdate'])->name('pago-update');
+Route::patch('/pago/{pagoId}', [PagosController::class, 'update'])->name('pago-update');
 // Fin Pagos cliente
 
 //Plantilla cliente
@@ -428,8 +434,26 @@ Route::resource('cursosadministrador', App\Http\Controllers\CursosAdministradorC
 
 //Vista de super administradores
 Route::get('/superadministrador', [App\Http\Controllers\PanelSuperAdministradorController::class, 'index'])->name('superadmin');
-Route::resource('/actividades', App\Http\Controllers\ActividadesAvanceController::class);
 Route::resource('/usuariossuperadmin', App\Http\Controllers\UsuariosSuperAdminController::class);
+//Fin vista de super administradores
+
+//Gestion de pagos superadministrador
+Route::resource('/superadminpagos', App\Http\Controllers\SuperAdminPagosController::class);
+//Fin Gestion de pagos superadministrador
+
+//Gestion Seguimiento Superadministrador
+Route::get('/seguimientosuperadmin', [SeguimientoSuperAdminController::class, 'index'])->name('seguimientosuperadmin-index');
+Route::get('/seguimientosuperadmin/{idCurso}', [SeguimientoSuperAdminController::class, 'show'])->name('seguimientosuperadmin-show');
+//Fin Gestion Seguimiento Superadministrador
+
+//Gestionsecciones superaministrador
+Route::get('/gestionseccionessuperadmin/{idCurso}', [SeguimientoSuperAdminController::class, 'indexGestionSeccionesSuperAdmin'])->name('gestionseccionessuperadmin-index');
+//Fin gestionsecciones superaministrador
+
+
+//Gestion de transferencias
+Route::resource('/transferencia', App\Http\Controllers\TransferenciaController::class);
+//Fin Gestion de transferencias
 
 //Perfil de usuario
 Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile-store');

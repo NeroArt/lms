@@ -21,10 +21,10 @@ class SuperAdminPagosController extends Controller
 
     public function index()
     {
-        $cursos=DB::table('cursos')
-        ->join('pagos','pagos.cursos_id', '=','cursos.id')
+        $cursos=DB::table('pagos')
+        ->join('cursos','pagos.cursos_id', '=','cursos.id')
         ->join('users','cursos.users_id', '=','users.id')
-        ->select('cursos.*','pagos.status','users.name')
+        ->select('cursos.*','pagos.status','users.name','pagos.id as idpago')
         ->simplePaginate(30);
         return view('superadministrador.pagos.indexpagos')->with('cursos',$cursos);
     }

@@ -28,7 +28,7 @@
                     </div>
                     <br>
                     <div>
-                        <a href="{{ url('/formusuario') }}"><input
+                        <a href="{{ url('/pagos') }}"><input
                             class="btn-primary" type="submit"
                                 value="Gestión de Pagos"></a>
                     </div>
