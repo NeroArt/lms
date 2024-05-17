@@ -14,6 +14,7 @@
                             <span id="mySIdenavIcon">&#9776; Secciones</span>
                         </div>
                     </div>
+                    <br>
                     <div class="mb-3">
                         <div class="name ">Nombre del curso</div>
                             <div class="input-group wrap-input100 validate-input" >
