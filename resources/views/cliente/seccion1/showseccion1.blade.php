@@ -11,9 +11,21 @@
             <div class="card card-5">
                 <div class="card-header">Gestión de Sección 1</div> 
                 <div class="card-body">
+                    @if (Auth::user()->roles_id == 1)
+                    <div>
+                        <a href="{{url('/gestionseccionesadmin/'. $cursoId)}}" class="btn btn-danger">Regresar</a>
+                    </div>
+                    @endif
+                    @if (Auth::user()->roles_id == 2)
                     <div>
                         <a href="{{url('/gestionsecciones/'. $cursoId)}}" class="btn btn-danger">Regresar</a>
                     </div>
+                    @endif
+                    @if (Auth::user()->roles_id == 3)
+                    <div>
+                        <a href="{{url('/gestionseccionessuperadmin/'. $cursoId)}}" class="btn btn-danger">Regresar</a>
+                    </div>
+                    @endif
                     <br>
 
                 <div class="table-responsive">
@@ -31,7 +43,7 @@
             
                             <tr> 
                                 <td>
-                                    <div class="row">
+                                    <div class="btn">
                                         <a class="btn btn-warning" href="{{url('/seccion1/'.$curso->id.'/edit')}}">Editar
                                         </a> 
                                         <br>

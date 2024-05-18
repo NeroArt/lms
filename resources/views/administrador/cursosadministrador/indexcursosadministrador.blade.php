@@ -7,15 +7,14 @@
             {{Session::get('Mensaje')}}
         </div>
     @endif
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card card-5">
                 <div class="card-header">Cursos Registrados</div>
                 <div class="card-body">
-                    <div>
-                        <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
-                    </div>
-                    <br>
-
+                <div>
+                    <a href="{{url('/home')}}" class="btn btn-danger">Regresar</a>
+                </div>
+                <br>
                 <div class="table-responsive">
                 <table class="table table-bordered table-hover" >
                     <thead class="thead-dark" >
@@ -32,16 +31,37 @@
             
                             <tr> 
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('/seccion1/'.$curso->id.'/edit')}}">Editar
-                                    </a> 
+                                    <div class="btn">
+                                        <a class="btn btn-primary" href="{{url('/cursosadministrador/'.$curso->id)}}">Consultar avances
+                                        </a> 
+                                    </div>
+                                    <div class="btn">
+                                        <a class="btn btn-warning" href="{{url('/gestionseccionesadmin/'.$curso->id)}}">Editar
+                                        </a>
+                                    </div>
+                                    <div class="btn">
+                                        <a class="btn btn-success" href="{{url('/plantilla_cliente/'.$curso->id)}}">Plantilla
+                                        </a> 
+                                    </div>
+
                                     <br>
-                                    <a class="btn btn-warning" href="{{url('/plantilla_cliente/'.$curso->id)}}">Plantilla
-                                    </a> 
+
                                 </td>
                                 
                                 <td>{{$curso->name}}</td>
                                 <td>{{$curso->nombre_curso}}</td>
                                 <td>{{$curso->descripcion_curso}}</td>
+                                <td>{{$curso->porcentaje_avance}}%</td>
+                                @if ($curso->porcentaje_avance >= 100)
+                                <td style="background-color: rgb(114, 224, 110);">
+                                    Completo
+                                </td>
+                                @endif
+                                @if ($curso->porcentaje_avance <= 99)
+                                <td  style="background-color: rgb(219, 97, 97);">
+                                    Incompleto
+                                </td>
+                                @endif
                                 
                             </tr>
                         @endforeach

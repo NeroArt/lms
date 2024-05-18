@@ -35,6 +35,7 @@ use App\Http\Controllers\Seccion9kController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\SeguimientoClienteController;
 use App\Http\Controllers\SeguimientoSuperAdminController;
+use App\Http\Controllers\CursosAdministradorController;
 
 
 /*
@@ -431,6 +432,11 @@ Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Contro
 Route::get('/paneladministrador', [App\Http\Controllers\PanelAdministradorController::class, 'index'])->name('paneladministrador');
 Route::resource('formusuarioadmin', App\Http\Controllers\UsuariosAdminController::class);
 Route::resource('cursosadministrador', App\Http\Controllers\CursosAdministradorController::class);
+//Fin vista de administradores
+
+//Gestionsecciones aministrador
+Route::get('/gestionseccionesadmin/{idCurso}', [CursosAdministradorController::class, 'indexGestionSeccionesAdmin'])->name('gestionseccionesadmin-index');
+//Fin gestionsecciones aministrador
 
 //Vista de super administradores
 Route::get('/superadministrador', [App\Http\Controllers\PanelSuperAdministradorController::class, 'index'])->name('superadmin');

@@ -24,7 +24,7 @@
                     <div>
                         <a href="{{ url('/seguimientosuperadmin') }}"><input
                             class="btn-primary" type="submit"
-                                value="Seguimiento de Certificaciones"></a>
+                                value="Gestión de Certificaciones"></a>
                     </div>
 
                     <br>

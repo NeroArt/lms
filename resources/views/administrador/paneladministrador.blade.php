@@ -24,13 +24,7 @@
                     <div>
                         <a href="{{ url('/cursosadministrador') }}"><input
                             class="btn-primary" type="submit"
-                                value="Visualización de Cursos por Cliente"></a>
-                    </div>
-                    <br>
-                    <div>
-                        <a href="{{ url('/formusuario') }}"><input
-                            class="btn-primary" type="submit"
-                                value="Seguimiento de Certificación de Cursos"></a>
+                                value="Gestión de Certicaciones"></a>
                     </div>
                 </div>
             </div>
