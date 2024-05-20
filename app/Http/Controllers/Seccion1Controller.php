@@ -360,7 +360,6 @@ class Seccion1Controller extends Controller
         return view('cliente.seccion1.editseccion1',compact('curso'));
     }
 
-
     public function update(Request $request, $id)
     { 
         $datosCurso=request()->except(['_token','_method']);
@@ -368,59 +367,4 @@ class Seccion1Controller extends Controller
             curso::where('id', '=', $id)->update($datosCurso);
             return redirect('home')->with('Mensaje','Actividad modificada con éxito');
     }
-
-    public function plantilla_cliente($id)
-    {
-    // Obtener datos de la tabla cursos
-    $datos = DB::table('cursos')
-            ->join('objetivos','objetivos.cursos_id', '=','cursos.id')
-            ->where('cursos.id', '=', $id)
-            ->select('cursos.*','objetivos.*')
-            ->first();
-
-                // Convertir el objeto stdClass en un array asociativo
-    $datosAsociativo = (array) $datos;
-
-            $ObjetivosParticulares = DB::table('cursos')
-            ->join('objetivos','objetivos.cursos_id', '=','cursos.id')
-            ->where('cursos.id', '=', $id)
-            ->where('objetivos.tipo_objetivo', '=', 'particular')
-            ->select('objetivos.descripcion')
-            ->get();
-
-            // Convertir la colección a un array
-$arrayObjetivosParticulares = $ObjetivosParticulares->toArray();
-//Obtener los valores de descripciones
-$arrayDescripciones = [];
-foreach ($arrayObjetivosParticulares as $objetivo) {
-    $arrayDescripciones[] = $objetivo->descripcion;
-}
-// Concatenas los valores en una cadena, con cada valor seguido de un salto de línea
-$valorConcatenado = implode("<w:br/>", $arrayDescripciones);
-
-
-
-        $templateProcessor = new TemplateProcessor(resource_path('plantilla.docx'));
-    // Primero, clonas la fila para cada valor en tu array
-//$templateProcessor->cloneRow('mi_variable', count($valores));
-// Luego, asignas cada valor a la variable correspondiente en la plantilla
-//for ($i = 0; $i < count($valores); $i++) {
-    //$templateProcessor->setValue('mi_variable#' . ($i + 1), $valores[$i]);
-//}
-foreach ($datosAsociativo as $clave => $valor) {
-    $templateProcessor->setValue($clave, $valor);
-    $templateProcessor->setValue('mi_variable', $valorConcatenado);
-}
-
-            // Guardar el archivo generado
-    $outputPath = storage_path('app/public/generado.docx');
-   $templateProcessor->saveAs($outputPath);
-
-    // Descargar el archivo generado
-    return response()->download($outputPath)->deleteFileAfterSend(true);
-
-
-    }
-    
-
 }

@@ -11,8 +11,7 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body" >
-                            <label for="">Requeririmiento Id:</label>
-                            <input type="text" id="requerimientos_id" name="requerimientos_id">
+                            <input type="text" id="requerimientos_id" name="requerimientos_id" hidden>
                             <div class="row">
                                 
                                 <div class="col-md-8">
