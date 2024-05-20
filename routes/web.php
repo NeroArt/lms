@@ -423,7 +423,7 @@ Route::patch('/pago/{pagoId}', [PagosController::class, 'update'])->name('pago-u
 // Fin Pagos cliente
 
 //Plantilla cliente
-Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\Seccion1Controller::class, 'plantilla_cliente'])->name('plantilla-cliente');
+Route::get('/plantilla_cliente/{seccion1}', [App\Http\Controllers\PlantillaClienteController::class, 'plantilla_cliente'])->name('plantilla-cliente');
 // Fin Plantilla cliente
 
 
