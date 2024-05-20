@@ -15,21 +15,16 @@
                          
                         </div>
                     </div>
-                    
+                    <br>
                     <form action="{{url('/seccion2')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         
                         <input name="tipo_objetivo" type="text" class="form-control" id="tipo_objetivo" value="general" hidden>
                         <!-- Objetivo General: -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Objetivo General:</h2>
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Objetivo General</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="descripcion" class="form-control" type="text" name="descripcion" autocomplete="Objetivo General" required>
+                                    <textarea name="descripcion" id="descripcion" required autocomplete="descripcion" class="form-control"></textarea>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -51,15 +46,10 @@
                         </div>
                         
                         <!-- Acción -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Acción:</h2>
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Acción</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="accion" class="form-control" type="text" name="accion" autocomplete="Acción" required>
+                                    <textarea name="accion" id="accion" required autocomplete="Acción" class="form-control"></textarea>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -68,15 +58,10 @@
                         </div>
 
                         <!-- Condición -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Condición:</h2>
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Condición</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="condicion" class="form-control" type="text" name="condicion" autocomplete="Condición" required>
+                                    <textarea name="condicion" id="condicion" required autocomplete="Condición" class="form-control"></textarea>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>

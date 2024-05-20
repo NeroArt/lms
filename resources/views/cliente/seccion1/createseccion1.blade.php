@@ -14,17 +14,11 @@
                             
                         </div>
                     </div>
-                    
+                    <br>
                     <form action="{{url('/seccion1')}}" method="POST" enctype="multipart/form-data" id="myForm">
                         {{csrf_field()}}
                         
                         <!-- Nombre del curso -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Nombre del curso/Sesión:</h2>
-                            </div>
-
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Nombre del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
@@ -37,17 +31,10 @@
                         </div>
 
                         <!-- Descripción del curso -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Descripción del Curso:</h2>
-                            </div>
-
-
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Descripción del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="descripcion_curso" class="form-control" type="text" name="descripcion_curso" autocomplete="Descripción del Curso" required>
+                                    <textarea id="descripcion_curso" class="form-control" type="text" name="descripcion_curso" autocomplete="Descripción del Curso" required></textarea>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
@@ -56,11 +43,6 @@
                         </div>
                         
                         <!-- Nombre del diseñador -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Nombre del Diseñador:</h2>
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Nombre de Diseñador</div>
                                 <div class="input-group wrap-input100 validate-input" >
@@ -73,13 +55,8 @@
                         </div>
 
                         <!-- Nombre del Facilitador -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Nombre del Facilitador/ Instructor/capacitador/formador:</h2>
-                            </div>
-                        </div>
                         <div class="mb-3">
-                            <div class="name ">Nombre de Diseñador</div>
+                            <div class="name ">Nombre de Facilitador</div>
                                 <div class="input-group wrap-input100 validate-input" >
                                     <input id="nombre_facilitador" class="form-control" type="text" name="nombre_facilitador" autocomplete="Nombre de Facilitador" required>
                                     <span class="focus-input100 "></span>
@@ -90,11 +67,6 @@
                         </div>
                         
                         <!-- Lugar de instruccion -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Lugar de Instrucción:</h2>
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Lugar de Instrucción</div>
                                 <div class="input-group wrap-input100 validate-input" >
@@ -107,16 +79,6 @@
                         </div>
 
                         <!-- Duración -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Duración:</h2>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text">El curso debe durar aproximadamente dos horas</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Duración</div>
                                 <div class="input-group wrap-input100 validate-input" >
@@ -129,18 +91,8 @@
                         </div>
 
                         <!-- Fecha -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Fecha(s):</h2>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text">Fecha cuando se realizara el curso.</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="mb-3">
-                            <div class="name ">Fecha de curso</div>
+                            <div class="name ">Fecha de curso (Cuando se realizara el curso)</div>
                                 <div class="input-group wrap-input100 validate-input" >
                                     <input id="fechas" class="form-control" type="date" name="fechas" autocomplete="Lugar de Instrucción" required>
                                     <span class="focus-input100 "></span>
@@ -150,20 +102,12 @@
                                 </div>
                         </div>
 
-
-                        <!-- Perfil de participante-->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Perfil de Participante:</h2>
-                            </div>
-
-                        </div>
                         <div class="mb-3">
                             <label for="exampleInputNombre" class="form-label">Perfil del participante:</label>
-                            <input type="text" name="perfil_participante" class="form-control" id="perfil_participante" required>
+                            <textarea name="perfil_participante" id="perfil_participante"  required autocomplete="perfil_participante" type="text"  class="form-control"></textarea>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Conocimientos:</label>
-                            <input type="text" name="perfil_participante_conocimientos" class="form-control" id="perfil_participante_conocimientos" required>
+                            <textarea name="perfil_participante_conocimientos" id="perfil_participante_conocimientos"  required autocomplete="perfil_participante_conocimientos" type="text"  class="form-control"></textarea>
                             <br>
                             <label for="exampleInputNombre" class="form-label">Habilidades/Desempeños:</label>
                             <input type="text" name="perfil_participante_habilidades" class="form-control" id="perfil_participante_habilidades" required>
@@ -181,20 +125,10 @@
                         </div>
 
                         <!-- Beneficios del Curso -->
-                        <div class="container mt-5">
-                            <div>
-                                <h2>Beneficios del Curso:</h2>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text">Que beneficios traera el curso.</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <div class="name ">Beneficios del curso</div>
                                 <div class="input-group wrap-input100 validate-input" >
-                                    <input id="beneficios_del_curso" class="form-control" type="text" name="beneficios_del_curso" autocomplete="Beneficios del curso" required>
+                                    <textarea name="beneficios_del_curso" id="beneficios_del_curso" required autocomplete="Beneficios del curso" type="text"  class="form-control"></textarea>
                                     <span class="focus-input100 "></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope"></i>
