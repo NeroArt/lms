@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('objetivos', function (Blueprint $table) {
             $table->id();
             $table->string('tipo_objetivo');
-            $table->string('descripcion');
+            $table->string('descripcion',600);
             $table->string('sujeto');
-            $table->string('accion');
-            $table->string('condicion');
+            $table->string('accion',600);
+            $table->string('condicion',600);
             $table->bigInteger('cursos_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas

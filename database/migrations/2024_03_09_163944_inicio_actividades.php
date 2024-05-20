@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inicio_actividades', function (Blueprint $table) {
             $table->id();
-            $table->string('actividad');
+            $table->string('actividad',500);
             $table->integer('duracion');
             $table->string('tecnicas');
             $table->string('material_equipo_apoyo');

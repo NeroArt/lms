@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('previo_inicios_actividades', function (Blueprint $table) {
             $table->id();
-            $table->string('actividad');
+            $table->string('actividad',600);
             $table->bigInteger('previo_inicios_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
