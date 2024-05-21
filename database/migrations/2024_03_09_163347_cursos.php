@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('perfil_participante_habilidades');
             $table->string('perfil_participante_producto');
             $table->string('perfil_participante_ahv');
-            $table->string('beneficios_del_curso');
+            $table->string('beneficios_del_curso',600);
             $table->bigInteger('users_id')->unsigned()->index()->nullable();
             $table->timestamps();
             //Forma de referenciar las llaves foraneas
