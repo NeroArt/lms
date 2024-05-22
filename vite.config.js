@@ -6,10 +6,17 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/sass/app.scss',
+                'resources/sass/_variables.scss',
                 'resources/js/app.js',
                 'resources/css/styles.css',
-                'resources/js/scripts.js',
                 'resources/css/app.css',
+                'resources/css/modal.css',
+                'resources/js/scripts.js',
+                'resources/js/bootstrap.js',
+                'resources/js/email_toggle.js',
+                'resources/js/modal.js',
+                'resources/js/password_toggle.js',
+                'resources/js/paypal.js',
                 'resources/js/seccion1.js',
                 'resources/js/seccion2.js',
                 'resources/js/seccion3.js',

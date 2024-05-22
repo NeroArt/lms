@@ -1,7 +1,15 @@
 {
+  "_axios-BpM_YABu.js": {
+    "file": "assets/axios-BpM_YABu.js"
+  },
   "resources/css/app.css": {
     "file": "assets/app-DSAUFeFO.css",
     "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/modal.css": {
+    "file": "assets/modal-YLg-GbR3.css",
+    "src": "resources/css/modal.css",
     "isEntry": true
   },
   "resources/css/styles.css": {
@@ -10,8 +18,39 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-Bhrs3Zmh.js",
+    "file": "assets/app-BYDgX9Rw.js",
     "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_axios-BpM_YABu.js"
+    ]
+  },
+  "resources/js/bootstrap.js": {
+    "file": "assets/bootstrap-CGbHn9U4.js",
+    "src": "resources/js/bootstrap.js",
+    "isEntry": true,
+    "imports": [
+      "_axios-BpM_YABu.js"
+    ]
+  },
+  "resources/js/email_toggle.js": {
+    "file": "assets/email_toggle-BRGKRolZ.js",
+    "src": "resources/js/email_toggle.js",
+    "isEntry": true
+  },
+  "resources/js/modal.js": {
+    "file": "assets/modal-BaZzZW7L.js",
+    "src": "resources/js/modal.js",
+    "isEntry": true
+  },
+  "resources/js/password_toggle.js": {
+    "file": "assets/password_toggle-kpg7P_dp.js",
+    "src": "resources/js/password_toggle.js",
+    "isEntry": true
+  },
+  "resources/js/paypal.js": {
+    "file": "assets/paypal-CqXoS5V2.js",
+    "src": "resources/js/paypal.js",
     "isEntry": true
   },
   "resources/js/scripts.js": {
@@ -167,6 +206,11 @@
   "resources/js/seccion9k.js": {
     "file": "assets/seccion9k-CvALBM-z.js",
     "src": "resources/js/seccion9k.js",
+    "isEntry": true
+  },
+  "resources/sass/_variables.scss": {
+    "file": "assets/_variables-l0sNRNKZ.js",
+    "src": "resources/sass/_variables.scss",
     "isEntry": true
   },
   "resources/sass/app.scss": {
