@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+
+
+
+
+
 
 
 class PlantillaClienteController extends Controller
@@ -35,17 +41,32 @@ class PlantillaClienteController extends Controller
     {
         $templateProcessor = new TemplateProcessor(resource_path('plantilla.docx'));
 
-        // Obtener datos de seccion1
-        $datos = DB::table('cursos')
-        ->where('cursos.id', '=', $id)
-        ->select('cursos.*')
-        ->first();
 
-        $datosAsociativo = (array) $datos;
-        foreach ($datosAsociativo as $clave => $valor) {
-            $templateProcessor->setValue($clave, $valor);
-            //$templateProcessor->setValue('mi_variable', $valorConcatenado);
+                // Obtener datos de seccion1
+                $datos = DB::table('cursos')
+                ->where('cursos.id', '=', $id)
+                ->select('cursos.*')
+                ->first();
+        
+        if(!isset($datos) || is_null($datos) || empty($datos)){
+            return redirect('home');
+        }else{
+            $idUsuario=DB::table('cursos')
+            ->where('cursos.id', '=', $id)
+            ->select('cursos.users_id')
+            ->first();
+            if($idUsuario->users_id == Auth::user()->id ){
+                $datosAsociativo = (array) $datos;
+                foreach ($datosAsociativo as $clave => $valor) {
+                    $templateProcessor->setValue($clave, $valor);
+                    //$templateProcessor->setValue('mi_variable', $valorConcatenado);
+                }
+            }else{
+                return redirect('home');
+            }
         }
+
+
 
         // Obtener datos de seccion2
         $ObjetivoGeneral = DB::table('cursos')
